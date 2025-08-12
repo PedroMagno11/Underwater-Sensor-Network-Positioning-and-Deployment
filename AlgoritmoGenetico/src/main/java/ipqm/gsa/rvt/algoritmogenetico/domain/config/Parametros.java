@@ -1,5 +1,7 @@
 package ipqm.gsa.rvt.algoritmogenetico.domain.config;
 
+import ipqm.gsa.rvt.algoritmogenetico.domain.TipoGranada;
+
 /**
  *
  * @author Pedro Magno
@@ -8,7 +10,15 @@ public class Parametros {
     public static final double RAIO_DETECCAO_GAE = 2500.0; // m
     public static final double RAIO_DETECCAO_EXSUP = 1000.0; // m
     public static final double RUIDO_TEMPO_DETECCAO = 0.0003; // 0.3 ms
+
+    public static double getRaioDeDetecaoDoSplash(TipoGranada t) {
+        return (t == TipoGranada.GAE) ? Parametros.RAIO_DETECCAO_GAE
+                : Parametros.RAIO_DETECCAO_EXSUP;
+    }
+
 }
+
+
 
 //// Boia.java
 //public class Boia {

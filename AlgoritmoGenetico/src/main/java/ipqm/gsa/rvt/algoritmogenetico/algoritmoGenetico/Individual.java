@@ -1,8 +1,10 @@
 package ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico;
 
-import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Boia;
+import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Buoy;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -10,14 +12,19 @@ import java.util.List;
  * @grupo LaFIA (Laboratório de Fusão e Inteligências Artificial Aplicada)
  */
 public class Individual {
-    private final List<Boia> buoys; // genes
+    private final Set<Buoy> buoys; // genes
     private double fitness;
-    
-    public Individual(List<Boia> genes){
+    private boolean detectaEXSUP;
+    private boolean detectaGAE;
+
+    public Individual(Set<Buoy> genes){
         this.buoys = genes;
+        detectaEXSUP = false;
+        detectaGAE = false;
+        fitness = 0.0;
     }
     
-    public List<Boia> getGenes(){
+    public Set<Buoy> getGenes(){
         return buoys;
     }
     
@@ -25,25 +32,23 @@ public class Individual {
         return fitness;
     }
 
-    public void setFitness(double fitness) {
-        this.fitness = fitness;
+    public void updateFitness(double fitness) {
+        this.fitness += fitness;
     }
-    
-    public int getNumberOfBuoys(){
-        return buoys.size();
-    }
-    
-    public Individual copy() throws Exception{
-        List<Boia> c = new ArrayList<>();
-        for(Boia b : buoys){ 
 
-            Boia copy = new Boia();
-            copy.setNome(b.getNome());
-            copy.setPosX(b.getPosX());
-            copy.setPosY(b.getPosY());
-            c.add(copy);
-        }
-        return new Individual(c);
+    public boolean detectaEXSUP() {
+        return detectaEXSUP;
     }
-    
+
+    public void detectaEXSUP(boolean detectaEXSUP) {
+        this.detectaEXSUP = detectaEXSUP;
+    }
+
+    public boolean detectaGAE() {
+        return detectaGAE;
+    }
+
+    public void setDetectaGAE(boolean detectaGAE) {
+        this.detectaGAE = detectaGAE;
+    }
 }

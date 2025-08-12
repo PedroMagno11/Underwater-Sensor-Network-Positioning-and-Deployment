@@ -1,18 +1,12 @@
 package ipqm.gsa.rvt.algoritmogenetico;
 
-import ipqm.gsa.rvt.algoritmogenetico.domain.Alvo;
 import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.GeneticAlgorithm;
 import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.Individual;
-import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Boia;
+import ipqm.gsa.rvt.algoritmogenetico.domain.Alvo;
 import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Raia;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
+import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.Posicao;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,20 +38,16 @@ public class App{
 
     public static void main(String[] args) throws Exception {
 //        launch();
-        int populationSize = 100;
+        int populationSize = 10;
         int generations = 100;
-        int numBoias = 4;
-        int areaSize = 1000;
-        double sigma = 1.0;
 
-        GeneticAlgorithm ga = new GeneticAlgorithm(populationSize, numBoias, areaSize, sigma, generations);
+        Posicao pAlvo = new Posicao();
+        pAlvo.setCoordenadaGeografica(new CoordenadaGeografica(-22.12343,-43.23423));
+        Alvo alvo = new Alvo(pAlvo);
 
-        List<Individual> populacao = ga.initializePopulation();
-        for(Individual i : populacao){
-            System.out.println(" - " + i);
-        }
-        
-      
+        GeneticAlgorithm ga = new GeneticAlgorithm(populationSize, generations, alvo);
+
+        ga.executar(alvo);
         
        
         

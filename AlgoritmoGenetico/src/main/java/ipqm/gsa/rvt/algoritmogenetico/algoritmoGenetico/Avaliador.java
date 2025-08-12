@@ -3,9 +3,9 @@ package ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico;
 import ipqm.gsa.rvt.algoritmogenetico.domain.Alvo;
 import ipqm.gsa.rvt.algoritmogenetico.domain.TipoGranada;
 import ipqm.gsa.rvt.algoritmogenetico.domain.config.Parametros;
-import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Boia;
+import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Buoy;
 import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.CoordenadaCartesianaRVT;
-import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.PontoCalculado;
+import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.PontoQueda;
 import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Raia;
 import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
 import java.util.Random;
@@ -21,66 +21,63 @@ public class Avaliador {
         return (t == TipoGranada.GAE) ? Parametros.RAIO_DETECCAO_GAE
                                       : Parametros.RAIO_DETECCAO_EXSUP;
     }
-    
-    private static boolean detectar(Boia b, CoordenadaCartesianaRVT splash, TipoGranada t) {
-        return Math.hypot(b.getPosX() - splash.getX(), b.getPosY() - splash.getY()) <= getRaioDeDetecaoDoSplash(t);
+
+    // Assumimos que ele acertou. O ponto do alvo é o mesmo do splash.
+    private static boolean detecta(Buoy b, Alvo alvo, TipoGranada t) {
+        return Math.hypot(b.getLatGeo() - alvo.getCoordenadaGeografica().getLatitude(), b.getLonGeo() - alvo.getCoordenadaGeografica().getLongitude()) <= getRaioDeDetecaoDoSplash(t);
     }
     
     private static long toMillis(double segundos) { return Math.round(segundos * 1000.0); }
     
-    private static double tempoDeteccao(Boia b, double sx, double sy) {
-        double d = Math.hypot(b.getPosX() - sx, b.getPosY() - sy);
-        double t = d / Raia.VELOCSOM;
-        if (Parametros.RUIDO_TEMPO_DETECCAO > 0) t += rand.nextGaussian() * Parametros.RUIDO_TEMPO_DETECCAO;
-        return Math.max(0.0, t);
+    private static double tempoDeteccao(Buoy b, Alvo alvo) {
+        double distancia = Math.hypot(b.getLatGeo() - alvo.getCoordenadaGeografica().getLatitude(), b.getLonGeo() - alvo.getCoordenadaGeografica().getLongitude());
+        double tempo = distancia / Raia.VELOCSOM;
+        if (Parametros.RUIDO_TEMPO_DETECCAO > 0) tempo += rand.nextGaussian() * Parametros.RUIDO_TEMPO_DETECCAO;
+        return Math.max(0.0, tempo);
     }
 
-    /** Erro médio (m) avaliando o mesmo arranjo para ambos os tipos de granadas. */
+    /**
+     * Calcula o erro médio avaliando o mesmo arranjo para ambos os tipos de granadas.
+     */
     public static double erroMedioArranjo(Individual individuo, Alvo alvo) throws Exception {
+
+        int casos = 0;
         if (individuo.getGenes().size() < 3){
             // Penaliza muuuuuuito
-            individuo.setFitness(1e12);
+            individuo.updateFitness(-1e12);
         }
 
-        double soma = 0.0; int casos = 0;
-
-
-        // garantir lat/lon das boias coerente com x,y do ref local (p/ alimentar a raia)
-        for (Boia b : individuo.getGenes()) {
-           CoordenadaGeografica coordGeoBoia = CoordenadaGeografica.converterDistanciaXY(alvo.getCoordGeo(), b.getPosX(), b.getPosY());
-           b.setLatGeo(coordGeoBoia.getLatitude()); 
-           b.setLonGeo(coordGeoBoia.getLongitude());
+        if(individuo.getGenes().size() > 5){
+            individuo.updateFitness(-1e12);
         }
-
-        CoordenadaGeografica coordBoia = new CoordenadaGeografica(individuo.getGenes().get(rand.nextInt(individuo.getGenes().size())).getLatGeo(), individuo.getGenes().get(rand.nextInt(individuo.getGenes().size())).getLonGeo());
-        CoordenadaCartesianaRVT coordRVTAlvo = CoordenadaCartesianaRVT.converterCoordenadaGeograficaParaCartesiana(alvo.getCoordGeo(), coordBoia);
 
         for (TipoGranada tipo : TipoGranada.values()) {
-               int det = 0;
-               for (Boia b : individuo.getGenes()) {
-               if (!detectar(b, coordRVTAlvo, tipo)) continue;
-               double t = tempoDeteccao(b, coordRVTAlvo.getX(), coordRVTAlvo.getY());
-               Raia.getRaia().atualizarBoia(b.getNome(),
+               int deteccoes = 0;
+               for (Buoy b : individuo.getGenes()) {
+                   alvo.setCoordenadaCartesianaRVT(CoordenadaCartesianaRVT.converterCoordenadaGeograficaParaCartesiana(alvo.getCoordenadaGeografica(), new CoordenadaGeografica(b.getLatGeo(), b.getLonGeo())));
+                   if (!detecta(b, alvo, tipo)) continue;
+                   double t = tempoDeteccao(b, alvo);
+                   Raia.getRaia().atualizarBoia(b.getNome(),
                                 Math.round(b.getPosX()),
                                 Math.round(b.getPosY()),
                                 b.getLatGeo(), b.getLonGeo(),
                                 toMillis(t));
-               det++;
+               deteccoes++;
             }
-            if (det < 3) { // não dá pra triangular
-                soma += 1e6; casos++; // penalidade
+            if (deteccoes < 3) { // não dá pra triangular
+                individuo.updateFitness(-1e12); // penalidade
                 continue;
             }
 
-            PontoCalculado pontoDeQuedaEstimado = Raia.getRaia().calcularPontoQueda(); 
+            PontoQueda pontoDeQuedaEstimado = Raia.getRaia().calcularPontoQueda();
             // Se seu triangulador retorna (x,y), use:
             // double[] estXY = tri.estimarSplashXY();
             // double erro = Math.hypot(estXY[0] - sx, estXY[1] - sy);
 
-            double erro = Math.hypot(pontoDeQuedaEstimado.getPontoDeQueda().getX() - coordRVTAlvo.getX(), pontoDeQuedaEstimado.getPontoDeQueda().getY() - coordRVTAlvo.getY());
-            soma += erro; casos++;
+            double erro = Math.hypot(pontoDeQuedaEstimado.getPontoDeQueda().getX() - alvo.getCoordenadaCartesianaRVT().getX(), pontoDeQuedaEstimado.getPontoDeQueda().getY() - alvo.getCoordenadaCartesianaRVT().getY());
+            casos++;
         }
-        return (casos == 0) ? 1e12 : soma / casos;
+        return (casos == 0) ? 1e12 : 1;
     }
 }
 

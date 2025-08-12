@@ -1,13 +1,14 @@
 package ipqm.gsa.rvt.algoritmogenetico.domain.rvt;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * Classe que contém as informações de posição, detecção e estado da boia
  *
  * @author José Gomes de Carvalho Jr.
  */
-public class Boia {
+public class Buoy {
 
     /**
      * @return the latGeo
@@ -49,8 +50,15 @@ public class Boia {
      * Cria a boia inicialmente desativada e sem um nome
      *
      */
-    public Boia() {
+    public Buoy() {
         nome = "";
+        ativada = false;
+    }
+
+    public Buoy(String nome, int posX, int posY){
+        this.nome = nome;
+        this.posX = posX;
+        this.posY = posY;
         ativada = false;
     }
 
@@ -160,5 +168,14 @@ public class Boia {
 
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
-    }  
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
+        Buoy buoy = (Buoy) obj;
+        return Objects.equals(nome, buoy.nome);
+    }
 }

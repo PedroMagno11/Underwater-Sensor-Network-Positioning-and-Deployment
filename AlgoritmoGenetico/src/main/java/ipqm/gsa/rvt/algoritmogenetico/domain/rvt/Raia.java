@@ -37,15 +37,15 @@ public class Raia {
     /**
      * @return the arrayBoias
      */
-    public Boia[] getArrayBoias() {
-        return arrayBoias;
+    public Buoy[] getArrayBoias() {
+        return arrayBuoys;
     }
 
     /**
-     * @param arrayBoias the arrayBoias to set
+     * @param arrayBuoys the arrayBoias to set
      */
-    public void setArrayBoias(Boia[] arrayBoias) {
-        this.arrayBoias = arrayBoias;
+    public void setArrayBoias(Buoy[] arrayBuoys) {
+        this.arrayBuoys = arrayBuoys;
     }
 
     /**
@@ -127,7 +127,7 @@ public class Raia {
     /**
      * Atributos:
      */
-    private Boia[] arrayBoias;        // Vetor com as boias existentes da raia
+    private Buoy[] arrayBuoys;        // Vetor com as boias existentes da raia
 
     private VetBoia[][] distBoia;// Para cada ponto da raia há um vetor contendo as
     // distâncias deste ponto a cada uma das boias.
@@ -180,9 +180,9 @@ public class Raia {
              * Cria o vetor para guardar as boias possíveis de existirem na raia
              * e, em seguida, cria as boias e as guarda no vetor:
              */
-            arrayBoias = new Boia[MAXBOIAS];
-            for (int i = 0; i < arrayBoias.length; i++) {
-                arrayBoias[i] = new Boia();
+            arrayBuoys = new Buoy[MAXBOIAS];
+            for (int i = 0; i < arrayBuoys.length; i++) {
+                arrayBuoys[i] = new Buoy();
             }
 
             /**
@@ -225,9 +225,9 @@ public class Raia {
     }
 
     public void rearmarBoia(String nome) {
-        for (Boia boia : getArrayBoias()) {
-            if (boia.getNome().equals(nome)) {
-                boia.setAtivada(true);
+        for (Buoy buoy : getArrayBoias()) {
+            if (buoy.getNome().equals(nome)) {
+                buoy.setAtivada(true);
             }
         }
     }
@@ -255,20 +255,20 @@ public class Raia {
         boolean achou = false;
         boolean criou = false;
         try {
-            for (Boia boia : getArrayBoias()) {
-                if (boia.getNome().equals(nome)) {
-                    boia.setPosX(x);
-                    boia.setPosY(y);
-                    boia.setLatGeo(lat);
-                    boia.setLonGeo(lon);
-                    boia.setTempoDeteccao(tempoDeteccao);
-                    boia.setAtivada(true);
+            for (Buoy buoy : getArrayBoias()) {
+                if (buoy.getNome().equals(nome)) {
+                    buoy.setPosX(x);
+                    buoy.setPosY(y);
+                    buoy.setLatGeo(lat);
+                    buoy.setLonGeo(lon);
+                    buoy.setTempoDeteccao(tempoDeteccao);
+                    buoy.setAtivada(true);
                     achou = true;
                 }
             }
             if (!achou) {
                 for (int i = 0; (i < getArrayBoias().length) && (!criou); i++) {
-                    if (!(arrayBoias[i].getAtivada())) {
+                    if (!(arrayBuoys[i].getAtivada())) {
                         getArrayBoias()[i].setNome(nome);
                         getArrayBoias()[i].setPosX(x);
                         getArrayBoias()[i].setPosY(y);
@@ -296,7 +296,7 @@ public class Raia {
      *
      * @throws Exception - caso não haja ao menos três boias ativas.
      */
-    public PontoCalculado calcularPontoQueda() throws Exception {
+    public PontoQueda calcularPontoQueda() throws Exception {
 
         double distancia;  // Distância do ponto sendo correntemente calculado
         double tempo;      // Tempo do ponto sendo correntemente calculado 
@@ -314,10 +314,10 @@ public class Raia {
              * precisão aceitável). Caso não haja o mínimo aceitável de boias
              * ativas, gera uma exceção informando quantas boias estão ativas:
              */
-            for (Boia boia : getArrayBoias()) {
-                if (boia.getAtivada()) {
+            for (Buoy buoy : getArrayBoias()) {
+                if (buoy.getAtivada()) {
                     numBoiasAtivas++;
-                    menorTempo = boia.getTempoDeteccao();//Inicia com um dos valores
+                    menorTempo = buoy.getTempoDeteccao();//Inicia com um dos valores
                 }
             }
             if (numBoiasAtivas < QUANTMINBOIAS) {
@@ -325,8 +325,8 @@ public class Raia {
                 /**
                  * Como não será calculado, desativa as bóias não utilizadas
                  */
-                for (Boia boia : getArrayBoias()) {
-                    boia.setAtivada(false);
+                for (Buoy buoy : getArrayBoias()) {
+                    buoy.setAtivada(false);
                 }
                 erro = String.format("%s%d%s", "Cálculo inválido, pois só há ",
                         numBoiasAtivas, " boias ativas.");
@@ -353,9 +353,9 @@ public class Raia {
                 }
             }
             //boias[indBoiaBase].setAtivada(false);  // desativa a boia base
-            for (Boia boia : getArrayBoias()) {
-                if (boia.getAtivada()) {
-                    boia.setTempoDeteccao(boia.getTempoDeteccao() - menorTempo);
+            for (Buoy buoy : getArrayBoias()) {
+                if (buoy.getAtivada()) {
+                    buoy.setTempoDeteccao(buoy.getTempoDeteccao() - menorTempo);
                 }
             }
 
@@ -468,12 +468,12 @@ public class Raia {
              * cálculo necessita que novas posições de cada boia sejam recebidas
              * para... pelo menos três boias: .
              */
-            for (Boia boia : getArrayBoias()) {
-                boia.setAtivada(false);
+            for (Buoy buoy : getArrayBoias()) {
+                buoy.setAtivada(false);
             }
         }
         
-        return new PontoCalculado(menorCusto, pontoQueda);
+        return new PontoQueda(menorCusto, pontoQueda);
     }
 
 }

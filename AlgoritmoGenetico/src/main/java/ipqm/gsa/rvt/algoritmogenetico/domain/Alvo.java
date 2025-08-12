@@ -1,6 +1,8 @@
 package ipqm.gsa.rvt.algoritmogenetico.domain;
 
+import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.CoordenadaCartesianaRVT;
 import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
+import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.Posicao;
 
 /**
  *
@@ -8,25 +10,36 @@ import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeog
  */
 public class Alvo {
 
-    private CoordenadaGeografica coordGeo;
+    private Posicao posicao;
+    private CoordenadaCartesianaRVT coordenadaCartesianaRVT;
 
-    public Alvo(CoordenadaGeografica coordGeo){
-        this.coordGeo = coordGeo;
-    } 
-    public Alvo(double latitude, double longitude) {
-        coordGeo = new CoordenadaGeografica(latitude, longitude);
+    public Alvo(Posicao posicao) {
+        this.posicao = posicao;
     }
 
-    public CoordenadaGeografica getCoordGeo() {
-        return coordGeo;
+    public Posicao getPosicao() {
+        return posicao;
     }
-    
-    public Double getLatitude(){
-        return coordGeo.getLatitude();
+
+    public void setPosicao(Posicao posicao) {
+        this.posicao = posicao;
     }
-    
-    public Double getLongitude(){
-        return coordGeo.getLongitude();
+
+    public CoordenadaGeografica getCoordenadaGeografica() {
+        return this.posicao.getCoordenadaGeografica();
+    }
+
+    public void setCoordenadaGeografica(CoordenadaGeografica c) {
+        this.posicao.setCoordenadaGeografica(c);
+    }
+
+    public CoordenadaCartesianaRVT getCoordenadaCartesianaRVT() {
+        return coordenadaCartesianaRVT;
+    }
+
+    public void setCoordenadaCartesianaRVT(CoordenadaCartesianaRVT coordenadaCartesianaRVT) {
+        this.coordenadaCartesianaRVT = coordenadaCartesianaRVT;
     }
 }
+
 
