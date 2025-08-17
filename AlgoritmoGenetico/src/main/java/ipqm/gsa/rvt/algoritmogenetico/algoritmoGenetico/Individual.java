@@ -30,14 +30,10 @@ public class Individual implements Comparable<Individual> {
     private final Map<String, Buoy> genes;
     private double fitness;
     private double custo = 10.0;
-    private boolean detectaEXSUP;
-    private boolean detectaGAE;
 
 
     public Individual(Map<String, Buoy> genes){
         this.genes = genes;
-        detectaEXSUP = false;
-        detectaGAE = false;
         fitness = calculateFitness(genes);
     }
 
@@ -55,7 +51,7 @@ public class Individual implements Comparable<Individual> {
 
     @Override
     public String toString() {
-        return "Individual [genes=" + genes + "] [custo=" + custo + "] [fitness=" + fitness + "] [detectaEXSUP=" + detectaEXSUP + "] [detectaGAE=" + detectaGAE + "]";
+        return "Individual [genes=" + genes + "] [custo=" + custo + "] [fitness=" + fitness + "]";
     }
 
     @Override
@@ -81,7 +77,7 @@ public class Individual implements Comparable<Individual> {
         Map<String, Buoy> buoys = new HashMap<>();
         int numberOfBuoys = Raia.QUANTMINBOIAS + rand.nextInt(Raia.MAXBOIAS - Raia.QUANTMINBOIAS + 1);
         for(int i = 0; i < numberOfBuoys; i++) {
-            Buoy buoy = generateRandomGene();
+            Buoy buoy = generateValidRandomGene();
             buoy.setNome("buoy" + (i + 1));
             buoys.put(buoy.getNome(), buoy);
         }
@@ -95,45 +91,35 @@ public class Individual implements Comparable<Individual> {
         CoordenadaGeografica coordGeoBoia = CoordenadaCartesianaRVT.converterCoordenadaCartesianaParaGeografica(new CoordenadaCartesianaRVT(buoy.getPosX(), buoy.getPosY()), TARGET.getPosicao());
         buoy.setLatGeo(coordGeoBoia.getLatitude());
         buoy.setLonGeo(coordGeoBoia.getLongitude());
-        LOGGER.info("Buoy: " + buoy.getNome() + " | LAT: " + buoy.getLatGeo() + " | LNG: " + buoy.getLonGeo() + " | POS X: " + buoy.getPosX() + " | POS Y: " + buoy.getPosY());
+
         return buoy;
+    }
+
+    private static Buoy generateValidRandomGene(){
+
+        while (true){
+            Buoy buoy = generateRandomGene();
+
+            if(detecta(buoy, TARGET, TipoGranada.GAE) && detecta(buoy, TARGET, TipoGranada.EXSUP)){
+                return buoy;
+            }
+        }
     }
 
     private double calculateFitness(Map<String, Buoy> genes) {
         // Verifica a aptidão do indivíduo para cada tipo de granada
         for(TipoGranada t : TipoGranada.values()){
-
-            int quantDeteccoes = 0;
             // Verifico a aptidão do gene do indivíduo
             for(Buoy b : genes.values()){
                 try {
-                    if(detecta(b, TARGET, t)){
-                        if(t == TipoGranada.GAE){
-                            this.detectaGAE = true;
-                            quantDeteccoes += 1;
-                        }
-                        if(t == TipoGranada.EXSUP){
-                            this.detectaEXSUP = true;
-                            quantDeteccoes += 1;
-                        }
-                        tempoDeteccao(b, TARGET);
-                    } else {
-                        continue;
-                    }
+                    tempoDeteccao(b, TARGET);
                     raia.atualizarBoia(b.getNome(), b.getPosX(), b.getPosY(), b.getLatGeo(), b.getLonGeo(), b.getTempoDeteccao());
 
                 } catch (Exception ex){
                     LOGGER.error("Erro ao atualizar biblioteca de boias: " + ex.getMessage());
                 }
             }
-
-            if(quantDeteccoes >= 3 ) {
-                calcularPontoDeQueda();
-            }
-
-            else {
-                System.out.println("Não é possível calcular o ponto de queda com somente " + quantDeteccoes + " boias detectando.");
-            }
+             calcularPontoDeQueda();
         }
         return custo;
     }
@@ -163,10 +149,15 @@ public class Individual implements Comparable<Individual> {
         }
     }
 
-    private boolean detecta(Buoy buoy, Alvo alvo, TipoGranada tipo){
+    private static boolean detecta(Buoy buoy, Alvo alvo, TipoGranada tipo){
+        double distanciaEmMetros = calcularDistanciaEntreBoiaSplash(buoy, alvo);
+        return distanciaEmMetros <= Parametros.getRaioDeDetecaoDoSplash(tipo);
+    }
+
+    private static double calcularDistanciaEntreBoiaSplash(Buoy buoy, Alvo alvo) {
         double distanciaEmMilhasNauticas = Geodesics.distance(buoy.getLonGeo(), buoy.getLatGeo(), alvo.getCoordenadaGeografica().getLongitude(), alvo.getCoordenadaGeografica().getLatitude());
         double distanciaEmMetros = ConversorUnidades.milhasNauticasParaMetros(distanciaEmMilhasNauticas);
-        return distanciaEmMetros <= Parametros.getRaioDeDetecaoDoSplash(tipo);
+        return distanciaEmMetros;
     }
 
     private void tempoDeteccao(Buoy b, Alvo alvo) {
