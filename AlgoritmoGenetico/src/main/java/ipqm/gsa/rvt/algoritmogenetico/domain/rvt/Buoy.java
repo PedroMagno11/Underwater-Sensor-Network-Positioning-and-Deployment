@@ -178,4 +178,9 @@ public class Buoy {
         Buoy buoy = (Buoy) obj;
         return Objects.equals(nome, buoy.nome);
     }
+
+    @Override
+    public String toString() {
+    return "NAME: " + nome + " POS X: " + posX + " POS Y: " + posY + " LAT: " + latGeo + " LNG: " + LonGeo + " TEMPO_DETECCAO: " + tempoDeteccao;
+    }
 }

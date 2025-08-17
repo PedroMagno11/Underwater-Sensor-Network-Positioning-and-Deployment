@@ -2,12 +2,14 @@ package ipqm.gsa.rvt.algoritmogenetico;
 
 import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.GeneticAlgorithm;
 import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.Individual;
+import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.Population;
 import ipqm.gsa.rvt.algoritmogenetico.domain.Alvo;
 import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Raia;
 import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
 import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.Posicao;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * JavaFX App
@@ -44,20 +46,10 @@ public class App{
         Posicao pAlvo = new Posicao();
         pAlvo.setCoordenadaGeografica(new CoordenadaGeografica(-22.12343,-43.23423));
         Alvo alvo = new Alvo(pAlvo);
-
-        GeneticAlgorithm ga = new GeneticAlgorithm(populationSize, generations, alvo);
-
-        ga.executar(alvo);
-        
-       
-        
-//        Individual best = ga.run();
-//        System.out.println("Melhor disposicao de boias: ");
-//        double[] genes = best.getGenes();
-//        for(int i = 0; i < genes.length; i++){
-//            System.out.println("BOIA " + (i+1) +": (" + genes[2*i] + ", " + genes[2*i + 1] + ")");
-//        }
-
+        Raia raia = Raia.getRaia();
+        Population p = new Population(10);
+        for(Individual i : p.getPopulation()){
+            System.out.println(i);
+        }
     }
-
 }
