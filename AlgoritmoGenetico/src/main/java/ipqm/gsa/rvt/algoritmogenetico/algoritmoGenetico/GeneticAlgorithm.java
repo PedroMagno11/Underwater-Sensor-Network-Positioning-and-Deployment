@@ -21,6 +21,9 @@ import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.Individual;
 import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.Population;
 import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Raia;
 
+import java.util.ArrayList;
+import java.util.List;
+
 ///**
 // *
 // * @author Pedro Magno
@@ -32,28 +35,32 @@ public class GeneticAlgorithm {
 
         Raia raia = Raia.getRaia();
 
-        final int populationSize = 50;
-
-        final int maxGenerations = 5;
+        final int populationSize = 100;
+        final double crossoverRate = 0.7;
+        final double elitismRate = 0.25;
+        final double mutationRate = 0.05;
+        final int maxGenerations = 10;
 
         long startTime = System.currentTimeMillis();
 
-        Population pop = new Population(populationSize);
-
+        Population population = new Population(populationSize, elitismRate, mutationRate, crossoverRate, maxGenerations);
+        List<Individual> bestIndividuals = new ArrayList<>();
+        Individual best = population.getPopulation().getFirst();
         int i = 0;
-        Individual best = pop.getPopulation()[0];
-
-        while ((i++ <= maxGenerations) && (best.getFitness() != 0)) {
-            System.out.println("Generation " + i + ": " + best.getGenes());
-            pop.evolve();
-            best = pop.getPopulation()[0];
+        while ( i < maxGenerations) {
+            population.evolve();
+            best = population.getPopulation().getFirst();
+            bestIndividuals.add(best);
+            i+=1;
         }
 
-        // Get the end time for the simulation.
         long endTime = System.currentTimeMillis();
 
-        // Print out some information to the console.
-        System.out.println("Generation " + i + ": " + best.getGenes());
+        for(Individual individual : bestIndividuals) {
+            System.out.println(individual);
+        }
+
+        System.out.println("Generation " + i + ": " + bestIndividuals.getFirst());
         System.out.println("Total execution time: " + (endTime - startTime) +
                 "ms");
     }

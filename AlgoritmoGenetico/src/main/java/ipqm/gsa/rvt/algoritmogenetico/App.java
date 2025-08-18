@@ -1,6 +1,6 @@
 package ipqm.gsa.rvt.algoritmogenetico;
 
-import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.GeneticAlgorithm;
+//import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.GeneticAlgorithm;
 import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.Individual;
 import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.Population;
 import ipqm.gsa.rvt.algoritmogenetico.domain.Alvo;
@@ -47,9 +47,8 @@ public class App{
         pAlvo.setCoordenadaGeografica(new CoordenadaGeografica(-22.12343,-43.23423));
         Alvo alvo = new Alvo(pAlvo);
         Raia raia = Raia.getRaia();
-        Population p = new Population(10);
-        for(Individual i : p.getPopulation()){
-            System.out.println(i);
-        }
+        Population p = new Population(10, 0.1,0.3, 0.7,3);
+        p.evolve();
+
     }
 }

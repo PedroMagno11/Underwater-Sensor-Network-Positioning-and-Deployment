@@ -56,9 +56,9 @@ public class Individual implements Comparable<Individual> {
 
     @Override
     public int compareTo(Individual o) {
-        if(this.fitness >= o.fitness && custo < o.custo){
+        if(this.fitness > o.fitness){
             return 1;
-        } else if (fitness < o.fitness && custo > o.custo){
+        } else if (fitness < o.fitness){
             return -1;
         }
         return 0;
@@ -108,7 +108,7 @@ public class Individual implements Comparable<Individual> {
 
     private double calculateFitness(Map<String, Buoy> genes) {
         // Verifica a aptidão do indivíduo para cada tipo de granada
-        for(TipoGranada t : TipoGranada.values()){
+//        for(TipoGranada t : TipoGranada.values()){
             // Verifico a aptidão do gene do indivíduo
             for(Buoy b : genes.values()){
                 try {
@@ -120,7 +120,7 @@ public class Individual implements Comparable<Individual> {
                 }
             }
              calcularPontoDeQueda();
-        }
+//        }
         return custo;
     }
 
@@ -130,18 +130,18 @@ public class Individual implements Comparable<Individual> {
             custo = pontoQueda.getMenorCusto();
             CoordenadaGeografica coordGeoPontoQueda = CoordenadaCartesianaRVT.converterCoordenadaCartesianaParaGeografica(pontoQueda.getPontoDeQueda(), TARGET.getPosicao());
 
-            System.out.println("PONTO QUEDA: " + pontoQueda.getPontoDeQueda().getX() + " - " + pontoQueda.getPontoDeQueda().getY() + "CUSTO: " + pontoQueda.getMenorCusto());
+//            System.out.println("PONTO QUEDA: " + pontoQueda.getPontoDeQueda().getX() + " - " + pontoQueda.getPontoDeQueda().getY() + "CUSTO: " + pontoQueda.getMenorCusto());
 
             double distanciaEmMilhasNauticasEntrePosicoesPontoQuedaEAlvo = Geodesics.distance(coordGeoPontoQueda.getLongitude(), coordGeoPontoQueda.getLatitude(), TARGET.getCoordenadaGeografica().getLongitude(), TARGET.getCoordenadaGeografica().getLatitude());
             double distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo = ConversorUnidades.milhasNauticasParaMetros(distanciaEmMilhasNauticasEntrePosicoesPontoQuedaEAlvo);
 
-            if (distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo < 9.0) {
-                System.out.println("EXATO: " + distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo);
-            } else if (distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo >= 9.0 && distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo <= 45.0) {
-                System.out.println("PRECISO: " + distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo);
-            } else {
-                System.out.println("ERRADO: " + distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo);
-            }
+//            if (distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo < 9.0) {
+//                System.out.println("EXATO: " + distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo);
+//            } else if (distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo >= 9.0 && distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo <= 45.0) {
+//                System.out.println("PRECISO: " + distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo);
+//            } else {
+//                System.out.println("ERRADO: " + distanciaEmMetrosEntrePosicaoPontoQuedaEAlvo);
+//            }
 
         } catch (Exception ex) {
             System.out.println("Erro ao calcular ponto queda: " + ex.getMessage());
@@ -177,63 +177,80 @@ public class Individual implements Comparable<Individual> {
         Map<String, Buoy> newGenes = new HashMap<>(genes);
         int index = rand.nextInt(genes.size());
         Buoy buoy = new ArrayList<>(genes.values()).get(index);
-
-//        System.out.println("SELECIONADA: " + buoy);
-
         Buoy newBuoy = generateRandomGene();
         newBuoy.setNome(buoy.getNome());
-
-//        System.out.println("GERADA: " + newBuoy);
-
         newGenes.put(newBuoy.getNome(), newBuoy);
-
-//        for(Buoy b : genes.values()){
-//            System.out.println("GENE ANTIGO: " + b);
-//        }
-//
-//        for(Buoy b : newGenes.values()){
-//            System.out.println("GENE NOVO: " + b);
-//
-//        }
 
         return new Individual(newGenes);
     }
 
-    public Individual[] mate(Individual p2) {
-        // Listas ordenadas por nome para ordem estável
-        List<Buoy> l1 = this.genes.values()
-                .stream().sorted(Comparator.comparing(Buoy::getNome))
-                .collect(Collectors.toList());
-        List<Buoy> l2 = p2.genes.values()
-                .stream().sorted(Comparator.comparing(Buoy::getNome))
-                .collect(Collectors.toList());
+    public Individual[] crossover(Individual p2) {
+        Comparator<Buoy> byNaturalName = Comparator
+                .comparing((Buoy b) -> b.getNome().replaceAll("\\d+$", ""), String.CASE_INSENSITIVE_ORDER)
+                .thenComparing(b -> {
+                    String n = b.getNome();
+                    String m = n.replaceAll("^.*?(\\d+)$", "$1");
+                    return m.equals(n) ? 0 : Integer.parseInt(m);
+                })
+                .thenComparing(Buoy::getNome);
 
-        int size1 = l1.size();
-        int size2 = l2.size();
-        int minSize = Math.min(size1, size2);
+        List<Buoy> l1 = new ArrayList<>(this.genes.values());
+        l1.sort(byNaturalName);
 
-        // pivot em [0, minSize]
-        int pivot = (minSize == 0) ? 0 : rand.nextInt(minSize + 1);
+        List<Buoy> l2 = new ArrayList<>(p2.genes.values()); // <- usa p2 aqui!
+        l2.sort(byNaturalName);
 
-        // Filho 1: prefixo de l1 + sufixo de l2
-        List<Buoy> child1List = new ArrayList<>(pivot + (size2 - pivot));
-        child1List.addAll(l1.subList(0, pivot));
-        child1List.addAll(l2.subList(pivot, size2));
+        // Decide quem é o maior (A) e o menor (B)
+        List<Buoy> A = l1.size() >= l2.size() ? l1 : l2;
+        List<Buoy> B = l1.size() >= l2.size() ? l2 : l1;
+        int targetSize = A.size();
+        Random r = rand;
 
-        // Filho 2: prefixo de l2 + sufixo de l1
-        List<Buoy> child2List = new ArrayList<>(pivot + (size1 - pivot));
-        child2List.addAll(l2.subList(0, pivot));
-        child2List.addAll(l1.subList(pivot, size1));
+        // ===== Filho 1: começa com TODOS de A, depois injeta de B por substituição se não existirem =====
+        List<Buoy> child1 = new ArrayList<>(A); // já no tamanho máximo
+        Set<String> used1 = child1.stream().map(Buoy::getNome).collect(Collectors.toSet());
+        for (Buoy g : B) {
+            if (!used1.contains(g.getNome())) {
+                // substitui posição aleatória para manter tamanho e misturar genes
+                int idx = r.nextInt(child1.size());
+                used1.remove(child1.get(idx).getNome());
+                child1.set(idx, g);
+                used1.add(g.getNome());
+            }
+        }
 
-        // Converte listas para mapas (chave = nome da boia)
-        Map<String, Buoy> genesChild1 = child1List.stream()
-                .collect(Collectors.toMap(Buoy::getNome, b -> b, (a, b) -> b, HashMap::new));
-        Map<String, Buoy> genesChild2 = child2List.stream()
-                .collect(Collectors.toMap(Buoy::getNome, b -> b, (a, b) -> b, HashMap::new));
+        // ===== Filho 2: começa vazio, adiciona B preservando ordem, completa com genes de A únicos =====
+        List<Buoy> child2 = new ArrayList<>(targetSize);
+        Set<String> used2 = new HashSet<>();
+        // 2a) adiciona B
+        for (Buoy g : B) {
+            if (child2.size() == targetSize) break;
+            if (used2.add(g.getNome())) child2.add(g);
+        }
+        // 2b) completa com A até targetSize
+        for (Buoy g : A) {
+            if (child2.size() == targetSize) break;
+            if (used2.add(g.getNome())) child2.add(g);
+        }
+        // 2c) se por algum motivo ainda faltou (colisões de nomes), preenche com A por substituição
+        while (child2.size() < targetSize) {
+            Buoy g = A.get(r.nextInt(A.size()));
+            if (used2.add(g.getNome())) child2.add(g);
+            else {
+                int idx = r.nextInt(child2.size());
+                used2.remove(child2.get(idx).getNome());
+                child2.set(idx, g);
+                used2.add(g.getNome());
+            }
+        }
 
-        return new Individual[] {
-                new Individual(genesChild1),
-                new Individual(genesChild2)
-        };
+        // Converte para mapas (mantendo último em caso de chave duplicada)
+        Map<String, Buoy> genesChild1 = child1.stream()
+                .collect(Collectors.toMap(Buoy::getNome, b -> b, (a,b)->b, HashMap::new));
+        Map<String, Buoy> genesChild2 = child2.stream()
+                .collect(Collectors.toMap(Buoy::getNome, b -> b, (a,b)->b, HashMap::new));
+
+        return new Individual[] { new Individual(genesChild1), new Individual(genesChild2) };
     }
+
 }

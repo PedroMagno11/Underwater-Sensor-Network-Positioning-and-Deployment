@@ -1,77 +1,131 @@
 package ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Buoy;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Population {
     private static final Random rand = new Random();
-    private static final int TOURNAMENT_SIZE = 3;
-    private final float elitism = 0.1f;
-    private final float mutation = 0.03f;
-    private final float crossover = 0.8f;
+    private final int tournamentSize;
+    private final double elitismRate;
+    private final double mutationRate;
+    private final double crossoverRate;
 
-    private Individual[] population;
+    private List<Individual> population;
 
-    public Population(int populationSize) {
-        this.population = new Individual[populationSize];
-        for (int i = 0; i < populationSize; i++) {
-            population[i] = Individual.generateRandomIndividual();
+    public Population(int populationSize, double elitismRate, double mutatuionRate, double crossoverRate, int tournamentSize) {
+        this.elitismRate = elitismRate;
+        this.mutationRate = mutatuionRate;
+        this.crossoverRate = crossoverRate;
+        this.tournamentSize = tournamentSize;
+        this.population = new ArrayList<>();
+
+        while (this.population.size() < populationSize) {
+            this.population.add(Individual.generateRandomIndividual());
         }
-        Arrays.sort(population);
+
+        population.sort(Individual::compareTo);
+    }
+
+    public List<Individual> getPopulation() {
+        population.sort(Individual::compareTo);
+        return Collections.unmodifiableList(population);
     }
 
     public void evolve() {
-        // garante que a população atual está ordenada (caso tenha sido alterada fora)
-        Arrays.sort(population);
+        List<Individual> currentPopulation = new ArrayList<>(population);
+        currentPopulation.sort(Individual::compareTo);
 
-        Individual[] buffer = new Individual[population.length];
+        int eliteCount = Math.max(1, (int) Math.round(elitismRate * population.size()));
+        eliteCount = Math.min(eliteCount, population.size() - 1);
 
-        int idx = Math.round(population.length * elitism);
-        System.arraycopy(population, 0, buffer, 0, idx); // copia elites
+        // Copia os individuos da elite direto
+        List<Individual> nextGeneration = new ArrayList<>(population.subList(0, eliteCount));
 
-        while (idx < buffer.length) {
-            if (rand.nextFloat() <= crossover) {
-                Individual[] parents = tournamentToSelectParents();
-                Individual[] children = parents[0].mate(parents[1]);
+        // remove duplicatas por genes para manter diversidade
+        nextGeneration = dedupByGenes(nextGeneration);
 
-                for (int k = 0; k < children.length && idx < buffer.length; k++) {
-                    Individual child = children[k];
-                    if (rand.nextFloat() <= mutation) {
-                        child = child.mutate();
-                    }
-                    buffer[idx++] = child;
-                }
+        while (nextGeneration.size() < population.size()){
+            Individual[] parents = tournamentSelect(currentPopulation, tournamentSize);
+            Individual p1 = parents[0];
+            Individual p2 = parents[1];
+
+            Individual child1, child2;
+
+            if(rand.nextDouble() < crossoverRate){
+                Individual[] children = p1.crossover(p2);
+                child1 = validateChild(children[0], p1, p2);
+                child2 = validateChild(children[1], p1, p2);
+
             } else {
-                // fallback quando não rola crossover: replica/muta um pai
-                Individual parent = population[rand.nextInt(population.length)];
-                Individual child = (rand.nextFloat() <= mutation) ? parent.mutate() : parent;
-                buffer[idx++] = child;
+                child1 = p1;
+                child2 = p2;
+            }
+
+            // Mutação (probabilística)
+            if(rand.nextDouble() < mutationRate){
+                child1 = child1.mutate();
+            }
+
+            if(rand.nextDouble() < mutationRate){
+                child2 = child2.mutate();
+            }
+
+            if(nextGeneration.size() < population.size()){
+                nextGeneration.add(child1);
+            }
+
+            if(nextGeneration.size() < population.size()){
+                nextGeneration.add(child2);
             }
         }
 
-        // ordena a NOVA geração e comuta
-        Arrays.sort(buffer);
-        population = buffer;
+        nextGeneration = dedupByGenes(nextGeneration);
+
+        while(nextGeneration.size() < population.size()){
+            nextGeneration.add(Individual.generateRandomIndividual());
+        }
+
+        this.population = nextGeneration;
     }
 
-    private Individual[] tournamentToSelectParents(){
+    private Individual[] tournamentSelect(List<Individual> currentPopulation, int tournamentSize) {
         Individual[] parents = new Individual[2];
-
-        for (int i = 0; i < 2; i++) {
-            parents[i] = population[rand.nextInt(population.length)];
-            for(int j = 0; j < TOURNAMENT_SIZE; j++){
-                int index = rand.nextInt(population.length);
-                if(population[index].compareTo(parents[i]) < 0){
-                    parents[i] = population[index];
+        for(int i = 0; i < 2; i++){
+            parents[i] = currentPopulation.get(rand.nextInt(currentPopulation.size()));
+            for(int j = 0; j < tournamentSize; j++){
+                int index = rand.nextInt(currentPopulation.size());
+                if(currentPopulation.get(index).compareTo(parents[i]) < 0){
+                    parents[i] = currentPopulation.get(index);
                 }
             }
         }
         return parents;
     }
 
-    public Individual[] getPopulation() {
-        return population;
+    private Individual validateChild(Individual child, Individual p1, Individual p2) {
+        if(child == null || child.getGenes().isEmpty()){
+            return p1.mutate();
+        }
+        return child;
+    }
+
+    private List<Individual> dedupByGenes(List<Individual> currentPopulation) {
+        Map<String, Individual> seen = new LinkedHashMap<>();
+        for(Individual individual : currentPopulation){
+            String signature = signature(individual);
+            seen.putIfAbsent(signature, individual);
+        }
+        return new ArrayList<>(seen.values());
+    }
+
+    private String signature(Individual individual) {
+        // Cria uma assinatura determinística do indivíduo
+        // Ordena boias pelo nome e concatena nome:x:y
+        return individual.getGenes().stream()
+                .sorted(Comparator.comparing(Buoy::getNome))
+                .map(b->b.getNome() + ":" + b.getPosX() + ":" + b.getPosY())
+                .collect(Collectors.joining("|"));
     }
 }
