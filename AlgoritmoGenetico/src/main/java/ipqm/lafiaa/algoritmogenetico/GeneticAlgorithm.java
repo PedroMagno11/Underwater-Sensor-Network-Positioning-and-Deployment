@@ -1,34 +1,14 @@
-package ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico;//package ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico;
-//
-//import ipqm.gsa.rvt.algoritmogenetico.domain.Alvo;
-//import ipqm.gsa.rvt.algoritmogenetico.domain.TipoGranada;
-//import ipqm.gsa.rvt.algoritmogenetico.domain.config.Parametros;
-//import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Buoy;
-//import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.CoordenadaCartesianaRVT;
-//import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.PontoQueda;
-//import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Raia;
-//import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
-//import ipqm.gsa.rvt.algoritmogenetico.utils.conversor.ConversorUnidades;
-//import ipqm.gsa.rvt.algoritmogenetico.utils.coord.Geodesics;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//
-//import java.util.*;
-//import java.util.stream.Collectors;
-//
-
-import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.Individual;
-import ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico.Population;
-import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Raia;
+package ipqm.lafiaa.algoritmogenetico.algoritmoGenetico;
+import ipqm.lafiaa.algoritmogenetico.domain.rvt.Raia;
 
 import java.util.ArrayList;
 import java.util.List;
 
-///**
-// *
-// * @author Pedro Magno
-// * @grupo GSA (Grupo de Sistema de Armas)
-// */
+/**
+ *
+ * @author Pedro Magno
+ * @grupo GSA (Grupo de Sistema de Armas)
+ */
 public class GeneticAlgorithm {
 
     public static void main(String[] args) {

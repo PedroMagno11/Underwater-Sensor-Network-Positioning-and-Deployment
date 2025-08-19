@@ -185,7 +185,7 @@ public class Individual implements Comparable<Individual> {
     }
 
     public Individual[] crossover(Individual p2) {
-        Comparator<Buoy> byNaturalName = Comparator
+        Comparator<Buoy> byName = Comparator
                 .comparing((Buoy b) -> b.getNome().replaceAll("\\d+$", ""), String.CASE_INSENSITIVE_ORDER)
                 .thenComparing(b -> {
                     String n = b.getNome();
@@ -195,10 +195,10 @@ public class Individual implements Comparable<Individual> {
                 .thenComparing(Buoy::getNome);
 
         List<Buoy> l1 = new ArrayList<>(this.genes.values());
-        l1.sort(byNaturalName);
+        l1.sort(byName);
 
-        List<Buoy> l2 = new ArrayList<>(p2.genes.values()); // <- usa p2 aqui!
-        l2.sort(byNaturalName);
+        List<Buoy> l2 = new ArrayList<>(p2.genes.values());
+        l2.sort(byName);
 
         // Decide quem é o maior (A) e o menor (B)
         List<Buoy> A = l1.size() >= l2.size() ? l1 : l2;
@@ -206,7 +206,7 @@ public class Individual implements Comparable<Individual> {
         int targetSize = A.size();
         Random r = rand;
 
-        // ===== Filho 1: começa com TODOS de A, depois injeta de B por substituição se não existirem =====
+        // child1 começa com Todos de A, depois injeta de B por substituição se não existirem
         List<Buoy> child1 = new ArrayList<>(A); // já no tamanho máximo
         Set<String> used1 = child1.stream().map(Buoy::getNome).collect(Collectors.toSet());
         for (Buoy g : B) {
@@ -219,20 +219,20 @@ public class Individual implements Comparable<Individual> {
             }
         }
 
-        // ===== Filho 2: começa vazio, adiciona B preservando ordem, completa com genes de A únicos =====
+        // child2  começa vazio, adiciona B preservando ordem, completa com genes de A únicos
         List<Buoy> child2 = new ArrayList<>(targetSize);
         Set<String> used2 = new HashSet<>();
-        // 2a) adiciona B
+        // adiciona B
         for (Buoy g : B) {
             if (child2.size() == targetSize) break;
             if (used2.add(g.getNome())) child2.add(g);
         }
-        // 2b) completa com A até targetSize
+        // completa com A até targetSize
         for (Buoy g : A) {
             if (child2.size() == targetSize) break;
             if (used2.add(g.getNome())) child2.add(g);
         }
-        // 2c) se por algum motivo ainda faltou (colisões de nomes), preenche com A por substituição
+        // se por algum motivo ainda faltou (colisões de nomes), preenche com A por substituição
         while (child2.size() < targetSize) {
             Buoy g = A.get(r.nextInt(A.size()));
             if (used2.add(g.getNome())) child2.add(g);
@@ -244,7 +244,7 @@ public class Individual implements Comparable<Individual> {
             }
         }
 
-        // Converte para mapas (mantendo último em caso de chave duplicada)
+        // Converte para Map (mantendo último em caso de chave duplicada)
         Map<String, Buoy> genesChild1 = child1.stream()
                 .collect(Collectors.toMap(Buoy::getNome, b -> b, (a,b)->b, HashMap::new));
         Map<String, Buoy> genesChild2 = child2.stream()
