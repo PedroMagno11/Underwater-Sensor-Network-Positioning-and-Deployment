@@ -1,8 +1,8 @@
-package ipqm.gsa.rvt.algoritmogenetico.domain;
+package ipqm.lafiaa.algoritmogenetico.domain;
 
-import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.CoordenadaCartesianaRVT;
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.Posicao;
+import ipqm.lafiaa.algoritmogenetico.domain.rvt.CoordenadaCartesianaRVT;
+import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
+import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.Posicao;
 
 /**
  *

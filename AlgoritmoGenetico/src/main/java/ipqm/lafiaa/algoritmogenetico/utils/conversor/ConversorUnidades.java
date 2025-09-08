@@ -1,4 +1,4 @@
-package ipqm.gsa.rvt.algoritmogenetico.utils.conversor;
+package ipqm.lafiaa.algoritmogenetico.utils.conversor;
 
 /**
  *

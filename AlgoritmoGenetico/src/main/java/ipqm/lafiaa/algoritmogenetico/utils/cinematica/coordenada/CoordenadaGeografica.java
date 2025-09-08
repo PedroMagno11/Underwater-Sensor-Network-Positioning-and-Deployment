@@ -1,4 +1,4 @@
-package ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada;
+package ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

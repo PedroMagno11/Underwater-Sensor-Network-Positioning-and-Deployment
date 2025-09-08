@@ -1,6 +1,6 @@
-package ipqm.gsa.rvt.algoritmogenetico.domain.config;
+package ipqm.lafiaa.algoritmogenetico.domain.config;
 
-import ipqm.gsa.rvt.algoritmogenetico.domain.TipoGranada;
+import ipqm.lafiaa.algoritmogenetico.domain.TipoGranada;
 
 /**
  *

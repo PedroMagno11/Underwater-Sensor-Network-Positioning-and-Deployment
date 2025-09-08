@@ -1,6 +1,6 @@
-package ipqm.gsa.rvt.algoritmogenetico.domain.rvt;
+package ipqm.lafiaa.algoritmogenetico.domain.rvt;
 
-import ipqm.gsa.rvt.algoritmogenetico.utils.PropertyReader;
+import ipqm.lafiaa.algoritmogenetico.utils.PropertyReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

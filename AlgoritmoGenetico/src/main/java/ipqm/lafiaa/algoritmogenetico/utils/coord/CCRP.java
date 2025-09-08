@@ -1,4 +1,4 @@
-package ipqm.gsa.rvt.algoritmogenetico.utils.coord;
+package ipqm.lafiaa.algoritmogenetico.utils.coord;
 
 
 /**

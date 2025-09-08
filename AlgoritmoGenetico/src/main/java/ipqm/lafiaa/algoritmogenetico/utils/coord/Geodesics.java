@@ -13,7 +13,7 @@
  /*       http://www.ngs.noaa.gov/PUBS_LIB/inverse.pdf                                             */
  /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
-package ipqm.gsa.rvt.algoritmogenetico.utils.coord;
+package ipqm.lafiaa.algoritmogenetico.utils.coord;
 
 /**
  * Vincenty Inverse Solution of Geodesics on the Ellipsoid.
