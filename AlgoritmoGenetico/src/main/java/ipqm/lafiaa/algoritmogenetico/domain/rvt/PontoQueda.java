@@ -1,6 +1,4 @@
-package ipqm.gsa.rvt.algoritmogenetico.domain.rvt;
-
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
+package ipqm.lafiaa.algoritmogenetico.domain.rvt;
 
 /**
  *

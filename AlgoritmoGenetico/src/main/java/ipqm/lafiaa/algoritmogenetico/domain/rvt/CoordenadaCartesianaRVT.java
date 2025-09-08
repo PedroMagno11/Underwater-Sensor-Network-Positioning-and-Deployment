@@ -1,11 +1,11 @@
-package ipqm.gsa.rvt.algoritmogenetico.domain.rvt;
+package ipqm.lafiaa.algoritmogenetico.domain.rvt;
 
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaPolar;
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.Posicao;
-import ipqm.gsa.rvt.algoritmogenetico.utils.conversor.ConversorUnidades;
-import ipqm.gsa.rvt.algoritmogenetico.utils.coord.GeoCoord;
-import ipqm.gsa.rvt.algoritmogenetico.utils.coord.Geodesics;
+import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
+import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.CoordenadaPolar;
+import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.Posicao;
+import ipqm.lafiaa.algoritmogenetico.utils.conversor.ConversorUnidades;
+import ipqm.lafiaa.algoritmogenetico.utils.coord.GeoCoord;
+import ipqm.lafiaa.algoritmogenetico.utils.coord.Geodesics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

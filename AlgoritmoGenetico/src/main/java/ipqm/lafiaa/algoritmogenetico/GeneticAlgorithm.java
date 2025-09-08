@@ -1,4 +1,6 @@
-package ipqm.lafiaa.algoritmogenetico.algoritmoGenetico;
+package ipqm.lafiaa.algoritmogenetico;
+import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.Individual;
+import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.Population;
 import ipqm.lafiaa.algoritmogenetico.domain.rvt.Raia;
 
 import java.util.ArrayList;

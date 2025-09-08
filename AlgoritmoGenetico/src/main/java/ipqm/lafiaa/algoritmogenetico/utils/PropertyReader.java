@@ -1,4 +1,4 @@
-package ipqm.gsa.rvt.algoritmogenetico.utils;
+package ipqm.lafiaa.algoritmogenetico.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

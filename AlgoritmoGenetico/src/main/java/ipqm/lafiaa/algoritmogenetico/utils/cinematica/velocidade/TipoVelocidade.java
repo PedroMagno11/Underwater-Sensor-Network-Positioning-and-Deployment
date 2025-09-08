@@ -1,7 +1,7 @@
-package ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.velocidade;
+package ipqm.lafiaa.algoritmogenetico.utils.cinematica.velocidade;
 
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaCartesiana;
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaPolar;
+import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.CoordenadaCartesiana;
+import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.CoordenadaPolar;
 import java.io.Serializable;
 
 /**

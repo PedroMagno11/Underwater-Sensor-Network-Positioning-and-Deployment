@@ -1,16 +1,18 @@
-package ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico;
+package ipqm.lafiaa.algoritmogenetico.algoritmoGenetico;
 
-import ipqm.gsa.rvt.algoritmogenetico.domain.Alvo;
-import ipqm.gsa.rvt.algoritmogenetico.domain.TipoGranada;
-import ipqm.gsa.rvt.algoritmogenetico.domain.config.Parametros;
-import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Buoy;
-import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.CoordenadaCartesianaRVT;
-import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.PontoQueda;
-import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Raia;
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.Posicao;
-import ipqm.gsa.rvt.algoritmogenetico.utils.conversor.ConversorUnidades;
-import ipqm.gsa.rvt.algoritmogenetico.utils.coord.Geodesics;
+import ipqm.lafiaa.algoritmogenetico.domain.Alvo;
+import ipqm.lafiaa.algoritmogenetico.domain.TipoGranada;
+import ipqm.lafiaa.algoritmogenetico.domain.config.Parametros;
+import ipqm.lafiaa.algoritmogenetico.domain.rvt.Buoy;
+import ipqm.lafiaa.algoritmogenetico.domain.rvt.CoordenadaCartesianaRVT;
+import ipqm.lafiaa.algoritmogenetico.domain.rvt.PontoQueda;
+import ipqm.lafiaa.algoritmogenetico.domain.rvt.Raia;
+import ipqm.lafiaa.algoritmogenetico.utils.MutationUtils;
+import ipqm.lafiaa.algoritmogenetico.utils.NameGenerator;
+import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
+import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.Posicao;
+import ipqm.lafiaa.algoritmogenetico.utils.conversor.ConversorUnidades;
+import ipqm.lafiaa.algoritmogenetico.utils.coord.Geodesics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +28,7 @@ public class Individual implements Comparable<Individual> {
     private final static Logger LOGGER = LoggerFactory.getLogger(Individual.class);
     private static final Random rand = new Random();
     private static final Alvo TARGET = new Alvo(new Posicao(new CoordenadaGeografica(-22.34234, -43.23423), null, null));
+    private static NameGenerator nameGenerator = new NameGenerator("buoy");
     private final Raia raia = Raia.getRaia();
     private final Map<String, Buoy> genes;
     private double fitness;
@@ -173,8 +176,8 @@ public class Individual implements Comparable<Individual> {
         b.setTempoDeteccao(t);
     }
 
-    public Individual mutate(){
-        Map<String, Buoy> newGenes = new HashMap<>(genes);
+    public Individual randomMutate(){
+        Map<String, Buoy> newGenes = MutationUtils.deepCopy(genes);
         int index = rand.nextInt(genes.size());
         Buoy buoy = new ArrayList<>(genes.values()).get(index);
         Buoy newBuoy = generateRandomGene();
@@ -182,6 +185,141 @@ public class Individual implements Comparable<Individual> {
         newGenes.put(newBuoy.getNome(), newBuoy);
 
         return new Individual(newGenes);
+    }
+
+    public Individual gaussianMutation() throws Exception {
+        Map<String, Buoy> copy = MutationUtils.deepCopy(genes);
+        if(copy.isEmpty()){
+            return this;
+        }
+
+        int index = rand.nextInt(genes.size());
+        String key = new ArrayList<>(genes.keySet()).get(index);
+        Buoy b = genes.get(key);
+
+        // o sigma indica uma mudança. Valor pequeno para ajustar a posição e valor grande para grandes mudanças de posição
+        double sigmaX = 2.5; // valor inicial
+        double sigmaY = 2.5; // valor inicial
+
+        if(this.getFitness() >= 8.0){
+            sigmaX = 2.5 + rand.nextDouble(10.0, 52.5);
+            sigmaY = 50.0 + rand.nextDouble(10.0, 52.5);
+        }
+
+        int nx = (int) Math.round(b.getPosX() + rand.nextGaussian() + sigmaX);
+        int ny = (int) Math.round(b.getPosY() + rand.nextGaussian() + sigmaY);
+
+        b.setPosX(MutationUtils.clamp(nx, 0, Raia.DIMMAX));
+        b.setPosY(MutationUtils.clamp(ny, 0, Raia.DIMMAX));
+
+        genes.put(key, b);
+
+        return new Individual(genes);
+    }
+
+    public Individual uniformMutation() throws Exception {
+        Map<String, Buoy> newGenes = MutationUtils.deepCopy(genes);
+        if(newGenes.isEmpty()){
+            return this;
+        }
+
+        String key = new ArrayList<>(genes.keySet()).get(rand.nextInt(genes.size()));
+        Buoy b = genes.get(key);
+
+        // Tamanho do passo a ser dados para os lados ou para cima ou para baixo
+        double stepX = 1.0;
+        double stepY = 1.0;
+
+        // deslocamento horizontal da boia
+        int dx = Math.toIntExact(Raia.DIMMAX - Math.round(rand.nextDouble() * Raia.DIMMAX));
+        int dy = Math.toIntExact(Raia.DIMMAX - Math.round(rand.nextDouble() * Raia.DIMMAX));
+
+        if(dx <= Raia.DIMMAX/2 && dy <= Raia.DIMMAX/2 ){
+            stepX = Math.abs(rand.nextDouble() * 2 - 1);
+            stepY = Math.abs(rand.nextDouble() * 2 - 1);
+        }
+
+        dx = Math.toIntExact(Math.round(dx * stepX));
+        dy = Math.toIntExact(Math.round(dy * stepY));
+
+        b.setPosX(MutationUtils.clamp(b.getPosX() + dx, 0, Raia.DIMMAX));
+        b.setPosY(MutationUtils.clamp(b.getPosY() + dy, 0, Raia.DIMMAX));
+
+        genes.put(key, b);
+        return new Individual(genes);
+    }
+
+    public Individual removeBuoysMutation(){
+        int quantMinBoiasRemovidas = 1;
+        int quantMaxBoiasRemovidas = 2;
+
+        Map<String, Buoy> newGenes = MutationUtils.deepCopy(genes);
+        int quantBoiasIndividuo = genes.size();
+
+        if(quantBoiasIndividuo <= Raia.QUANTMINBOIAS){
+            return this;
+        }
+
+        int quantBoiasASeremRemovidas = rand.nextInt(quantMaxBoiasRemovidas - quantMinBoiasRemovidas + 1) + quantMinBoiasRemovidas;
+        quantBoiasASeremRemovidas = Math.min(quantBoiasASeremRemovidas, quantBoiasIndividuo - Raia.QUANTMINBOIAS);
+
+        List<String> keys = new ArrayList<>(genes.keySet());
+        Collections.shuffle(keys, rand);
+        for(int i = 0; i < quantBoiasASeremRemovidas; i++){
+            genes.remove(keys.get(i));
+        }
+
+        return new Individual(genes);
+    }
+
+    public Individual addBuoysMutation() throws Exception {
+        Map<String, Buoy> newGenes = MutationUtils.deepCopy(genes);
+        int quantBoiasIndividuo = genes.size();
+        if(quantBoiasIndividuo >= Raia.MAXBOIAS){
+            return this;
+        }
+        int quantMinBoiasAdicionadas = 1;
+        int quantMaxBoiasAdicionadas = 2;
+
+        int quantBoiasASeremAdicionadas = rand.nextInt(quantMaxBoiasAdicionadas - quantMinBoiasAdicionadas + 1) + quantMinBoiasAdicionadas;
+        quantBoiasASeremAdicionadas = Math.min(quantBoiasASeremAdicionadas, Raia.MAXBOIAS - quantBoiasIndividuo);
+
+        Set<String> names = new HashSet<>(genes.keySet());
+        final int MAX_TRIES = 1000;
+
+        int limiteInferiorX = 0;
+        int limiteInferiorY = 0;
+        int limiteSuperiorX = Raia.DIMMAX;
+        int limiteSuperiorY = Raia.DIMMAX;
+
+        for(int added = 0; added < quantBoiasASeremAdicionadas; ){
+            Buoy candidate = new Buoy();
+
+            int tries = 1;
+            boolean placed = false;
+            while (tries++ < MAX_TRIES){
+
+                int x = (int) (limiteInferiorX + rand.nextDouble() * (limiteSuperiorX - limiteInferiorX));
+                int y = (int) (limiteInferiorY + rand.nextDouble() * (limiteSuperiorY - limiteInferiorY));
+
+                candidate.setPosX(x);
+                candidate.setPosY(y);
+
+                if(detecta(candidate, TARGET, TipoGranada.GAE) && detecta(candidate, TARGET, TipoGranada.EXSUP)) {
+                    placed = true;
+                    break;
+                }
+                if(!placed) break;
+            }
+
+            String name = nameGenerator.nextName(names);
+            names.add(name);
+            candidate.setNome(name);
+            genes.put(name, candidate);
+            added+=1;
+        }
+
+        return new Individual(genes);
     }
 
     public Individual[] crossover(Individual p2) {

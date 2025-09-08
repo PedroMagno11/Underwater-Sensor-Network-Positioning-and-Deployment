@@ -1,4 +1,4 @@
-package ipqm.gsa.rvt.algoritmogenetico.domain.rvt;
+package ipqm.lafiaa.algoritmogenetico.domain.rvt;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

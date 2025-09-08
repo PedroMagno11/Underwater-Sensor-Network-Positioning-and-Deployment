@@ -1,4 +1,4 @@
-package ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.velocidade;
+package ipqm.lafiaa.algoritmogenetico.utils.cinematica.velocidade;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

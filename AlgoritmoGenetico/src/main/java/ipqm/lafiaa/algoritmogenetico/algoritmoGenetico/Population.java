@@ -1,6 +1,6 @@
-package ipqm.gsa.rvt.algoritmogenetico.algoritmoGenetico;
+package ipqm.lafiaa.algoritmogenetico.algoritmoGenetico;
 
-import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.Buoy;
+import ipqm.lafiaa.algoritmogenetico.domain.rvt.Buoy;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -65,11 +65,11 @@ public class Population {
 
             // Mutação (probabilística)
             if(rand.nextDouble() < mutationRate){
-                child1 = child1.mutate();
+                child1 = child1.randomMutate();
             }
 
             if(rand.nextDouble() < mutationRate){
-                child2 = child2.mutate();
+                child2 = child2.randomMutate();
             }
 
             if(nextGeneration.size() < population.size()){
@@ -106,7 +106,7 @@ public class Population {
 
     private Individual validateChild(Individual child, Individual p1, Individual p2) {
         if(child == null || child.getGenes().isEmpty()){
-            return p1.mutate();
+            return p1.randomMutate();
         }
         return child;
     }
