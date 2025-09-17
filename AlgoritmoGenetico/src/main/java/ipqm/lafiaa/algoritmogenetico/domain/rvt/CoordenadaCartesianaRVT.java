@@ -1,5 +1,6 @@
 package ipqm.lafiaa.algoritmogenetico.domain.rvt;
 
+import ipqm.lafiaa.algoritmogenetico.domain.config.Parametros;
 import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
 import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.CoordenadaPolar;
 import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.Posicao;
@@ -14,6 +15,10 @@ public class CoordenadaCartesianaRVT{
 
     private int x;
     private int y;
+
+    public CoordenadaCartesianaRVT(){
+
+    }
 
     /**
      * Cria um ponto na coordenada cartesiana bidimensional [x,y]
@@ -64,8 +69,8 @@ public class CoordenadaCartesianaRVT{
 
     public static CoordenadaCartesianaRVT converterCoordenadaGeograficaParaCartesiana(CoordenadaGeografica coordenadaGeograficaInteresse, CoordenadaGeografica coordenadaGeograficaReferencial) {
 
-        int posXAlvo = Raia.DIMMAX / 2;
-        int posYAlvo = Raia.DIMMAX / 2;
+        int posXAlvo = Parametros.DIMENSAO_RAIA / 2;
+        int posYAlvo = Parametros.DIMENSAO_RAIA / 2;
 
         /*Calculando a distancia deste modo aumenta a precisão do resultado*/
         double distXMN = CoordenadaGeografica.calcularDistancia(coordenadaGeograficaReferencial.getLatitude(), coordenadaGeograficaReferencial.getLongitude(),
@@ -76,8 +81,8 @@ public class CoordenadaCartesianaRVT{
         double distXmetros = ConversorUnidades.milhasNauticasParaMetros(distXMN);
         double distYmetros = ConversorUnidades.milhasNauticasParaMetros(distYMN);
 
-        int distXGrid = Math.round((float) (distXmetros / Raia.RESOLUCAOGRID));
-        int distYGrid = Math.round((float) (distYmetros / Raia.RESOLUCAOGRID));
+        int distXGrid = Math.round((float) (distXmetros / Parametros.RESOLUCAO_GRID));
+        int distYGrid = Math.round((float) (distYmetros / Parametros.RESOLUCAO_GRID));
 
         
         int x;
@@ -100,11 +105,11 @@ public class CoordenadaCartesianaRVT{
 
     public static CoordenadaGeografica converterCoordenadaCartesianaParaGeografica(CoordenadaCartesianaRVT CoordCartesianaInteresse, Posicao posicaoReferencial) {
 
-        int posXAlvo = Raia.DIMMAX / 2;
-        int posYAlvo = Raia.DIMMAX / 2;
+        int posXAlvo = Parametros.DIMENSAO_RAIA / 2;
+        int posYAlvo = Parametros.DIMENSAO_RAIA / 2;
 
-        double distXmetros = Math.abs(posXAlvo - CoordCartesianaInteresse.getX()) * Raia.RESOLUCAOGRID;
-        double distYmetros = Math.abs(posYAlvo - CoordCartesianaInteresse.getY()) * Raia.RESOLUCAOGRID;
+        double distXmetros = Math.abs(posXAlvo - CoordCartesianaInteresse.getX()) * Parametros.RESOLUCAO_GRID;
+        double distYmetros = Math.abs(posYAlvo - CoordCartesianaInteresse.getY()) * Parametros.RESOLUCAO_GRID;
 
         double distXMN = ConversorUnidades.metrosParaMilhas(distXmetros);
         double distYMN = ConversorUnidades.metrosParaMilhas(distYmetros);
@@ -135,6 +140,11 @@ public class CoordenadaCartesianaRVT{
         LOGGER.info("SPLASH (CALCULADO)-> Distância (relativa ao Alvo Teórico) (GEODESICS): " + ConversorUnidades.milhasNauticasParaMetros(distanciaGeodesics), CoordCartesianaInteresse.getClass());
 
         return (new CoordenadaGeografica(geoCord.getLatitude(), geoCord.getLongitude()));
+    }
+
+    public static double calcularDistanciaEntreDoisPontos(int posX1, int posY1, int posX2, int posY2){
+       double dist = Math.abs(Math.sqrt(Math.pow(posX2 - posX1, 2) + Math.pow(posY2 - posY1, 2)));
+       return dist;
     }
 
     @Override

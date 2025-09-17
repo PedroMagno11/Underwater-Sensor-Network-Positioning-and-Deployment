@@ -10,11 +10,20 @@ import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.Posicao;
  */
 public class Alvo {
 
+    private static Alvo instance = null;
+
     private Posicao posicao;
     private CoordenadaCartesianaRVT coordenadaCartesianaRVT;
 
-    public Alvo(Posicao posicao) {
-        this.posicao = posicao;
+    private Alvo() {
+        coordenadaCartesianaRVT = new CoordenadaCartesianaRVT(500, 500);
+    }
+
+    public static Alvo getInstance() {
+        if (instance == null) {
+            instance = new Alvo();
+        }
+        return instance;
     }
 
     public Posicao getPosicao() {

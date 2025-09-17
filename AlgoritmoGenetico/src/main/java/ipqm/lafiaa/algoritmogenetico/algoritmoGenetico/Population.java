@@ -1,30 +1,52 @@
 package ipqm.lafiaa.algoritmogenetico.algoritmoGenetico;
 
+import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.crossover.CrossoverOperator;
+import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.individual.FitnessEvaluator;
+import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.individual.IndividualFactory;
+import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.mutation.MutationOperator;
 import ipqm.lafiaa.algoritmogenetico.domain.rvt.Buoy;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class Population {
-    private static final Random rand = new Random();
+
+    private final CrossoverOperator crossover;
+
     private final int tournamentSize;
     private final double elitismRate;
     private final double mutationRate;
     private final double crossoverRate;
+    private final MutationOperator mutator;
+    private final FitnessEvaluator fitnessEvaluator;
+    private static final ThreadLocalRandom rand = ThreadLocalRandom.current();
 
     private List<Individual> population;
 
-    public Population(int populationSize, double elitismRate, double mutatuionRate, double crossoverRate, int tournamentSize) {
+    public Population(int populationSize, double elitismRate, double mutatuionRate, double crossoverRate, int tournamentSize, MutationOperator mutationOperator, CrossoverOperator crossoverOperator, FitnessEvaluator fitnessEvaluator) throws IOException, URISyntaxException, InterruptedException {
+
+        this.mutator = Objects.requireNonNull(mutationOperator);
+        this.crossover = Objects.requireNonNull(crossoverOperator);
+        this.fitnessEvaluator = Objects.requireNonNull(fitnessEvaluator);
+
         this.elitismRate = elitismRate;
         this.mutationRate = mutatuionRate;
         this.crossoverRate = crossoverRate;
         this.tournamentSize = tournamentSize;
-        this.population = new ArrayList<>();
+        this.population = new CopyOnWriteArrayList<>();
 
         while (this.population.size() < populationSize) {
-            this.population.add(Individual.generateRandomIndividual());
+            // Genera indivíduo sem fitness
+            Individual individual = IndividualFactory.generateRandomIndividual();
+            this.population.add(individual);
         }
 
+        // avalia em paralelo
+        fitnessEvaluator.evaluateAllBlocking(population);
         population.sort(Individual::compareTo);
     }
 
@@ -33,7 +55,8 @@ public class Population {
         return Collections.unmodifiableList(population);
     }
 
-    public void evolve() {
+    public void evolve() throws Exception {
+
         List<Individual> currentPopulation = new ArrayList<>(population);
         currentPopulation.sort(Individual::compareTo);
 
@@ -42,7 +65,6 @@ public class Population {
 
         // Copia os individuos da elite direto
         List<Individual> nextGeneration = new ArrayList<>(population.subList(0, eliteCount));
-
         // remove duplicatas por genes para manter diversidade
         nextGeneration = dedupByGenes(nextGeneration);
 
@@ -54,9 +76,9 @@ public class Population {
             Individual child1, child2;
 
             if(rand.nextDouble() < crossoverRate){
-                Individual[] children = p1.crossover(p2);
-                child1 = validateChild(children[0], p1, p2);
-                child2 = validateChild(children[1], p1, p2);
+                Individual[] children = crossover.crossover(p1, p2, rand);
+                child1 = validateChild(children[0], p1, p2, rand);
+                child2 = validateChild(children[1], p1, p2, rand);
 
             } else {
                 child1 = p1;
@@ -65,11 +87,11 @@ public class Population {
 
             // Mutação (probabilística)
             if(rand.nextDouble() < mutationRate){
-                child1 = child1.randomMutate();
+                child1 = mutator.mutate(child1, rand);
             }
 
             if(rand.nextDouble() < mutationRate){
-                child2 = child2.randomMutate();
+                child2 = mutator.mutate(child2, rand);
             }
 
             if(nextGeneration.size() < population.size()){
@@ -84,9 +106,12 @@ public class Population {
         nextGeneration = dedupByGenes(nextGeneration);
 
         while(nextGeneration.size() < population.size()){
-            nextGeneration.add(Individual.generateRandomIndividual());
+            nextGeneration.add(IndividualFactory.generateRandomIndividual());
         }
-
+        // avalia a nova geração
+        fitnessEvaluator.evaluateAllBlocking(nextGeneration);
+        // organiza pelo menor fitness
+        nextGeneration.sort(Individual::compareTo);
         this.population = nextGeneration;
     }
 
@@ -104,9 +129,13 @@ public class Population {
         return parents;
     }
 
-    private Individual validateChild(Individual child, Individual p1, Individual p2) {
-        if(child == null || child.getGenes().isEmpty()){
-            return p1.randomMutate();
+    private Individual validateChild(Individual child, Individual p1, Individual p2, ThreadLocalRandom rand) {
+        if(child == null || child.getGenes() == null || child.getGenes().isEmpty()){
+            try {
+                return mutator.mutate(p1, rand);
+            } catch (Exception e){
+                return (p1 != null) ? p1 : p2;
+            }
         }
         return child;
     }
