@@ -1,10 +1,9 @@
-package ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada;
+package ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada;
 
 
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.velocidade.VelocidadeFundo;
-import ipqm.gsa.rvt.algoritmogenetico.utils.coord.GeoCoord;
-import ipqm.gsa.rvt.algoritmogenetico.utils.coord.Mercator;
-import ipqm.gsa.rvt.algoritmogenetico.utils.coord.XYCoord;
+import ipqm.lafiaa.algoritmogenetico.utils.coord.GeoCoord;
+import ipqm.lafiaa.algoritmogenetico.utils.coord.Mercator;
+import ipqm.lafiaa.algoritmogenetico.utils.coord.XYCoord;
 
 import java.time.Instant;
 import java.util.Locale;
@@ -145,73 +144,6 @@ public class CoordenadaCartesiana extends TipoCoordenada {
      */
     public static double calcularDistancia(double x1, double y1, double x2, double y2) {
         return CoordenadaCartesiana.calcularDistancia(new CoordenadaCartesiana(x1, y1), new CoordenadaCartesiana(x2, y2));
-    }
-
-    /**
-     * Método para estimar a posição de um acompanhamento. S = S0 + V.T, onde: S
-     * (x,y) -> posição atual em milhas náuticas em coordenadas cartesianas;
-     * S0(x,y) -> posição inicial em milhas náuticas em coordenadas cartesianas;
-     * V (x,y) -> velocidade do alvo em milha náuticas por segundo em
-     * coordenadas cartesianas; T -> tempo decorrido (em segundos) entre a
-     * última atualização e o momento atual.
-     *
-     * @param posicaoAtual posicao atual do acompanhamento.
-     * @param tempoInicial timestamp da última posição em segundos.
-     * @param velocidade velocidade em nós do objeto a se estimar. Assume-se que
-     * a velocidade já está decomposta.
-     * @return CoordenadaCartesiana coordenada cartesiana da nova posição.
-     */
-    public static CoordenadaCartesiana obterPosicaoEstimada(CoordenadaCartesiana posicaoAtual, long tempoInicial,
-            VelocidadeFundo velocidade) {
-        if (posicaoAtual == null) {
-            return null;
-        }
-        if (velocidade == null) {
-            return null;
-        }
-        //De milisegundos -> segundos.
-        long timeStamp = Instant.now().getEpochSecond();
-
-        double t = Math.abs(timeStamp - tempoInicial);
-        double sx = posicaoAtual.getX() + (velocidade.getVX() / 3600) * t;
-        double sy = posicaoAtual.getY() + (velocidade.getVY() / 3600) * t;
-        CoordenadaCartesiana novaPosicaoCartesiana = new CoordenadaCartesiana();
-        novaPosicaoCartesiana.setX(sx);
-        novaPosicaoCartesiana.setY(sy);
-        return novaPosicaoCartesiana;
-    }
-
-    /**
-     * Método para estimar a posição de um acompanhamento com base no tempo
-     * final. S = S0 + V.T, onde: S (x,y) -> posição atual em milhas náuticas em
-     * coordenadas cartesianas; S0(x,y) -> posição inicial em milhas náuticas em
-     * coordenadas cartesianas; V (x,y) -> velocidade do alvo em milha náuticas
-     * por segundo em coordenadas cartesianas; T -> tempo decorrido (em
-     * segundos) entre a última atualização e o momento atual.
-     *
-     * @param posicaoAtual posicao atual do acompanhamento.
-     * @param tempoFinal tempo que será calculada a estimativa.
-     * @param velocidade velocidade em nós do objeto a se estimar. Assume-se que
-     * a velocidade já está decomposta.
-     * @return CoordenadaCartesiana coordenada cartesiana da nova posição.
-     */
-    public static CoordenadaCartesiana obterPosicaoEstimada(double tempoFinal, CoordenadaCartesiana posicaoAtual,
-            VelocidadeFundo velocidade) {
-        if (posicaoAtual == null) {
-            return null;
-        }
-        if (velocidade == null) {
-            return null;
-        }
-        //De milisegundos -> segundos.
-
-//        tempoFinal *= 3600;
-        double sx = posicaoAtual.getX() + (velocidade.getVX() / 3600) * tempoFinal;
-        double sy = posicaoAtual.getY() + (velocidade.getVY() / 3600) * tempoFinal;
-        CoordenadaCartesiana novaPosicaoCartesiana = new CoordenadaCartesiana();
-        novaPosicaoCartesiana.setX(sx);
-        novaPosicaoCartesiana.setY(sy);
-        return novaPosicaoCartesiana;
     }
 
     @Override

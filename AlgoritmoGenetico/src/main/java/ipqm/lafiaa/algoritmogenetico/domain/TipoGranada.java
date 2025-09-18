@@ -1,4 +1,4 @@
-package ipqm.gsa.rvt.algoritmogenetico.domain;
+package ipqm.lafiaa.algoritmogenetico.domain;
 
 /**
  *

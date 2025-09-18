@@ -1,6 +1,6 @@
-package ipqm.gsa.rvt.algoritmogenetico.domain.rvt;
+package ipqm.lafiaa.algoritmogenetico.domain;
 
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
+import ipqm.lafiaa.algoritmogenetico.domain.rvt.CoordenadaCartesianaRVT;
 
 /**
  *
@@ -9,18 +9,20 @@ import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeog
  */
 public class PontoQueda {
 
-   private double menorCusto;
+   private double custo;
     
    private CoordenadaCartesianaRVT pontoDeQueda;
 
+   public PontoQueda(){}
 
-    public PontoQueda(double menorCusto, CoordenadaCartesianaRVT pontoDeQueda) {
-        this.menorCusto = menorCusto;
+
+    public PontoQueda(double custo, CoordenadaCartesianaRVT pontoDeQueda) {
+        this.custo = custo;
         this.pontoDeQueda = pontoDeQueda;
     }
 
-    public double getMenorCusto() {
-        return menorCusto;
+    public double getCusto() {
+        return custo;
     }
 
     public CoordenadaCartesianaRVT getPontoDeQueda() {

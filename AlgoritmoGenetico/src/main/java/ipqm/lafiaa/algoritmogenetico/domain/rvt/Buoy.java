@@ -1,4 +1,6 @@
-package ipqm.gsa.rvt.algoritmogenetico.domain.rvt;
+package ipqm.lafiaa.algoritmogenetico.domain.rvt;
+
+import ipqm.lafiaa.algoritmogenetico.domain.config.Parametros;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -87,7 +89,7 @@ public class Buoy {
      * @throws java.lang.Exception caso a posição x não esteja dentro da raia
      */
     public void setPosX(int x) throws Exception {
-        if ((x >= 0) && (x < Raia.DIMMAX)) {
+        if ((x >= 0) && (x < Parametros.DIMENSAO_RAIA)) {
             posX = x;
         } else {
             throw new Exception("Dimensão X da boia fora da raia (x=" + x + ").");
@@ -101,7 +103,7 @@ public class Buoy {
      * @throws java.lang.Exception caso a posição y não esteja dentro da raia
      */
     public void setPosY(int y) throws Exception {
-        if ((y >= 0) && (y < Raia.DIMMAX)) {
+        if ((y >= 0) && (y < Parametros.DIMENSAO_RAIA)) {
             posY = y;
         } else {
             throw new Exception("Dimensão Y da boia fora da raia.");

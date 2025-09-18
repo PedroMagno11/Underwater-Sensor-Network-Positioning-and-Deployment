@@ -1,8 +1,8 @@
-package ipqm.gsa.rvt.algoritmogenetico.domain;
+package ipqm.lafiaa.algoritmogenetico.domain;
 
-import ipqm.gsa.rvt.algoritmogenetico.domain.rvt.CoordenadaCartesianaRVT;
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
-import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.Posicao;
+import ipqm.lafiaa.algoritmogenetico.domain.rvt.CoordenadaCartesianaRVT;
+import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
+import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.Posicao;
 
 /**
  *
@@ -10,11 +10,20 @@ import ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada.Posicao;
  */
 public class Alvo {
 
+    private static Alvo instance = null;
+
     private Posicao posicao;
     private CoordenadaCartesianaRVT coordenadaCartesianaRVT;
 
-    public Alvo(Posicao posicao) {
-        this.posicao = posicao;
+    private Alvo() {
+        coordenadaCartesianaRVT = new CoordenadaCartesianaRVT(500, 500);
+    }
+
+    public static Alvo getInstance() {
+        if (instance == null) {
+            instance = new Alvo();
+        }
+        return instance;
     }
 
     public Posicao getPosicao() {

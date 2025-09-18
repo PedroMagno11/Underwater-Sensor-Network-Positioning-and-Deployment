@@ -1,10 +1,10 @@
-package ipqm.gsa.rvt.algoritmogenetico.utils.cinematica.coordenada;
+package ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ipqm.gsa.rvt.algoritmogenetico.utils.coord.GeoCoord;
-import ipqm.gsa.rvt.algoritmogenetico.utils.coord.Geodesics;
-import ipqm.gsa.rvt.algoritmogenetico.utils.coord.Mercator;
+import ipqm.lafiaa.algoritmogenetico.utils.coord.GeoCoord;
+import ipqm.lafiaa.algoritmogenetico.utils.coord.Geodesics;
+import ipqm.lafiaa.algoritmogenetico.utils.coord.Mercator;
 import java.util.Locale;
 
 /**
