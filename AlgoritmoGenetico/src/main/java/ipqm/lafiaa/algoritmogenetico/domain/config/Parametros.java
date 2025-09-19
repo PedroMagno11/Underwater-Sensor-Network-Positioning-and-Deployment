@@ -9,7 +9,7 @@ import ipqm.lafiaa.algoritmogenetico.domain.TipoGranada;
 public class Parametros {
     public static final double RAIO_DETECCAO_GAE = 2500.0; // m
     public static final double RAIO_DETECCAO_EXSUP = 1000.0; // m
-    public static final double RUIDO_TEMPO_DETECCAO = 0.0003; // 0.3 ms
+    public static final double RUIDO_TEMPO_DETECCAO = 3; // 3 ms
     public static final int QUANT_MAX_BOIAS = 5;
     public static final int QUANT_MIN_BOIAS = 3;
     public static final int DIMENSAO_RAIA = 1016;

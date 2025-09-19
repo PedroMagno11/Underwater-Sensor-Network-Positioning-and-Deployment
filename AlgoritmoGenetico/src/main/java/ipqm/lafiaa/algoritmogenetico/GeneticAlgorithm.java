@@ -43,12 +43,12 @@ public class GeneticAlgorithm {
         MutationOperator mutator = new CompositeMutator(weigths);
 
         // Parâmetros do GA
-        int populationSize = 50;
+        int populationSize = 1000;
         double elitismRate = 0.05;   // 5% melhores preservados
         double mutationRate = 0.4;  // 40% chance de mutar
         double crossoverRate = 0.7; // 70% chance de cruzar
         int tournamentSize = 3;
-        int generations = 50;
+        int generations = 100;
 
 
         // Crossover

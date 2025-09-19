@@ -1,5 +1,6 @@
 package ipqm.lafiaa.algoritmogenetico.domain;
 
+import ipqm.lafiaa.algoritmogenetico.domain.config.Parametros;
 import ipqm.lafiaa.algoritmogenetico.domain.rvt.CoordenadaCartesianaRVT;
 import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
 import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.Posicao;
@@ -16,7 +17,7 @@ public class Alvo {
     private CoordenadaCartesianaRVT coordenadaCartesianaRVT;
 
     private Alvo() {
-        coordenadaCartesianaRVT = new CoordenadaCartesianaRVT(500, 500);
+        coordenadaCartesianaRVT = new CoordenadaCartesianaRVT(Parametros.DIMENSAO_RAIA/2, Parametros.DIMENSAO_RAIA/2);
     }
 
     public static Alvo getInstance() {

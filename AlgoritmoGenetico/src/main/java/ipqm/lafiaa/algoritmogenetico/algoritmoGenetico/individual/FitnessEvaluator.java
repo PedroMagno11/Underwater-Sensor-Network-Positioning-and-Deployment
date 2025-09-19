@@ -2,7 +2,9 @@ package ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.individual;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.Individual;
+import ipqm.lafiaa.algoritmogenetico.domain.config.Parametros;
 import ipqm.lafiaa.algoritmogenetico.domain.dto.BuoyDTO;
+import ipqm.lafiaa.algoritmogenetico.domain.dto.IndividualDTO;
 import ipqm.lafiaa.algoritmogenetico.domain.dto.PontoQuedaInput;
 import ipqm.lafiaa.algoritmogenetico.domain.rvt.Buoy;
 import ipqm.lafiaa.algoritmogenetico.domain.rvt.CoordenadaCartesianaRVT;
@@ -12,11 +14,12 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 public class FitnessEvaluator implements AutoCloseable{
@@ -66,7 +69,8 @@ public class FitnessEvaluator implements AutoCloseable{
         final String json;
         try {
             List<BuoyDTO> boias = ind.getGenes().stream().map(BuoyDTO::new).toList();
-            json = mapper.writeValueAsString(boias);
+            IndividualDTO individualDTO = new IndividualDTO(genotypeKey(ind), boias);
+            json = mapper.writeValueAsString(individualDTO);
         } catch (Exception e) {
             // serialização falhou
             if (failOpen) { ind.setFitness(Double.POSITIVE_INFINITY); return CompletableFuture.completedFuture(null); }
@@ -74,7 +78,6 @@ public class FitnessEvaluator implements AutoCloseable{
         }
 
         HttpRequest req = HttpRequest.newBuilder(ENDPOINT)
-                .timeout(Duration.ofSeconds(10))
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(json, StandardCharsets.UTF_8))
@@ -97,8 +100,7 @@ public class FitnessEvaluator implements AutoCloseable{
                     if (body == null) return Double.POSITIVE_INFINITY; // fail-open
                     try {
                         PontoQuedaInput p = mapper.readValue(body, PontoQuedaInput.class);
-                        double d = CoordenadaCartesianaRVT.calcularDistanciaEntreDoisPontos(
-                                p.getCoordCartesiana().getX(), p.getCoordCartesiana().getY(), 500, 500);
+                        double d = CoordenadaCartesianaRVT.calcularDistanciaEntreDoisPontos(p.getCoordCartesiana().getX(), p.getCoordCartesiana().getY(), Parametros.DIMENSAO_RAIA/2, Parametros.DIMENSAO_RAIA/2); // Compara a posição do ponto de queda calculado com o centro da raia (Posição assumida pelo alvo)
                         return p.getCusto() + d;
                     } catch (Exception e) {
                         if (failOpen) return Double.POSITIVE_INFINITY;
@@ -106,6 +108,15 @@ public class FitnessEvaluator implements AutoCloseable{
                     }
                 })
                 .thenAccept(f -> {
+
+                    AtomicInteger sum = new AtomicInteger(0);
+                    ind.getGenes().forEach(g -> {
+                        double ponto = Double.parseDouble(g.getNome().substring(4));
+                        if(ponto > 5){
+                            sum.addAndGet(1);
+                        }
+                    });
+                    f+=sum.get();
                     ind.setFitness(f);
                     cache.putIfAbsent(key, f);
                 });

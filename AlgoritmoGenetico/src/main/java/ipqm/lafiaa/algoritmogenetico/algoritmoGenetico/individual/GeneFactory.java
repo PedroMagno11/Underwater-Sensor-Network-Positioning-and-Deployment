@@ -34,9 +34,10 @@ public class GeneFactory {
         double distanciaEmMetros = ConversorUnidades.milhasNauticasParaMetros(distanciaEmMilhasNauticas);
         double tempo = distanciaEmMetros / Parametros.VELOC_SOM;
 
-//        if(rand.nextBoolean()){
-//            tempo += rand.nextDouble() * Parametros.RUIDO_TEMPO_DETECCAO / 1000.0;
-//        }
+        // De maneira aleatória, adiciona um atraso na detecção de até 3 ms
+        if(rand.nextDouble() < 0.3){
+            tempo += rand.nextDouble() * Parametros.RUIDO_TEMPO_DETECCAO;
+        }
 
         long t = Math.max(0, Math.round(tempo));
         b.setTempoDeteccao(t);
