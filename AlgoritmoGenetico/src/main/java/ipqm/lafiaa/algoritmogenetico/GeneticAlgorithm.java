@@ -7,12 +7,15 @@ import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.crossover.CrossoverOperat
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.individual.FitnessEvaluator;
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.mutation.*;
 import ipqm.lafiaa.algoritmogenetico.domain.Alvo;
+import ipqm.lafiaa.algoritmogenetico.domain.dto.IndividualDTO;
+import ipqm.lafiaa.algoritmogenetico.domain.dto.IndividualOutputDTO;
 import ipqm.lafiaa.algoritmogenetico.domain.dto.PontoReferencialInputDTO;
 import ipqm.lafiaa.algoritmogenetico.utils.HTTPRequest;
 import ipqm.lafiaa.algoritmogenetico.utils.NameGenerator;
 import ipqm.lafiaa.algoritmogenetico.utils.Response;
 import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.CoordenadaGeografica;
 import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.Posicao;
+import ipqm.lafiaa.algoritmogenetico.utils.file.GeneratorFile;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -43,12 +46,12 @@ public class GeneticAlgorithm {
         MutationOperator mutator = new CompositeMutator(weigths);
 
         // Parâmetros do GA
-        int populationSize = 1000;
+        int populationSize = 200;
         double elitismRate = 0.05;   // 5% melhores preservados
-        double mutationRate = 0.4;  // 40% chance de mutar
+        double mutationRate = 0.5;  // 40% chance de mutar
         double crossoverRate = 0.7; // 70% chance de cruzar
         int tournamentSize = 3;
-        int generations = 100;
+        int generations = 50;
 
 
         // Crossover
@@ -70,11 +73,16 @@ public class GeneticAlgorithm {
                 evaluator
             );
 
-            // 🔁 Loop de gerações
+            GeneratorFile g = GeneratorFile.getInstance(generations);
+
+            // Loop de gerações
             for (int gen = 1; gen <= generations; gen++) {
                 pop.evolve();
                 Individual best = pop.getPopulation().get(0); // menor fitness
-                System.out.printf("Geração %d | Melhor fitness: %.4f%n", gen, best.getFitness());
+                IndividualOutputDTO bestOutput = new IndividualOutputDTO(best);
+                g.registrar(bestOutput);
+                g.salvar("temporario", "individuals");
+                System.out.printf("Geração %d | Genes: %s | Melhor fitness: %.4f%n", gen, bestOutput.getGenes(), best.getFitness());
             }
 
             // 🏆 Resultado final
@@ -82,6 +90,7 @@ public class GeneticAlgorithm {
             System.out.println("Melhor indivíduo final:");
             System.out.println(bestOverall);
         }
+
     }
 
     private static void requestTarget() throws IOException, InterruptedException {

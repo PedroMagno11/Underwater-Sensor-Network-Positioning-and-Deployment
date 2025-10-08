@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 public class FitnessEvaluator implements AutoCloseable{
 
-    private static final URI ENDPOINT = URI.create("http://localhost:34080/api/raia/calcular");
+    private static final URI ENDPOINT = URI.create("http://localhost:34085/api/raia/calcular");
     private final HttpClient client;
     private static final ObjectMapper mapper = new ObjectMapper();
     private final ExecutorService executor;
@@ -109,14 +109,19 @@ public class FitnessEvaluator implements AutoCloseable{
                 })
                 .thenAccept(f -> {
 
-                    AtomicInteger sum = new AtomicInteger(0);
-                    ind.getGenes().forEach(g -> {
-                        double ponto = Double.parseDouble(g.getNome().substring(4));
-                        if(ponto > 5){
-                            sum.addAndGet(1);
-                        }
-                    });
-                    f+=sum.get();
+                    double sum = 0.0;
+                    if(ind.getGenes().size() < 4){
+                        sum += 0.05; // Pune indivíduos com 3 boias, pois 3 é a quantidade com maior imprecisão no cálculo de triangulação
+                    }
+
+//                    ind.getGenes().forEach(g -> {
+//                        double ponto = Double.parseDouble(g.getNome().substring(4));
+//                        if(ponto > 5){
+//                            sum.addAndGet(1);
+//                        }
+//                    });
+
+                    f+=sum;
                     ind.setFitness(f);
                     cache.putIfAbsent(key, f);
                 });

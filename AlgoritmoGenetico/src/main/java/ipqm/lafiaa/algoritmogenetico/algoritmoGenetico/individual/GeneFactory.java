@@ -37,6 +37,8 @@ public class GeneFactory {
         // De maneira aleatória, adiciona um atraso na detecção de até 3 ms
         if(rand.nextDouble() < 0.3){
             tempo += rand.nextDouble() * Parametros.RUIDO_TEMPO_DETECCAO;
+        }else if (rand.nextDouble() > 0.7){
+            tempo -= rand.nextDouble() * Parametros.RUIDO_TEMPO_DETECCAO;
         }
 
         long t = Math.max(0, Math.round(tempo));
