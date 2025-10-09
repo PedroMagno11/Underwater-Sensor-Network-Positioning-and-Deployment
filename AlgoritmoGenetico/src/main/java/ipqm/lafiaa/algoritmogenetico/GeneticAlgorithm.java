@@ -4,6 +4,7 @@ import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.Individual;
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.Population;
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.crossover.Crossover;
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.crossover.CrossoverOperator;
+import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.individual.CircularIndividualEvaluator;
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.individual.FitnessEvaluator;
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.mutation.*;
 import ipqm.lafiaa.algoritmogenetico.domain.Alvo;
@@ -31,6 +32,16 @@ public class GeneticAlgorithm {
     public static void main(String[] args) throws Exception {
 
         requestTarget();
+
+        GeneratorFile c = GeneratorFile.getInstance(1);
+        CircularIndividualEvaluator circularEvaluator = new CircularIndividualEvaluator(100, 4);
+        Individual circularIndividual = circularEvaluator.generate();
+        CircularIndividualEvaluator.evaluate(circularIndividual);
+
+        IndividualOutputDTO circularIndividualOutput = new IndividualOutputDTO(circularIndividual);
+        c.registrar(circularIndividualOutput);
+        c.salvar("temporario", "circularIndividual");
+
 
         // compõe os mutadores
         MutationOperator randomMutation = new RandomMutation();

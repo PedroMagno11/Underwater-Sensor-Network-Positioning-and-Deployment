@@ -18,8 +18,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 public class FitnessEvaluator implements AutoCloseable{
@@ -29,7 +27,7 @@ public class FitnessEvaluator implements AutoCloseable{
     private static final ObjectMapper mapper = new ObjectMapper();
     private final ExecutorService executor;
     private final ConcurrentMap<String, Double> cache = new ConcurrentHashMap<>();
-    private boolean failOpen;
+    private final boolean failOpen;
 
     public FitnessEvaluator(int threads, boolean failOpen){
         this.failOpen = failOpen;
