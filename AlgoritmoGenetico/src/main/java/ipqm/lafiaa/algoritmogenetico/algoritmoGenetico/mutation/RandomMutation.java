@@ -24,4 +24,9 @@ public class RandomMutation implements MutationOperator{
         genes.put(newBuoy.getNome(), newBuoy);
         return new Individual(genes);
     }
+
+    @Override
+    public String getName() {
+        return "Random Mutation";
+    }
 }

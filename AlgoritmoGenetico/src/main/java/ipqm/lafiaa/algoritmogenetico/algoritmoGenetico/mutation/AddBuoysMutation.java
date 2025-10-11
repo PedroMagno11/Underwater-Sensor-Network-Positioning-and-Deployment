@@ -44,4 +44,9 @@ public class AddBuoysMutation implements MutationOperator{
 
         return new Individual(genes);
     }
+
+    @Override
+    public String getName() {
+        return "Add Buoys Mutation";
+    }
 }

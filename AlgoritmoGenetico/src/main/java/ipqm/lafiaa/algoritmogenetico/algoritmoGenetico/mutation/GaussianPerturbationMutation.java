@@ -36,6 +36,11 @@ public class GaussianPerturbationMutation implements MutationOperator{
         return new Individual(genes);
     }
 
+    @Override
+    public String getName() {
+        return "Gaussian Perturbation Mutation";
+    }
+
 //    public Individual gaussianMutation() throws Exception {
 //        Map<String, Buoy> copy = MutationUtils.deepCopy(genes);
 //        if(copy.isEmpty()){

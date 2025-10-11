@@ -40,8 +40,15 @@ public class Population {
         this.population = new CopyOnWriteArrayList<>();
 
         while (this.population.size() < populationSize) {
-            // Genera indivíduo sem fitness
-            Individual individual = IndividualFactory.generateRandomIndividual();
+            // Gera indivíduo sem fitness
+            Individual individual;
+            // Gera parte da população circularmente (por exemplo, 30%)
+//            if (this.population.size() < populationSize * 0.3) {
+                individual = IndividualFactory.generateCircularIndividual();
+//            } else {
+//                individual = IndividualFactory.generateRandomIndividual();
+//            }
+
             this.population.add(individual);
         }
 
@@ -106,7 +113,8 @@ public class Population {
         nextGeneration = dedupByGenes(nextGeneration);
 
         while(nextGeneration.size() < population.size()){
-            nextGeneration.add(IndividualFactory.generateRandomIndividual());
+//            nextGeneration.add(IndividualFactory.generateRandomIndividual());
+            nextGeneration.add(IndividualFactory.generateCircularIndividual());
         }
         // avalia a nova geração
         fitnessEvaluator.evaluateAllBlocking(nextGeneration);

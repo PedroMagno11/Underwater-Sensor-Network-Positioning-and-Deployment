@@ -14,6 +14,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
@@ -71,7 +72,10 @@ public class FitnessEvaluator implements AutoCloseable{
             json = mapper.writeValueAsString(individualDTO);
         } catch (Exception e) {
             // serialização falhou
-            if (failOpen) { ind.setFitness(Double.POSITIVE_INFINITY); return CompletableFuture.completedFuture(null); }
+            if (failOpen) {
+                ind.setFitness(Double.POSITIVE_INFINITY);
+                return CompletableFuture.completedFuture(null);
+            }
             return CompletableFuture.failedFuture(e);
         }
 
@@ -99,7 +103,15 @@ public class FitnessEvaluator implements AutoCloseable{
                     try {
                         PontoQuedaInput p = mapper.readValue(body, PontoQuedaInput.class);
                         double d = CoordenadaCartesianaRVT.calcularDistanciaEntreDoisPontos(p.getCoordCartesiana().getX(), p.getCoordCartesiana().getY(), Parametros.DIMENSAO_RAIA/2, Parametros.DIMENSAO_RAIA/2); // Compara a posição do ponto de queda calculado com o centro da raia (Posição assumida pelo alvo)
-                        return p.getCusto() + d;
+
+                        double fitness = p.getCusto() + d;
+
+                        double symmetryPenalty = calcularSimetria(ind);
+//                        double lambda = 0.05; // peso da penalização
+                        double lambda = 0.5e-2;
+                        fitness += lambda * symmetryPenalty;
+
+                        return fitness;
                     } catch (Exception e) {
                         if (failOpen) return Double.POSITIVE_INFINITY;
                         throw new CompletionException(e);
@@ -107,10 +119,11 @@ public class FitnessEvaluator implements AutoCloseable{
                 })
                 .thenAccept(f -> {
 
-                    double sum = 0.0;
-                    if(ind.getGenes().size() < 4){
-                        sum += 0.05; // Pune indivíduos com 3 boias, pois 3 é a quantidade com maior imprecisão no cálculo de triangulação
-                    }
+//                    double sum = 0.0;
+//                    penaliza indivíduos com 3 boias
+//                    if(ind.getGenes().size() < 4){
+//                        sum += 0.05; // Pune indivíduos com 3 boias, pois 3 é a quantidade com maior imprecisão no cálculo de triangulação
+//                    }
 
 //                    ind.getGenes().forEach(g -> {
 //                        double ponto = Double.parseDouble(g.getNome().substring(4));
@@ -119,10 +132,32 @@ public class FitnessEvaluator implements AutoCloseable{
 //                        }
 //                    });
 
-                    f+=sum;
+//                    f+=sum;
                     ind.setFitness(f);
                     cache.putIfAbsent(key, f);
                 });
+    }
+
+    private double calcularSimetria(Individual individual) {
+        List<Buoy> buoys = individual.getGenes();
+        double mediaX = buoys.stream().mapToDouble(Buoy::getPosX).average().orElse(0);
+        double mediaY = buoys.stream().mapToDouble(Buoy::getPosY).average().orElse(0);
+
+        List<Double> distancias = new ArrayList<>();
+        for (Buoy b : buoys) {
+            double dist = Math.hypot(b.getPosX() - mediaX, b.getPosY() - mediaY);
+            distancias.add(dist);
+        }
+
+        double media = distancias.stream().mapToDouble(Double::doubleValue).average().orElse(0);
+        double variancia = distancias.stream().mapToDouble(d -> Math.pow(d - media, 2)).average().orElse(0);
+
+        double desvioPadrao = Math.sqrt(variancia);
+
+        // quanto menor o desvio padrão (formas simétricas), maior a penalização
+        double normalizado = 1.0 / (1.0 + desvioPadrao);
+
+        return normalizado;
     }
 
     private CompletableFuture<Void> handleFailure(Individual ind, Throwable e) {

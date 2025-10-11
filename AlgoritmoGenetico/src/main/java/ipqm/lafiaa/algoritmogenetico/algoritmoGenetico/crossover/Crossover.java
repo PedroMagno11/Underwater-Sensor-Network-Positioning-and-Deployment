@@ -73,9 +73,9 @@ public class Crossover implements CrossoverOperator{
 
         // Converte para Map (mantendo último em caso de chave duplicada)
         Map<String, Buoy> genesChild1 = child1.stream()
-                .collect(Collectors.toMap(Buoy::getNome, b -> b, (a,b)->b, HashMap::new));
+                .collect(Collectors.toMap(Buoy::getNome, b -> b, (a,b)->b,LinkedHashMap::new));
         Map<String, Buoy> genesChild2 = child2.stream()
-                .collect(Collectors.toMap(Buoy::getNome, b -> b, (a,b)->b, HashMap::new));
+                .collect(Collectors.toMap(Buoy::getNome, b -> b, (a,b)->b, LinkedHashMap::new));
 
         return new Individual[] { new Individual(genesChild1), new Individual(genesChild2) };
     }

@@ -6,4 +6,5 @@ import java.util.Random;
 
 public interface MutationOperator {
     Individual mutate(Individual parent, Random rand) throws Exception;
+    String getName();
 }

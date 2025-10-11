@@ -35,4 +35,9 @@ public class UniformPerturbationMutation implements MutationOperator{
         genes.put(key, b);
         return new Individual(genes);
     }
+
+    @Override
+    public String getName() {
+        return "Uniform Perturbation Mutation";
+    }
 }

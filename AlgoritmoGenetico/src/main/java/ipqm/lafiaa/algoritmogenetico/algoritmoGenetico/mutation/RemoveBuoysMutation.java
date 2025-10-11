@@ -37,4 +37,9 @@ public class RemoveBuoysMutation implements MutationOperator{
 
         return new Individual(genes);
     }
+
+    @Override
+    public String getName() {
+        return "Remove Buoys Mutation";
+    }
 }

@@ -4,11 +4,9 @@ import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.Individual;
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.Population;
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.crossover.Crossover;
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.crossover.CrossoverOperator;
-import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.individual.CircularIndividualEvaluator;
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.individual.FitnessEvaluator;
 import ipqm.lafiaa.algoritmogenetico.algoritmoGenetico.mutation.*;
 import ipqm.lafiaa.algoritmogenetico.domain.Alvo;
-import ipqm.lafiaa.algoritmogenetico.domain.dto.IndividualDTO;
 import ipqm.lafiaa.algoritmogenetico.domain.dto.IndividualOutputDTO;
 import ipqm.lafiaa.algoritmogenetico.domain.dto.PontoReferencialInputDTO;
 import ipqm.lafiaa.algoritmogenetico.utils.HTTPRequest;
@@ -33,16 +31,6 @@ public class GeneticAlgorithm {
 
         requestTarget();
 
-        GeneratorFile c = GeneratorFile.getInstance(1);
-        CircularIndividualEvaluator circularEvaluator = new CircularIndividualEvaluator(100, 4);
-        Individual circularIndividual = circularEvaluator.generate();
-        CircularIndividualEvaluator.evaluate(circularIndividual);
-
-        IndividualOutputDTO circularIndividualOutput = new IndividualOutputDTO(circularIndividual);
-        c.registrar(circularIndividualOutput);
-        c.salvar("temporario", "circularIndividual");
-
-
         // compõe os mutadores
         MutationOperator randomMutation = new RandomMutation();
         MutationOperator addBuoysMutation = new AddBuoysMutation(1,2, new NameGenerator("buoy"));
@@ -57,12 +45,12 @@ public class GeneticAlgorithm {
         MutationOperator mutator = new CompositeMutator(weigths);
 
         // Parâmetros do GA
-        int populationSize = 200;
-        double elitismRate = 0.05;   // 5% melhores preservados
-        double mutationRate = 0.5;  // 40% chance de mutar
-        double crossoverRate = 0.7; // 70% chance de cruzar
-        int tournamentSize = 3;
-        int generations = 50;
+        int populationSize = 250;
+        double elitismRate = 0.02;   // 5% melhores preservados
+        double mutationRate = 0.4;  // 40% chance de mutar
+        double crossoverRate = 0.85; // 70% chance de cruzar
+        int tournamentSize = 4; // 3
+        int generations = 200;
 
 
         // Crossover
@@ -107,7 +95,7 @@ public class GeneticAlgorithm {
     private static void requestTarget() throws IOException, InterruptedException {
         ObjectMapper mapper = new ObjectMapper();
 
-        Response r = HTTPRequest.get("http://localhost:34080/api/ponto-referencial");
+        Response r = HTTPRequest.get("http://localhost:34085/api/ponto-referencial");
 
         PontoReferencialInputDTO pr = mapper.readValue(r.getBody().toString(), PontoReferencialInputDTO.class);
 

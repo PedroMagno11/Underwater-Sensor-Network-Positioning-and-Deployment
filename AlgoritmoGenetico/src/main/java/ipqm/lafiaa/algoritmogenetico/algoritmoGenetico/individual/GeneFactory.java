@@ -48,7 +48,8 @@ public class GeneFactory {
     public static Buoy generateValidRandomGene(){
         while (true){
             Buoy buoy = generateRandomGene();
-            if(GeneUtils.detecta(buoy, TARGET, TipoGranada.GAE) && GeneUtils.detecta(buoy, TARGET, TipoGranada.EXSUP)){
+//            if(GeneUtils.detecta(buoy, TARGET, TipoGranada.GAE) && GeneUtils.detecta(buoy, TARGET, TipoGranada.EXSUP)){
+            if(GeneUtils.detecta(buoy, TARGET, TipoGranada.GAE)){
                 tempoDeteccao(buoy, TARGET);
                 return buoy;
             }

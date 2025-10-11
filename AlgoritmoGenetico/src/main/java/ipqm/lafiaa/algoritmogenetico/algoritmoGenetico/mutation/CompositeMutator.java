@@ -39,8 +39,16 @@ public class CompositeMutator implements MutationOperator{
 
         double r = rand.nextDouble()*total;
         for(Entry e : table){
-            if(r <= e.weight) return e.operator.mutate(parent, rand);
+            if(r <= e.weight){
+//                System.out.println("CLASSE USADA: " + e.operator.getClass());
+                return e.operator.mutate(parent, rand);
+            }
         }
         return table.getLast().operator.mutate(parent, rand);
+    }
+
+    @Override
+    public String getName(){
+        return "Composite Mutator";
     }
 }
