@@ -71,7 +71,7 @@ public class Population {
         eliteCount = Math.min(eliteCount, population.size() - 1);
 
         // Copia os individuos da elite direto
-        List<Individual> nextGeneration = new ArrayList<>(population.subList(0, eliteCount));
+        List<Individual> nextGeneration = new ArrayList<>(currentPopulation.subList(0, eliteCount));
         // remove duplicatas por genes para manter diversidade
         nextGeneration = dedupByGenes(nextGeneration);
 
@@ -88,8 +88,8 @@ public class Population {
                 child2 = validateChild(children[1], p1, p2, rand);
 
             } else {
-                child1 = p1;
-                child2 = p2;
+                child1 = p1.copy();
+                child2 = p2.copy();
             }
 
             // Mutação (probabilística)

@@ -106,10 +106,10 @@ public class FitnessEvaluator implements AutoCloseable{
 
                         double fitness = p.getCusto() + d;
 
-                        double symmetryPenalty = calcularSimetria(ind);
-//                        double lambda = 0.05; // peso da penalização
-                        double lambda = 0.5e-2;
-                        fitness += lambda * symmetryPenalty;
+//                        double symmetryPenalty = calcularSimetria(ind);
+////                        double lambda = 0.05; // peso da penalização
+//                        double lambda = 0.5e-2;
+//                        fitness += lambda * symmetryPenalty;
 
                         return fitness;
                     } catch (Exception e) {

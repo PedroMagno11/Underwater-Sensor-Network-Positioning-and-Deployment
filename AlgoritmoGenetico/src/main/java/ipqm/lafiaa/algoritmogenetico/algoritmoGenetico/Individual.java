@@ -41,6 +41,38 @@ public class Individual implements Comparable<Individual> {
         this.fitness = fitness;
     }
 
+    public Individual copy() {
+        try {
+            Map<String, Buoy> clonedGenes = new LinkedHashMap<>();
+
+            for (Map.Entry<String, Buoy> entry : this.genes.entrySet()) {
+                String key = entry.getKey();
+                Buoy original = entry.getValue();
+
+                // 🔹 Cria cópia independente da boia
+                Buoy clone = new Buoy(
+                        original.getNome(),
+                        original.getPosX(),
+                        original.getPosY()
+                );
+                clone.setAtivada(original.getAtivada());
+                clone.setLatGeo(original.getLatGeo());
+                clone.setLonGeo(original.getLonGeo());
+                clone.setTempoDeteccao(original.getTempoDeteccao());
+
+                clonedGenes.put(key, clone);
+            }
+
+            Individual clone = new Individual(clonedGenes);
+            clone.setFitness(this.fitness);
+            return clone;
+
+        } catch (Exception e) {
+            LOGGER.error("Erro ao copiar indivíduo: {}", e.getMessage(), e);
+            throw new RuntimeException("Falha ao copiar indivíduo", e);
+        }
+    }
+
     @Override
     public int compareTo(Individual o) {
         double a = Double.isNaN(this.fitness) ? Double.POSITIVE_INFINITY : this.fitness;

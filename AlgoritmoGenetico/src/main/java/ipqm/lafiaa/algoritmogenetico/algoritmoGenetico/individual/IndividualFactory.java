@@ -21,8 +21,8 @@ public class IndividualFactory {
 
     public static Individual generateRandomIndividual() throws IOException, URISyntaxException, InterruptedException {
         Map<String, Buoy> buoys = new HashMap<>();
-        int numberOfBuoys = Parametros.QUANT_MIN_BOIAS + rand.nextInt(Parametros.QUANT_MAX_BOIAS - Parametros.QUANT_MIN_BOIAS + 1);
-//        int numberOfBuoys = 3;
+//        int numberOfBuoys = Parametros.QUANT_MIN_BOIAS + rand.nextInt(Parametros.QUANT_MAX_BOIAS - Parametros.QUANT_MIN_BOIAS + 1);
+        int numberOfBuoys = 5;
         for(int i = 0; i < numberOfBuoys; i++) {
             Buoy buoy = GeneFactory.generateValidRandomGene();
             buoy.setNome("buoy" + (i + 1));
@@ -34,7 +34,7 @@ public class IndividualFactory {
     public static Individual generateCircularIndividual() throws IOException, URISyntaxException, InterruptedException {
         Map<String, Buoy> buoys = new HashMap<>();
 //        int numberOfBuoys = Parametros.QUANT_MIN_BOIAS + rand.nextInt(Parametros.QUANT_MAX_BOIAS - Parametros.QUANT_MIN_BOIAS + 1);
-        int numberOfBuoys = 5;
+        int numberOfBuoys = 4;
         double centerX = Parametros.DIMENSAO_RAIA / 2.0;
         double centerY = Parametros.DIMENSAO_RAIA / 2.0;
 

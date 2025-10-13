@@ -17,8 +17,8 @@ import ipqm.lafiaa.algoritmogenetico.utils.cinematica.coordenada.Posicao;
 import ipqm.lafiaa.algoritmogenetico.utils.file.GeneratorFile;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.io.PrintWriter;
+import java.util.*;
 
 /**
  *
@@ -45,11 +45,11 @@ public class GeneticAlgorithm {
         MutationOperator mutator = new CompositeMutator(weigths);
 
         // Parâmetros do GA
-        int populationSize = 250;
-        double elitismRate = 0.02;   // 5% melhores preservados
-        double mutationRate = 0.4;  // 40% chance de mutar
-        double crossoverRate = 0.85; // 70% chance de cruzar
-        int tournamentSize = 4; // 3
+        int populationSize = 100;
+        double elitismRate = 0.1;   // 10% melhores preservados
+        double mutationRate = 0.2;  // 20% chance de mutar
+        double crossoverRate = 0.2; // 20% chance de cruzar
+        int tournamentSize = 3; // 3
         int generations = 200;
 
 
@@ -74,16 +74,38 @@ public class GeneticAlgorithm {
 
             GeneratorFile g = GeneratorFile.getInstance(generations);
 
+            List<Double> bestFitnessPerGeneration = new ArrayList<>();
+            List<Double> avgFitnessPerGeneration = new ArrayList<>();
+
             // Loop de gerações
             for (int gen = 1; gen <= generations; gen++) {
                 pop.evolve();
                 Individual best = pop.getPopulation().get(0); // menor fitness
+                double bestFitness = pop.getPopulation().get(0).getFitness();
+                double avg = pop.getPopulation().stream()
+                        .mapToDouble(Individual::getFitness)
+                        .average()
+                        .orElse(Double.NaN);
+
+                bestFitnessPerGeneration.add(bestFitness);
+                avgFitnessPerGeneration.add(avg);
+
                 IndividualOutputDTO bestOutput = new IndividualOutputDTO(best);
                 g.registrar(bestOutput);
                 g.salvar("temporario", "individuals");
-                System.out.printf("Geração %d | Genes: %s | Melhor fitness: %.4f%n", gen, bestOutput.getGenes(), best.getFitness());
+                System.out.printf("Geração %d | Genes: %s | Melhor fitness: %.6f%n", gen, bestOutput.getGenes(), best.getFitness());
+                System.out.printf("Geração %d | Melhor: %.6f | Média: %.6f%n", gen, bestFitness, avg);
             }
 
+            try(PrintWriter out = new PrintWriter("fitness_data.csv")){
+                out.println("geracao,melhor,media");
+                for(int i = 0; i < bestFitnessPerGeneration.size(); i++){
+                    out.printf(Locale.US,"%d,%f,%f%n", i, bestFitnessPerGeneration.get(i), avgFitnessPerGeneration.get(i));
+                }
+                System.out.println("Arquivo fitness_data.csv salvo com sucesso!");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
             // 🏆 Resultado final
             Individual bestOverall = pop.getPopulation().get(0);
             System.out.println("Melhor indivíduo final:");
