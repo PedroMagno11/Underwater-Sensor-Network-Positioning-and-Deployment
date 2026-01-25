@@ -1,15 +1,16 @@
 from __future__ import annotations
 
 from typing import List
+
 import matplotlib.pyplot as plt
 
 from results.result_models import GenerationMetrics
 
 
-def save_ga_progress_figure(
+def save_ga_cost_progress_figure(
     metrics: List[GenerationMetrics],
     title: str,
-    output_png_path: str
+    output_png_path: str,
 ) -> None:
     generations = [m.generation_index for m in metrics]
     cost_min = [m.cost_min for m in metrics]
@@ -36,10 +37,10 @@ def save_ga_progress_figure(
     plt.close(fig)
 
 
-def save_ga_coverage_figure(
+def save_ga_coverage_and_error_figure(
     metrics: List[GenerationMetrics],
     title: str,
-    output_png_path: str
+    output_png_path: str,
 ) -> None:
     generations = [m.generation_index for m in metrics]
     no_coverage_rate = [m.avg_no_coverage_rate for m in metrics]

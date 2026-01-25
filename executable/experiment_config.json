@@ -1,0 +1,48 @@
+{
+  "environment": {
+    "grid_size_in_points": 508,
+    "grid_spacing": 9.0,
+    "target_region_radius": 1500.0,
+    "maximum_detection_distance": 2500.0,
+    "minimum_depth_in_meters": 0.5,
+    "maximum_depth_in_meters": 8.0,
+    "x_center_in_meters": 0.0,
+    "y_center_in_meters": 0.0
+  },
+  "genetic_algorithm": {
+    "number_of_generations": 50,
+    "population_size": 40,
+    "tournament_size": 3,
+    "crossover_probability": 0.8,
+    "mutation_probability": 0.3,
+    "standard_deviation_of_xy_mutation": 150.0,
+    "standard_deviation_of_z_mutation": 0.8,
+    "elitism": 2,
+    "random_seed": 123
+  },
+  "simulation": {
+    "number_of_impact_points_per_evaluation": 60,
+    "time_noise_standard_deviation": 0.0005,
+    "coarse_search_step_in_meters": 45.0,
+    "fine_search_step_in_meters": 9.0,
+    "refinement_radius_in_meters": 180.0,
+    "invalid_coverage_penalty": 1000000.0,
+    "penalty_for_buoys_too_close": 1.0,
+    "minimum_distance_between_buoys_in_meters": 100.0
+  },
+  "performance": {
+    "parallel_evaluation_mode": "auto",
+    "number_of_workers": 2,
+    "enable_parallel_evaluation": true
+  },
+  "visualization": {
+    "output_directory": "outputs",
+    "save_best_per_generation_figures": true,
+    "max_generation_figures": 10000,
+    "save_final_best_figure": true,
+    "save_progress_figures": true,
+    "export_metrics_csv": true,
+    "save_error_heatmap": true,
+    "heatmap_step_in_meters": 90.0
+  }
+}

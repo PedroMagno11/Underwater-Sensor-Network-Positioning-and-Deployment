@@ -1,5 +1,5 @@
 from __future__ import annotations
-from settings.types import AcousticSensor
+from settings.model import AcousticSensor
 from geometry.distance_functions import calculate_distance_3d
 from acoustic.sound_speed_profile import SoundSpeedProfile
 

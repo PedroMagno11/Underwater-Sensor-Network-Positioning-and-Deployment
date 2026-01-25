@@ -43,7 +43,7 @@ class SoundSpeedProfile:
 
         The CSV is parsed with DictReader to allow flexible column ordering.
         Values are converted to float and then used to build the SSP object.
-    """
+        """
         depths: List[float] = []
         sound_speeds: List[float] = []
 

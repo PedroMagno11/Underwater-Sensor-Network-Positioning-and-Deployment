@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import List, Tuple
 import numpy as np
 
-from settings.types import AcousticSensor
+from settings.model import AcousticSensor
 from settings.simulation_settings import SimulationSettings
 from geometry.grid_geometry import GridGeometry
 from acoustic.acoustic_model_baseline import calculate_arrival_time

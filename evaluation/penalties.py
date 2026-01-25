@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import List
 
-from settings.types import AcousticSensor
+from settings.model import AcousticSensor
 from geometry.distance_functions import calculate_distance_2d
 
 def calculate_penalty_for_separation_between_sensors(

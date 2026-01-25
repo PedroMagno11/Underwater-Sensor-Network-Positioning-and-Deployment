@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import List
 import numpy as np
 
-from settings.types import AcousticSensor
+from settings.model import AcousticSensor
 from settings.environment_settings import EnvironmentSettings
 from geometry.grid_geometry import GridGeometry
 

@@ -10,16 +10,12 @@ def setup_logging(
     log_file_path: Optional[str] = "execution.log",
     log_to_console: bool = True,
 ) -> None:
-    """Configure global logging.
+    """Configure application-wide logging.
 
-    This function configures:
-    - Console logging (optional)
-    - Rotating file logging (optional)
-    - A timestamped, reproducible log format
-
-    Notes:
-        It also clears existing handlers to avoid duplicated logs when running
-        from IDEs or notebooks.
+    This project is research-oriented, so logs should be:
+    - readable (timestamped)
+    - reproducible (same seed -> comparable outputs)
+    - not overly verbose by default
     """
 
     log_format = "%(asctime)s | %(levelname)s | %(name)s | %(message)s"
@@ -28,7 +24,7 @@ def setup_logging(
     root_logger = logging.getLogger()
     root_logger.setLevel(log_level)
 
-    # Prevent duplicated handlers in IDE / notebooks
+    # Avoid duplicated handlers in IDE / notebooks
     if root_logger.handlers:
         root_logger.handlers.clear()
 
@@ -41,7 +37,7 @@ def setup_logging(
     if log_file_path:
         file_handler = RotatingFileHandler(
             log_file_path,
-            maxBytes=5_000_000,  # 5 MB
+            maxBytes=5_000_000,
             backupCount=3,
             encoding="utf-8",
         )
