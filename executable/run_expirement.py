@@ -1,10 +1,8 @@
 from __future__ import annotations
-
+import os
+os.environ["MPLBACKEND"] = "Agg"
 import logging
 from pathlib import Path
-
-import numpy as np
-
 from logging_utils.logging_configuration import setup_logging
 from settings.configuration_loader import load_json_config, load_settings_from_config
 from settings.environment_settings import EnvironmentSettings
@@ -12,22 +10,13 @@ from settings.genetic_algorithm_settings import GeneticAlgorithmSettings
 from settings.simulation_settings import SimulationSettings
 from settings.performance_settings import PerformanceSettings
 from settings.visualization_settings import VisualizationSettings
-
 from geometry.grid_geometry import GridGeometry
 from evaluation.chromosome_decoder import chromosome_converter
 from acoustic.sound_speed_profile import SoundSpeedProfile
 from genetic_algorithm.genetic_algorithm import run_genetic_algorithm
-
-from visualization.scenario_plotter import save_scenario_figure
-from visualization.ga_progress_plotter import (
-    save_ga_cost_progress_figure,
-    save_ga_coverage_and_error_figure,
-)
-from visualization.heatmap_plotter import save_error_heatmap_figure
 from results.csv_exporter import export_generation_metrics_to_csv
 from evaluation.cost_function import evaluate_chromosome_with_report
 from topologies.regular_polygon import create_regular_polygon_chromosome
-from visualization.comparison_plotter import save_topology_comparison_bar_chart
 
 
 
@@ -57,6 +46,15 @@ def _postprocess_and_save_outputs(
     visualization_settings: VisualizationSettings,
     result,
 ) -> None:
+
+    from visualization.scenario_plotter import save_scenario_figure
+    from visualization.ga_progress_plotter import (
+        save_ga_cost_progress_figure,
+        save_ga_coverage_and_error_figure,
+    )
+    from visualization.heatmap_plotter import save_error_heatmap_figure
+    from visualization.comparison_plotter import save_topology_comparison_bar_chart
+
     output_root = Path(visualization_settings.output_directory)
     output_dir = output_root / f"sensors_{number_of_sensors}"
     output_dir.mkdir(parents=True, exist_ok=True)

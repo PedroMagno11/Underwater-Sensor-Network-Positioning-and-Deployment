@@ -1,9 +1,8 @@
 from __future__ import annotations
-
-from typing import List
-
+import matplotlib
+matplotlib.use("Agg", force=True)
 import matplotlib.pyplot as plt
-
+from typing import List
 from results.result_models import GenerationMetrics
 
 

@@ -1,12 +1,10 @@
 from __future__ import annotations
-
-from typing import List, Tuple
-import math
-import random
-
-import numpy as np
+import matplotlib
+matplotlib.use("Agg", force=True)
 import matplotlib.pyplot as plt
-
+from typing import List, Tuple
+import random
+import numpy as np
 from settings.environment_settings import EnvironmentSettings
 from settings.simulation_settings import SimulationSettings
 from settings.model import AcousticSensor
