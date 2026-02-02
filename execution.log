@@ -60,3 +60,25 @@
 2026-01-26 11:54:09 | INFO | underwater_sensor_ga.ga | Generation 30/30 | best_global_cost=3.294 | generation_best=3.294
 2026-01-26 11:54:09 | INFO | underwater_sensor_ga.runner | Final best cost (N=5): 3.294
 2026-01-26 11:59:23 | INFO | underwater_sensor_ga.runner | All experiments finished. Outputs saved under 'outputs'
+2026-01-26 19:24:39 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-01-26 19:24:39 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-01-26 19:24:46 | INFO | underwater_sensor_ga.ga | Generation 1/30 | best_global_cost=36000408.459 | generation_best=36000408.459
+2026-01-26 19:36:00 | INFO | underwater_sensor_ga.ga | Generation 10/30 | best_global_cost=13.795 | generation_best=13.795
+2026-01-26 19:55:11 | INFO | underwater_sensor_ga.ga | Generation 20/30 | best_global_cost=5.495 | generation_best=6.637
+2026-01-26 20:14:28 | INFO | underwater_sensor_ga.ga | Generation 30/30 | best_global_cost=5.495 | generation_best=6.234
+2026-01-26 20:14:28 | INFO | underwater_sensor_ga.runner | Final best cost (N=3): 5.495
+2026-01-26 20:18:23 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-01-26 20:18:23 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=4
+2026-01-26 20:18:29 | INFO | underwater_sensor_ga.ga | Generation 1/30 | best_global_cost=36000670.640 | generation_best=36000670.640
+2026-01-26 20:32:41 | INFO | underwater_sensor_ga.ga | Generation 10/30 | best_global_cost=3.759 | generation_best=3.759
+2026-01-26 20:54:20 | INFO | underwater_sensor_ga.ga | Generation 20/30 | best_global_cost=3.655 | generation_best=3.905
+2026-01-26 21:15:55 | INFO | underwater_sensor_ga.ga | Generation 30/30 | best_global_cost=3.655 | generation_best=3.858
+2026-01-26 21:15:55 | INFO | underwater_sensor_ga.runner | Final best cost (N=4): 3.655
+2026-01-26 21:20:31 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-01-26 21:20:31 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=5
+2026-01-26 21:20:56 | INFO | underwater_sensor_ga.ga | Generation 1/30 | best_global_cost=4.973 | generation_best=4.973
+2026-01-26 21:39:36 | INFO | underwater_sensor_ga.ga | Generation 10/30 | best_global_cost=3.646 | generation_best=3.772
+2026-01-26 22:04:25 | INFO | underwater_sensor_ga.ga | Generation 20/30 | best_global_cost=3.527 | generation_best=3.675
+2026-01-26 22:30:33 | INFO | underwater_sensor_ga.ga | Generation 30/30 | best_global_cost=3.294 | generation_best=3.294
+2026-01-26 22:30:33 | INFO | underwater_sensor_ga.runner | Final best cost (N=5): 3.294
+2026-01-26 22:35:52 | INFO | underwater_sensor_ga.runner | All experiments finished. Outputs saved under 'outputs'

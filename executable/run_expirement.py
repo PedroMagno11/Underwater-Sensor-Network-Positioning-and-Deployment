@@ -1,5 +1,8 @@
 from __future__ import annotations
 import os
+
+from results.result_models import TopologyResult
+
 os.environ["MPLBACKEND"] = "Agg"
 import logging
 from pathlib import Path
@@ -53,7 +56,7 @@ def _postprocess_and_save_outputs(
         save_ga_coverage_and_error_figure,
     )
     from visualization.heatmap_plotter import save_error_heatmap_figure
-    from visualization.comparison_plotter import save_topology_comparison_bar_chart
+    from visualization.comparison_plotter import save_topology_comparison_bar_chart, save_topology_comparison_figures
 
     output_root = Path(visualization_settings.output_directory)
     output_dir = output_root / f"sensors_{number_of_sensors}"
@@ -160,28 +163,60 @@ def _postprocess_and_save_outputs(
             random_generator=__import__("random").Random(999),
         )
 
-        metrics_by_label = {
-            "GA_best": {
-                "total_cost": ga_best_report.total_cost,
-                "mean_error_meters": ga_best_report.mean_localization_error_meters,
-                "no_coverage_rate": ga_best_report.number_of_impacts_without_coverage / ga_best_report.number_of_impacts,
-            },
-            "Regular_polygon": {
-                "total_cost": polygon_report.total_cost,
-                "mean_error_meters": polygon_report.mean_localization_error_meters,
-                "no_coverage_rate": polygon_report.number_of_impacts_without_coverage / polygon_report.number_of_impacts,
-            },
-        }
-
-        save_topology_comparison_bar_chart(
-            title=f"Topology comparison (N={number_of_sensors})",
-            metrics_by_label=metrics_by_label,
-            output_png_path=str(output_dir / "topology_comparison.png"),
+        polygon_sensors = chromosome_converter(
+            polygon_chromosome, number_of_sensors, grid_geometry, environment_settings
         )
+
+        topology_results = [
+            TopologyResult(
+                label="GA Best",
+                number_of_sensors=number_of_sensors,
+                sensors=result.best_sensors,
+                mean_error_meters=ga_best_report.mean_localization_error_meters,
+                no_coverage_rate=ga_best_report.number_of_impacts_without_coverage/max(1, ga_best_report.number_of_impacts),
+                total_cost=ga_best_report.total_cost,
+                notes="Optimized by Genetic Algorithm"
+            ),
+
+            TopologyResult(
+                label="Regular Polygon",
+                number_of_sensors=number_of_sensors,
+                sensors=polygon_sensors,
+                mean_error_meters=polygon_report.mean_localization_error_meters,
+                no_coverage_rate=polygon_report.number_of_impacts_without_coverage / max(1, polygon_report.number_of_impacts),
+                total_cost=polygon_report.total_cost,
+                notes="Regular polygon baseline",
+            )
+        ]
+
+        # metrics_by_label = {
+        #     "GA_best": {
+        #         "total_cost": ga_best_report.total_cost,
+        #         "mean_error_meters": ga_best_report.mean_localization_error_meters,
+        #         "no_coverage_rate": ga_best_report.number_of_impacts_without_coverage / ga_best_report.number_of_impacts,
+        #     },
+        #     "Regular_polygon": {
+        #         "total_cost": polygon_report.total_cost,
+        #         "mean_error_meters": polygon_report.mean_localization_error_meters,
+        #         "no_coverage_rate": polygon_report.number_of_impacts_without_coverage / polygon_report.number_of_impacts,
+        #     },
+        # }
+
+        save_topology_comparison_figures(
+            results = topology_results,
+            title_prefix=f"Topology Comparison (N={number_of_sensors})",
+            output_png_path_prefix=str(output_dir/ f"topology_comparison_N{number_of_sensors}.png"),
+        )
+
+        # save_topology_comparison_bar_chart(
+        #     title=f"Topology comparison (N={number_of_sensors})",
+        #     metrics_by_label=metrics_by_label,
+        #     output_png_path=str(output_dir / "topology_comparison.png"),
+        # )
     except Exception:
         # Baseline comparison is nice-to-have; do not break the pipeline if anything goes wrong.
-        pass
-
+        logger = logging.getLogger("underwater_sensor_ga.runner")
+        logger.exception("Topology baseline comparison failed for N=%d", number_of_sensors)
 
 if __name__ == "__main__":
     setup_logging(log_level=logging.INFO, log_file_path="execution.log", log_to_console=True)
