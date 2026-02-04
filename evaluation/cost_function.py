@@ -1,18 +1,19 @@
 from __future__ import annotations
 
-from typing import List
+from typing import List, Tuple
 import logging
 import random
 
 import numpy as np
 
+from geometry.impact_position import ImpactPosition
 from settings.environment_settings import EnvironmentSettings
 from settings.simulation_settings import SimulationSettings
 from geometry.grid_geometry import GridGeometry
 from geometry.distance_functions import calculate_distance_2d
 from acoustic.sound_speed_profile import SoundSpeedProfile
 from localization.mle_estimator import estimate_impact_position
-from acoustic.acoustic_model_baseline import calculate_arrival_time
+from acoustic.acoustic_model_baseline import calculate_arrival_time, calculate_arrival_time_straight_line
 from evaluation.chromosome_decoder import chromosome_converter
 from evaluation.penalties import calculate_penalty_for_separation_between_sensors
 from evaluation.evaluation_report import EvaluationReport
@@ -39,10 +40,10 @@ def evaluate_chromosome_with_report(
     coverage_penalty = 0.0
     location_errors: List[float] = []
     impacts_without_coverage = 0
-
-    for _ in range(number_of_impacts):
-        impact_position_x, impact_position_y = grid_geometry.generate_random_point_in_target_region(random_generator)
-
+    impact_points: List[Tuple[float, float]] = []
+    for i, _ in enumerate(range(number_of_impacts)):
+        impact_position_x, impact_position_y = ImpactPosition.generate_impact_position(grid_geometry=grid_geometry, global_seed=number_of_impacts, target_index=i)
+        impact_points.append((impact_position_x, impact_position_y))
         sensor_detection_indices: List[int] = []
         for index, sensor in enumerate(sensors):
             distance_2d = calculate_distance_2d(
@@ -64,7 +65,7 @@ def evaluate_chromosome_with_report(
 
         theoretical_times = np.array(
             [
-                calculate_arrival_time(sensor, impact_position_x, impact_position_y, sound_speed_profile)
+                calculate_arrival_time_straight_line(sensor, impact_position_x, impact_position_y, sound_speed_profile, 3)
                 for sensor in sensors_that_detected
             ],
             dtype=float,
@@ -78,9 +79,9 @@ def evaluate_chromosome_with_report(
             ],
             dtype=float,
         )
-
+        # print(f'TEMPO EMISSAO: {actual_emission_time} - TEMPO NOISE: {noise} - TEMPO TEORICO: {theoretical_times}')
         observed_times = actual_emission_time + theoretical_times + noise
-
+        # print(f"TEMPO OBSERVADO: {observed_times}")
         estimated_impact_position_x, estimated_impact_position_y = estimate_impact_position(
             sensors_that_detected,
             observed_times,
@@ -88,6 +89,7 @@ def evaluate_chromosome_with_report(
             sound_speed_profile,
             simulation_settings,
         )
+        # print(f'Impacto Real {i} - Posicao: {impact_position_x}, {impact_position_y}\nImpacto Calculado: {estimated_impact_position_x}, {estimated_impact_position_y}')
 
         error = calculate_distance_2d(
             estimated_impact_position_x,
@@ -96,7 +98,7 @@ def evaluate_chromosome_with_report(
             impact_position_y,
         )
         location_errors.append(float(error))
-
+        
     if len(location_errors) == 0:
         total_cost = float(
             number_of_impacts * simulation_settings.invalid_coverage_penalty
@@ -110,6 +112,7 @@ def evaluate_chromosome_with_report(
             number_of_impacts_without_coverage=number_of_impacts,
             coverage_penalty=float(number_of_impacts) * simulation_settings.invalid_coverage_penalty,
             separation_penalty=float(separation_penalty),
+            impact_points=impact_points
         )
 
     average_error = float(np.mean(np.array(location_errors, dtype=float)))
@@ -128,26 +131,27 @@ def evaluate_chromosome_with_report(
         number_of_impacts_without_coverage=impacts_without_coverage,
         coverage_penalty=float(coverage_penalty),
         separation_penalty=float(separation_penalty),
+        impact_points=impact_points
     )
 
 
-def evaluate_chromosome_cost(
-    chromosome: np.ndarray,
-    number_of_sensors: int,
-    grid_geometry: GridGeometry,
-    environment_settings: EnvironmentSettings,
-    simulation_settings: SimulationSettings,
-    sound_speed_profile: SoundSpeedProfile,
-    random_generator: random.Random,
-) -> float:
-    """Backward compatible wrapper (returns only the scalar cost)."""
-    report = evaluate_chromosome_with_report(
-        chromosome=chromosome,
-        number_of_sensors=number_of_sensors,
-        grid_geometry=grid_geometry,
-        environment_settings=environment_settings,
-        simulation_settings=simulation_settings,
-        sound_speed_profile=sound_speed_profile,
-        random_generator=random_generator,
-    )
-    return report.total_cost
+# def evaluate_chromosome_cost(
+#     chromosome: np.ndarray,
+#     number_of_sensors: int,
+#     grid_geometry: GridGeometry,
+#     environment_settings: EnvironmentSettings,
+#     simulation_settings: SimulationSettings,
+#     sound_speed_profile: SoundSpeedProfile,
+#     random_generator: random.Random,
+# ) -> float:
+#     """Backward compatible wrapper (returns only the scalar cost)."""
+#     report = evaluate_chromosome_with_report(
+#         chromosome=chromosome,
+#         number_of_sensors=number_of_sensors,
+#         grid_geometry=grid_geometry,
+#         environment_settings=environment_settings,
+#         simulation_settings=simulation_settings,
+#         sound_speed_profile=sound_speed_profile,
+#         random_generator=random_generator,
+#     )
+#     return report.total_cost

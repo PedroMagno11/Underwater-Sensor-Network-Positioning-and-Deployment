@@ -29,7 +29,7 @@ def _compute_job_seed(global_seed: int, generation_index: int, chromosome_index:
     # A simple hash-like mix. Deterministic and stable.
     return (global_seed * 1_000_003) ^ (generation_index * 100_003) ^ (chromosome_index * 10_003)
 
-
+# Avalia um cromossomo de cada vez
 def _evaluate_job(
     job: EvaluationJob,
     number_of_sensors: int,

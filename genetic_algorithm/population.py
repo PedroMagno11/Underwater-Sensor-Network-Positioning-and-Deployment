@@ -17,5 +17,4 @@ def create_random_chromosome(number_of_sensors: int,
         chromosome[base + 1] = random_generator.uniform(grid_geometry.minimum_limit_y, grid_geometry.maximum_limit_y)
         chromosome[base + 2] = random_generator.uniform(environment_settings.minimum_depth_in_meters, environment_settings.maximum_depth_in_meters)
 
-    print(f"Chromosome: {chromosome}")
     return chromosome

@@ -14,8 +14,6 @@ def apply_mutation(
         genetic_algorithm_settings: GeneticAlgorithmSettings,
         random_generator: random.Random
 ) -> None:
-
-    print(f"Vou mutar esse cromossomo: {chromosome}")
     for index_of_sensor in range(number_of_sensors):
         if random_generator.random() > genetic_algorithm_settings.mutation_probability:
             continue

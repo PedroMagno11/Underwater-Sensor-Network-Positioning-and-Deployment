@@ -1,7 +1,4 @@
 from __future__ import annotations
-import numpy as np
-import random
-from dataclasses import dataclass
 from typing import Tuple
 
 from settings.environment_settings import EnvironmentSettings
@@ -61,25 +58,25 @@ class GridGeometry:
 
         return position_x_quantized, position_y_quantized
 
-    def generate_random_point_in_target_region(self, random_generator: random.Random) -> Tuple[float, float]:
-        """
-        Generates a uniformly distributed random point inside the circular target region.
-
-        The method uses polar coordinates with:
-            - A random angle in [0, 2pi]
-            - A radius sampled using sqrt(u) to ensure uniform area distribution
-        """
-        radius = self.environment_settings.target_region_radius
-        center_x = self.environment_settings.x_center_in_meters
-        center_y = self.environment_settings.y_center_in_meters
-
-        # Random variables for uniform sampling inside a circle
-        u = random_generator.random()
-        angle = 2.0 * np.pi * random_generator.random()
-        r = np.sqrt(u) * radius
-
-        # Convert polar coordinates to Cartesian coordinates
-        x = center_x + r * np.cos(angle)
-        y = center_y + r * np.sin(angle)
-
-        return x, y
+    # def generate_points_in_target_region(self, random_generator: random.Random) -> Tuple[float, float]:
+    #     """
+    #     Generates a uniformly distributed random point inside the circular target region.
+    #
+    #     The method uses polar coordinates with:
+    #         - A random angle in [0, 2pi]
+    #         - A radius sampled using sqrt(u) to ensure uniform area distribution
+    #     """
+    #     radius = self.environment_settings.target_region_radius
+    #     center_x = self.environment_settings.x_center_in_meters
+    #     center_y = self.environment_settings.y_center_in_meters
+    #
+    #     # Random variables for uniform sampling inside a circle
+    #     u = random_generator.random()
+    #     angle = 2.0 * np.pi * random_generator.random()
+    #     r = np.sqrt(u) * radius
+    #
+    #     # Convert polar coordinates to Cartesian coordinates
+    #     x = center_x + r * np.cos(angle)
+    #     y = center_y + r * np.sin(angle)
+    #
+    #     return x, y

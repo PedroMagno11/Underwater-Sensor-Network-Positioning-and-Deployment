@@ -10,8 +10,8 @@
     "y_center_in_meters": 0.0
   },
   "genetic_algorithm": {
-    "number_of_generations": 30,
-    "population_size": 40,
+    "number_of_generations": 5,
+    "population_size": 10,
     "tournament_size": 3,
     "crossover_probability": 0.8,
     "mutation_probability": 0.3,

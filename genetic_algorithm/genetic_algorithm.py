@@ -106,12 +106,17 @@ def run_genetic_algorithm(
             performance_settings=performance_settings,
         )
 
+        # Aqui já vem as informações obtidas após a avaliação de todos os cromossomos da população
         costs = [r.total_cost for r in reports]
 
+        # Melhor indivíduo é o que tem o menor custo
         index_of_the_best = int(np.argmin(np.array(costs, dtype=float)))
         generation_best_cost = float(costs[index_of_the_best])
         generation_best_chromosome = np.array(population[index_of_the_best], dtype=float)
 
+        # print(f'CUSTOS: {costs}\nINDICE DO MELHOR: {index_of_the_best}\nMELHOR CUSTO DA GERAÇÃO: {generation_best_cost}\nMelhor chromosome da geração: {generation_best_chromosome}')
+
+        # Adiciona a lista de melhores cromossomos por geração o melhor cromossomo da geração
         best_chromosomes_per_generation.append(generation_best_chromosome)
 
         if generation_best_cost < best_cost:

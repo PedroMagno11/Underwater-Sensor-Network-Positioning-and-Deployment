@@ -232,7 +232,11 @@ if __name__ == "__main__":
     ) = _load_all_settings("experiment_config.json")
 
     # Baseline (constant SSP) - switch to CSV loader whenever you want
-    sound_speed_profile = SoundSpeedProfile.create_constant_profile(1500.0)
+    sound_speed_profile = SoundSpeedProfile.from_temperature_salinity_profiles(
+        depths_in_meters=[0.5, 2.0, 5.0, 8.0],
+        temperatures_celsius=[26.5, 26.0, 25.2, 24.8],
+        salinity_psu=[35.0, 35.1, 35.2, 35.2]
+    )
 
     # Example: load SSP from CSV
     # sound_speed_profile = SoundSpeedProfile.csv_loader(

@@ -9,5 +9,4 @@ def select_index_for_tournament(
 ) -> int:
     candidates = [random_generator.randrange(0, len(costs)) for _ in range(tournament_size)]
     best = min(candidates, key=lambda index: costs[index])
-    print(f"O melhor selecionado: {best}")
     return best

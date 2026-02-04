@@ -5,7 +5,7 @@ import numpy as np
 from settings.model import AcousticSensor
 from settings.simulation_settings import SimulationSettings
 from geometry.grid_geometry import GridGeometry
-from acoustic.acoustic_model_baseline import calculate_arrival_time
+from acoustic.acoustic_model_baseline import calculate_arrival_time, calculate_arrival_time_straight_line
 from acoustic.sound_speed_profile import SoundSpeedProfile
 
 def estimate_impact_position(sensors: List[AcousticSensor], observed_times: np.ndarray,
@@ -14,7 +14,7 @@ def estimate_impact_position(sensors: List[AcousticSensor], observed_times: np.n
 
     def calculate_cost_for_position(impact_position_x: float, impact_position_y: float) -> float:
         theoretical_times = np.array([
-            calculate_arrival_time(sensor, impact_position_x, impact_position_y, sound_speed_profile) for sensor in sensors
+            calculate_arrival_time_straight_line(sensor, impact_position_x, impact_position_y, sound_speed_profile, 3) for sensor in sensors
         ], dtype=float)
 
         estimated_emission_time = float(np.mean(observed_times - theoretical_times))
@@ -70,4 +70,6 @@ def estimate_impact_position(sensors: List[AcousticSensor], observed_times: np.n
                 best_refined_position_x, best_refined_position_y = float(refined_impact_position_x), float(refined_impact_position_y)
 
     quantized_x_position, quantized_y_position = grid_geometry.quantize_for_grid_point(best_refined_position_x, best_refined_position_y)
+
+    # print(f'Avaliando para os sensores: {sensors}, tempos observados: {observed_times}, Pontos de Impacto Calculado:({quantized_x_position},{quantized_y_position})')
     return quantized_x_position, quantized_y_position
