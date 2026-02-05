@@ -13,5 +13,5 @@ class GeneticAlgorithmSettings:
     standard_deviation_of_xy_mutation: float = 150.0
     standard_deviation_of_z_mutation: float = 0.8
 
-    elitism: int = 2
+    elitism: int = 3
     random_seed: int = 42

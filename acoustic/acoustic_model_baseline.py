@@ -31,7 +31,7 @@ def calculate_arrival_time_straight_line(
         impact_position_x: float,
         impact_position_y: float,
         sound_speed_profile: SoundSpeedProfile,
-        number_of_samples: int = 21
+        number_of_samples: int = 11
 )-> float:
     """
     Computes the acoustic arrival time using a straight-line propagation model.

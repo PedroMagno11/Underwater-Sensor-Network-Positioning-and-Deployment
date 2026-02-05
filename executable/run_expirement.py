@@ -1,7 +1,7 @@
 from __future__ import annotations
 import os
 
-from results.result_models import TopologyResult
+from results.result_models import TopologyResult, GeneticAlgorithmResult
 
 os.environ["MPLBACKEND"] = "Agg"
 import logging
@@ -40,6 +40,90 @@ def _load_all_settings(config_path: str) -> tuple[
     config = load_json_config(config_path)
     return load_settings_from_config(config)
 
+def build_sound_speed_profile()-> SoundSpeedProfile:
+    # Baseline (constant SSP) - switch to CSV loader whenever you want
+
+    # Example: load SSP from CSV
+    # ssp = SoundSpeedProfile.csv_loader(
+    #     "sound_speed_profile.csv",
+    #     column_name_depth="depth",
+    #     column_name_speed="speed",
+    # )
+
+    ssp = SoundSpeedProfile.from_temperature_salinity_profiles(
+        depths_in_meters=[0.5, 2.0, 5.0, 8.0],
+        temperatures_celsius=[26.5, 26.0, 25.2, 24.8],
+        salinity_psu=[35.0, 35.1, 35.2, 35.2]
+    )
+    return ssp
+
+
+
+def ensure_output_dir(output_root: str, number_of_sensors: int) -> Path:
+    out = Path(output_root) / f'sensors_{number_of_sensors}'
+    out.mkdir(parents=True, exist_ok=True)
+    return out
+
+# -------------------------------------
+# Post-processing (figures/csv/heatmap)
+# -------------------------------------
+
+def save_best_per_generation_figures(
+        *,
+        output_dir: Path,
+        number_of_sensors: int,
+        result: GeneticAlgorithmResult,
+        grid_geometry: GridGeometry,
+        environment_settings: EnvironmentSettings,
+        visualization_settings: VisualizationSettings,
+) -> None:
+    if not visualization_settings.save_best_per_generation_figures:
+        return
+    from visualization.scenario_plotter import save_scenario_figure
+
+    best_dir = output_dir/'best_per_generation'
+    best_dir.mkdir(parents=True, exist_ok=True)
+
+    max_figs = min(visualization_settings.max_generation_figures, len(result.best_chromosomes_per_generation))
+    for gen_index in range(max_figs):
+        chromosome = result.best_chromosomes_per_generation[gen_index]
+        sensors = chromosome_converter(chromosome, number_of_sensors, grid_geometry, environment_settings)
+
+        metrics = result.generation_metrics[gen_index]
+        annotations = f'gen={gen_index} | best_global_cost={metrics.best_global_cost:.3f}'
+
+        save_scenario_figure(
+            sensors=sensors,
+            environment_settings=environment_settings,
+            title=f'Best topology - generation {gen_index}',
+            output_png_path=str(best_dir / f"gen_{gen_index:04d}.png"),
+            annotation_text=annotations
+        )
+
+def save_final_best_figure(
+        *,
+        output_dir: Path,
+        number_of_sensors: int,
+        result: GeneticAlgorithmResult,
+        enviroment_settings: EnvironmentSettings,
+        visualization_settings: VisualizationSettings,
+) -> None:
+    if not visualization_settings.save_final_best_figure:
+        return
+
+    from visualization.scenario_plotter import save_scenario_figure
+
+    save_scenario_figure(
+        sensors=result.best_sensors,
+        environment_settings=environment_settings,
+        title=f'final best topology (N={number_of_sensors}) | cost={result.best_cost:.3f}',
+        output_png_path=str(output_dir / "best_topology.png"),
+        annotation_text=f'best_cost={result.best_cost:.3f}'
+    )
+
+# def save_progress_figures(
+#
+# )
 
 def _postprocess_and_save_outputs(
     number_of_sensors: int,
@@ -66,38 +150,23 @@ def _postprocess_and_save_outputs(
 
     # 1) Save best-per-generation topology figures
     if visualization_settings.save_best_per_generation_figures:
-        best_dir = output_dir / "best_per_generation"
-        best_dir.mkdir(parents=True, exist_ok=True)
-
-        max_figs = min(
-            visualization_settings.max_generation_figures,
-            len(result.best_chromosomes_per_generation),
+        save_best_per_generation_figures(
+            output_dir=output_dir,
+            number_of_sensors=number_of_sensors,
+            result=result,
+            grid_geometry=grid_geometry,
+            environment_settings=environment_settings,
+            visualization_settings=visualization_settings
         )
-
-        for gen_index in range(max_figs):
-            chromosome = result.best_chromosomes_per_generation[gen_index]
-            sensors = chromosome_converter(chromosome, number_of_sensors, grid_geometry, environment_settings)
-
-            annotation = (
-                f"gen={gen_index} | best_global_cost={result.generation_metrics[gen_index].best_global_cost:.3f}"
-            )
-
-            save_scenario_figure(
-                sensors=sensors,
-                environment_settings=environment_settings,
-                title=f"Best topology - generation {gen_index}",
-                output_png_path=str(best_dir / f"gen_{gen_index:04d}.png"),
-                annotation_text=annotation,
-            )
 
     # 2) Save final best topology
     if visualization_settings.save_final_best_figure:
-        save_scenario_figure(
-            sensors=result.best_sensors,
-            environment_settings=environment_settings,
-            title=f"Final best topology (N={number_of_sensors}) | cost={result.best_cost:.3f}",
-            output_png_path=str(output_dir / "best_topology.png"),
-            annotation_text=f"best_cost={result.best_cost:.3f}",
+        save_final_best_figure(
+            output_dir=output_dir,
+            number_of_sensors=number_of_sensors,
+            result=result,
+            enviroment_settings=environment_settings,
+            visualization_settings=visualization_settings
         )
 
     # 3) Progress figures
@@ -231,19 +300,7 @@ if __name__ == "__main__":
         visualization_settings,
     ) = _load_all_settings("experiment_config.json")
 
-    # Baseline (constant SSP) - switch to CSV loader whenever you want
-    sound_speed_profile = SoundSpeedProfile.from_temperature_salinity_profiles(
-        depths_in_meters=[0.5, 2.0, 5.0, 8.0],
-        temperatures_celsius=[26.5, 26.0, 25.2, 24.8],
-        salinity_psu=[35.0, 35.1, 35.2, 35.2]
-    )
-
-    # Example: load SSP from CSV
-    # sound_speed_profile = SoundSpeedProfile.csv_loader(
-    #     "sound_speed_profile.csv",
-    #     column_name_depth="depth",
-    #     column_name_speed="speed",
-    # )
+    sound_speed_profile = build_sound_speed_profile()
 
     for number_of_sensors in [3, 4, 5]:
         logger.info("=" * 80)

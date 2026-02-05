@@ -25,28 +25,46 @@ from results.result_models import GeneticAlgorithmResult, GenerationMetrics
 
 logger = logging.getLogger("underwater_sensor_ga.ga")
 
+def _extract_costs(reports: List[EvaluationReport]) -> np.ndarray:
+    return np.array([r.total_cost for r in reports], dtype=float)
+
+def _compute_no_coverage_rates(reports: List[EvaluationReport]) -> np.ndarray:
+    """
+    Fraction of impacts without coverage.
+    If a report has zero impacts, it is treated as full no-coverage (rate = 1.0).
+    """
+
+    return np.array(
+        [
+            (r.number_of_impacts_without_coverage / r.number_of_impacts)
+            if r.number_of_impacts > 0
+            else 1.0
+            for r in reports
+        ],
+        dtype=float,
+    )
+
+def _computed_average_localization_error(reports: List[EvaluationReport]) -> float:
+    """
+    Computes the average localization error across reports,
+    ignoring reports with undefined (infinite) error.
+    """
+
+    finite_errors = [
+        r.mean_localization_error_meters for r in reports
+        if np.isfinite(r.mean_localization_error_meters)
+    ]
+
+    return float(np.mean(finite_errors)) if finite_errors else float("inf")
 
 def _compute_generation_metrics(
     generation_index: int,
     reports: List[EvaluationReport],
     best_global_cost: float,
 ) -> GenerationMetrics:
-    costs = np.array([r.total_cost for r in reports], dtype=float)
-
-    no_coverage_rates = np.array(
-        [
-            (r.number_of_impacts_without_coverage / r.number_of_impacts) if r.number_of_impacts > 0 else 1.0
-            for r in reports
-        ],
-        dtype=float,
-    )
-
-    # Use finite mean errors only; if a report has no localizable impacts it will be 'inf'
-    mean_errors = np.array(
-        [r.mean_localization_error_meters for r in reports if np.isfinite(r.mean_localization_error_meters)],
-        dtype=float,
-    )
-    avg_error = float(np.mean(mean_errors)) if len(mean_errors) > 0 else float("inf")
+    costs = _extract_costs(reports)
+    no_coverage_rates = _compute_no_coverage_rates(reports)
+    avg_error = _computed_average_localization_error(reports)
 
     return GenerationMetrics(
         generation_index=generation_index,

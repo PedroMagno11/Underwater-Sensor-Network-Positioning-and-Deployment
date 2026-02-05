@@ -14,7 +14,7 @@ def estimate_impact_position(sensors: List[AcousticSensor], observed_times: np.n
 
     def calculate_cost_for_position(impact_position_x: float, impact_position_y: float) -> float:
         theoretical_times = np.array([
-            calculate_arrival_time_straight_line(sensor, impact_position_x, impact_position_y, sound_speed_profile, 3) for sensor in sensors
+            calculate_arrival_time_straight_line(sensor, impact_position_x, impact_position_y, sound_speed_profile) for sensor in sensors
         ], dtype=float)
 
         estimated_emission_time = float(np.mean(observed_times - theoretical_times))

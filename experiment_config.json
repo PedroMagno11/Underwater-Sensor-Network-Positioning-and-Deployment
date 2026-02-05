@@ -10,11 +10,11 @@
     "y_center_in_meters": 0.0
   },
   "genetic_algorithm": {
-    "number_of_generations": 5,
+    "number_of_generations": 20,
     "population_size": 10,
     "tournament_size": 3,
-    "crossover_probability": 0.8,
-    "mutation_probability": 0.3,
+    "crossover_probability": 0.2,
+    "mutation_probability": 0.02,
     "standard_deviation_of_xy_mutation": 150.0,
     "standard_deviation_of_z_mutation": 0.8,
     "elitism": 2,
@@ -28,7 +28,8 @@
     "refinement_radius_in_meters": 180.0,
     "invalid_coverage_penalty": 1000000.0,
     "penalty_for_buoys_too_close": 1.0,
-    "minimum_distance_between_buoys_in_meters": 100.0
+    "minimum_distance_between_buoys_in_meters": 100.0,
+    "localization_tolerance_meters": 15.0
   },
   "performance": {
     "parallel_evaluation_mode": "auto",

@@ -13,3 +13,5 @@ class SimulationSettings:
     invalid_coverage_penalty: float = 1e6
     penalty_for_buoys_too_close: float = 1.0
     minimum_distance_between_buoys_in_meters: float = 100.0
+
+    localization_tolerance_meters = 15.0
