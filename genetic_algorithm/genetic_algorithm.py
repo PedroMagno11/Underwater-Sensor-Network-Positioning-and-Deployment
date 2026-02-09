@@ -185,14 +185,14 @@ def run_genetic_algorithm(
 
         population = new_population
 
-        if (index_of_generation + 1) % 10 == 0 or index_of_generation == 0:
-            logger.info(
-                "Generation %d/%d | best_global_cost=%.3f | generation_best=%.3f",
-                index_of_generation + 1,
-                genetic_algorithm_settings.number_of_generations,
-                best_cost,
-                generation_best_cost,
-            )
+        # if (index_of_generation + 1) % 10 == 0 or index_of_generation == 0:
+        logger.info(
+            "Generation %d/%d | best_global_cost=%.3f | generation_best=%.3f",
+            index_of_generation + 1,
+            genetic_algorithm_settings.number_of_generations,
+            best_cost,
+            generation_best_cost,
+        )
 
     if best_chromosome is None:
         raise RuntimeError("Unexpected error: best chromosome not found")

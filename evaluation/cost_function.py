@@ -91,7 +91,7 @@ def evaluate_chromosome_with_report(
         )
         # print(f'Impacto Real {i} - Posicao: {impact_position_x}, {impact_position_y}\nImpacto Calculado: {estimated_impact_position_x}, {estimated_impact_position_y}')
 
-        tolerance_m = simulation_settings.localization_tolerance_meters
+        # tolerance_m = simulation_settings.localization_tolerance_meters
 
         error = calculate_distance_2d(
             estimated_impact_position_x,
@@ -100,8 +100,8 @@ def evaluate_chromosome_with_report(
             impact_position_y,
         )
 
-        effective_error = max(0.0, float(error) - tolerance_m)
-        location_errors.append(effective_error)
+        # effective_error = max(0.0, float(error) - tolerance_m)
+        location_errors.append(error)
         
     if len(location_errors) == 0:
         total_cost = float(

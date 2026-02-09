@@ -1,0 +1,8 @@
+2026-02-09 01:03:53 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 01:03:53 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 01:04:07 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=3000183.999 | generation_best=3000183.999
+2026-02-09 01:56:36 | INFO | underwater_sensor_ga.ga | Generation 10/200 | best_global_cost=4.167 | generation_best=4.272
+2026-02-09 03:35:08 | INFO | underwater_sensor_ga.ga | Generation 20/200 | best_global_cost=3.220 | generation_best=3.613
+2026-02-09 05:13:41 | INFO | underwater_sensor_ga.ga | Generation 30/200 | best_global_cost=3.220 | generation_best=3.375
+2026-02-09 06:52:13 | INFO | underwater_sensor_ga.ga | Generation 40/200 | best_global_cost=3.220 | generation_best=3.375
+2026-02-09 08:30:41 | INFO | underwater_sensor_ga.ga | Generation 50/200 | best_global_cost=3.120 | generation_best=3.375

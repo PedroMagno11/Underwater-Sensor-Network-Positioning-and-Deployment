@@ -66,32 +66,27 @@ class SoundSpeedProfile:
         return SoundSpeedProfile(depths, sound_speeds)
 
     # -----------------------------
-    # Mackenzie (1981) + factories
+    # Coppens Equation
     # -----------------------------
-
     @staticmethod
-    def _mackenzie_sound_speed(T_c: float, S_psu: float, z_m: float) -> float:
-        """
-        Mackenzie (1981) sound speed in seawater, c(T,S,z).
+    def _coppens_sound_speed(T_c: float, S: float, depth_m: float) -> float:
+        t = T_c / 10.0  # Coppens uses t = T/10
+        D = depth_m / 1000.0  # depth in km
 
-        T_c: temperature (°C)
-        S_psu: salinity (PSU)
-        z_m: depth (m)
-        returns: sound speed (m/s)
-        """
-        T = float(T_c)
-        S = float(S_psu)
-        z = float(z_m)
+        c0 = (
+                1449.05
+                + 45.7 * t
+                - 5.21 * t ** 2
+                + 0.23 * t ** 3
+                + (1.333 - 0.126 * t + 0.009 * t ** 2) * (S - 35.0)
+        )
 
-        c = (1448.96
-             + 4.591 * T
-             - 5.304e-2 * T**2
-             + 2.374e-4 * T**3
-             + 1.340 * (S - 35.0)
-             + 1.630e-2 * z
-             + 1.675e-7 * z**2
-             - 1.025e-2 * T * (S - 35.0)
-             - 7.139e-13 * T * z**3)
+        c = (
+                c0
+                + (16.23 + 0.253 * t) * D
+                + (0.213 - 0.1 * t) * D ** 2
+                + (0.016 + 0.0002 * (S - 35.0)) * (S - 35.0) * t * D
+        )
         return float(c)
 
     @staticmethod
@@ -102,7 +97,7 @@ class SoundSpeedProfile:
     ) -> SoundSpeedProfile:
         """
         Builds a Sound Speed Profile (SSP) from discrete temperature and salinity
-        samples as a function of depth, using the Mackenzie (1981) empirical model.
+        samples as a function of depth, using the Coppens (1981) empirical model.
 
         Parameters
         ----------
@@ -147,7 +142,7 @@ class SoundSpeedProfile:
 
         sound_speeds = np.array(
             [
-                SoundSpeedProfile._mackenzie_sound_speed(
+                SoundSpeedProfile._coppens_sound_speed(
                     temperature, salinity, depth
                 )
                 for temperature, salinity, depth
@@ -170,12 +165,12 @@ class SoundSpeedProfile:
         Shallow-water SSP builder when you only have a representative T and S.
 
         Good for your case (0.5–8 m): you still avoid "chutar c", because c is derived
-        from measured/estimated T and S via Mackenzie, with a small depth dependence.
+        from measured/estimated T and S via Coppens, with a small depth dependence.
         """
         if n_points < 2:
             raise ValueError("n_points must be >= 2.")
         depths = np.linspace(float(z_min), float(z_max), int(n_points), dtype=float)
-        speeds = np.array([SoundSpeedProfile._mackenzie_sound_speed(T_c, S_psu, z)
+        speeds = np.array([SoundSpeedProfile._coppens_sound_speed(T_c, S_psu, z)
                            for z in depths], dtype=float)
         return SoundSpeedProfile(depths, speeds)
 
