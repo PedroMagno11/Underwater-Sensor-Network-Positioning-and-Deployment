@@ -10,8 +10,8 @@
     "y_center_in_meters": 0.0
   },
   "genetic_algorithm": {
-    "number_of_generations": 200,
-    "population_size": 100,
+    "number_of_generations": 300,
+    "population_size": 150,
     "tournament_size": 3,
     "crossover_probability": 0.2,
     "mutation_probability": 0.02,
@@ -21,11 +21,11 @@
     "random_seed": 123
   },
   "simulation": {
-    "number_of_impact_points_per_evaluation": 40,
+    "number_of_impact_points_per_evaluation": 80,
     "time_noise_standard_deviation": 0.0005,
     "coarse_search_step_in_meters": 45.0,
-    "fine_search_step_in_meters": 6.0,
-    "refinement_radius_in_meters": 90.0,
+    "fine_search_step_in_meters": 9.0,
+    "refinement_radius_in_meters": 180.0,
     "invalid_coverage_penalty": 1000000.0,
     "penalty_for_buoys_too_close": 1.0,
     "minimum_distance_between_buoys_in_meters": 100.0

@@ -98,6 +98,7 @@ def run_genetic_algorithm(
     simulation_settings: SimulationSettings,
     sound_speed_profile: SoundSpeedProfile,
     performance_settings: Optional[PerformanceSettings] = None,
+
     # NEW: where to save the jsonl log
     reports_output_path: Optional[str] = None,
 ) -> GeneticAlgorithmResult:
