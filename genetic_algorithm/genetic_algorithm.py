@@ -1,16 +1,17 @@
 from __future__ import annotations
 
-from typing import List, Optional, Tuple
+from typing import List, Optional
 import logging
 import random
+from pathlib import Path
 
 import numpy as np
+from concurrent.futures import ProcessPoolExecutor
 
 from settings.environment_settings import EnvironmentSettings
 from settings.genetic_algorithm_settings import GeneticAlgorithmSettings
 from settings.simulation_settings import SimulationSettings
 from settings.performance_settings import PerformanceSettings
-
 from geometry.grid_geometry import GridGeometry
 from acoustic.sound_speed_profile import SoundSpeedProfile
 
@@ -23,39 +24,34 @@ from genetic_algorithm.mutation import apply_mutation
 from genetic_algorithm.population import create_random_chromosome
 from results.result_models import GeneticAlgorithmResult, GenerationMetrics
 
+# NEW
+from results.report_exporter import write_best_reports_jsonl
+
 logger = logging.getLogger("underwater_sensor_ga.ga")
+
 
 def _extract_costs(reports: List[EvaluationReport]) -> np.ndarray:
     return np.array([r.total_cost for r in reports], dtype=float)
 
-def _compute_no_coverage_rates(reports: List[EvaluationReport]) -> np.ndarray:
-    """
-    Fraction of impacts without coverage.
-    If a report has zero impacts, it is treated as full no-coverage (rate = 1.0).
-    """
 
+def _compute_no_coverage_rates(reports: List[EvaluationReport]) -> np.ndarray:
     return np.array(
         [
-            (r.number_of_impacts_without_coverage / r.number_of_impacts)
-            if r.number_of_impacts > 0
-            else 1.0
+            (r.number_of_impacts_without_coverage / r.number_of_impacts) if r.number_of_impacts > 0 else 1.0
             for r in reports
         ],
         dtype=float,
     )
 
-def _computed_average_localization_error(reports: List[EvaluationReport]) -> float:
-    """
-    Computes the average localization error across reports,
-    ignoring reports with undefined (infinite) error.
-    """
 
+def _computed_average_localization_error(reports: List[EvaluationReport]) -> float:
     finite_errors = [
-        r.mean_localization_error_meters for r in reports
+        r.mean_localization_error_meters
+        for r in reports
         if np.isfinite(r.mean_localization_error_meters)
     ]
-
     return float(np.mean(finite_errors)) if finite_errors else float("inf")
+
 
 def _compute_generation_metrics(
     generation_index: int,
@@ -78,6 +74,23 @@ def _compute_generation_metrics(
     )
 
 
+def _create_executor_if_needed(performance_settings: PerformanceSettings) -> Optional[ProcessPoolExecutor]:
+    if not performance_settings.enable_parallel_evaluation:
+        return None
+
+    mode = (performance_settings.parallel_evaluation_mode or "auto").lower().strip()
+    if mode == "off":
+        return None
+
+    if mode == "fixed":
+        workers = max(1, int(performance_settings.number_of_workers))
+    else:
+        import os
+        workers = max(1, (os.cpu_count() or 2) - 1)
+
+    return ProcessPoolExecutor(max_workers=workers) if workers > 1 else None
+
+
 def run_genetic_algorithm(
     number_of_sensors: int,
     environment_settings: EnvironmentSettings,
@@ -85,114 +98,139 @@ def run_genetic_algorithm(
     simulation_settings: SimulationSettings,
     sound_speed_profile: SoundSpeedProfile,
     performance_settings: Optional[PerformanceSettings] = None,
+    # NEW: where to save the jsonl log
+    reports_output_path: Optional[str] = None,
 ) -> GeneticAlgorithmResult:
-    """Run the GA and return a full result object.
-
-    This function is deterministic given:
-    - genetic_algorithm_settings.random_seed
-    - fixed environment/simulation settings
-
-    Evaluation parallelism is optional and controlled via PerformanceSettings.
-    """
-
     if performance_settings is None:
         performance_settings = PerformanceSettings()
 
-    random_generator = random.Random(genetic_algorithm_settings.random_seed)
+    rng = random.Random(genetic_algorithm_settings.random_seed)
     grid_geometry = GridGeometry(environment_settings)
 
     population: List[np.ndarray] = [
-        create_random_chromosome(number_of_sensors, grid_geometry, environment_settings, random_generator)
+        create_random_chromosome(number_of_sensors, grid_geometry, environment_settings, rng)
         for _ in range(genetic_algorithm_settings.population_size)
     ]
 
     best_chromosome: Optional[np.ndarray] = None
     best_cost: float = float("inf")
 
+    # NEW: track the best global report itself
+    best_global_report: Optional[EvaluationReport] = None
+
     generation_metrics: List[GenerationMetrics] = []
     best_chromosomes_per_generation: List[np.ndarray] = []
 
-    for index_of_generation in range(genetic_algorithm_settings.number_of_generations):
-        reports = evaluate_population(
-            population=population,
-            number_of_sensors=number_of_sensors,
-            environment_settings=environment_settings,
-            simulation_settings=simulation_settings,
-            sound_speed_profile=sound_speed_profile,
-            generation_index=index_of_generation,
-            global_seed=genetic_algorithm_settings.random_seed,
-            performance_settings=performance_settings,
+    # NEW: default output location (per N sensors)
+    if reports_output_path is None:
+        reports_output_path = str(
+            Path("outputs") / f"sensors_{number_of_sensors}" / "best_reports.jsonl"
         )
 
-        # Aqui já vem as informações obtidas após a avaliação de todos os cromossomos da população
-        costs = [r.total_cost for r in reports]
+    executor = _create_executor_if_needed(performance_settings)
 
-        # Melhor indivíduo é o que tem o menor custo
-        index_of_the_best = int(np.argmin(np.array(costs, dtype=float)))
-        generation_best_cost = float(costs[index_of_the_best])
-        generation_best_chromosome = np.array(population[index_of_the_best], dtype=float)
-
-        # print(f'CUSTOS: {costs}\nINDICE DO MELHOR: {index_of_the_best}\nMELHOR CUSTO DA GERAÇÃO: {generation_best_cost}\nMelhor chromosome da geração: {generation_best_chromosome}')
-
-        # Adiciona a lista de melhores cromossomos por geração o melhor cromossomo da geração
-        best_chromosomes_per_generation.append(generation_best_chromosome)
-
-        if generation_best_cost < best_cost:
-            best_cost = generation_best_cost
-            best_chromosome = np.array(generation_best_chromosome, dtype=float)
-
-        generation_metrics.append(
-            _compute_generation_metrics(
-                generation_index=index_of_generation,
-                reports=reports,
-                best_global_cost=best_cost,
-            )
-        )
-
-        sorted_indexes = list(np.argsort(np.array(costs, dtype=float)))
-        elites = [np.array(population[i], dtype=float) for i in sorted_indexes[: genetic_algorithm_settings.elitism]]
-
-        new_population: List[np.ndarray] = []
-        new_population.extend(elites)
-
-        while len(new_population) < genetic_algorithm_settings.population_size:
-            father_index = select_index_for_tournament(costs, genetic_algorithm_settings.tournament_size, random_generator)
-            mother_index = select_index_for_tournament(costs, genetic_algorithm_settings.tournament_size, random_generator)
-
-            father_chromosome = population[father_index]
-            mother_chromosome = population[mother_index]
-
-            if random_generator.random() < genetic_algorithm_settings.crossover_probability:
-                child = perform_crossover_per_sensor(
-                    father_chromosome=father_chromosome,
-                    mother_chromosome=mother_chromosome,
-                    number_of_sensors=number_of_sensors,
-                    random_generator=random_generator,
-                )
-            else:
-                child = np.array(father_chromosome, dtype=float)
-
-            apply_mutation(
-                chromosome=child,
+    try:
+        for gen_idx in range(genetic_algorithm_settings.number_of_generations):
+            reports = evaluate_population(
+                population=population,
                 number_of_sensors=number_of_sensors,
                 environment_settings=environment_settings,
-                grid_geometry=grid_geometry,
-                genetic_algorithm_settings=genetic_algorithm_settings,
-                random_generator=random_generator,
+                simulation_settings=simulation_settings,
+                sound_speed_profile=sound_speed_profile,
+                generation_index=gen_idx,
+                global_seed=genetic_algorithm_settings.random_seed,
+                performance_settings=performance_settings,
+                executor=executor,  # IMPORTANT reuse pool
             )
 
-            new_population.append(child)
+            costs = [r.total_cost for r in reports]
+            idx_best = int(np.argmin(np.array(costs, dtype=float)))
 
-        population = new_population
+            gen_best_cost = float(costs[idx_best])
+            gen_best_report = reports[idx_best]
+            gen_best_chromosome = np.array(population[idx_best], dtype=float, copy=True)
 
-        # if (index_of_generation + 1) % 10 == 0 or index_of_generation == 0:
-        logger.info(
-            "Generation %d/%d | best_global_cost=%.3f | generation_best=%.3f",
-            index_of_generation + 1,
-            genetic_algorithm_settings.number_of_generations,
-            best_cost,
-            generation_best_cost,
-        )
+            best_chromosomes_per_generation.append(gen_best_chromosome)
+
+            # Update global best using generation best
+            if gen_best_cost < best_cost:
+                best_cost = gen_best_cost
+                best_chromosome = np.array(gen_best_chromosome, dtype=float, copy=True)
+                best_global_report = gen_best_report  # NEW
+
+            # If global report wasn't set yet (first generation)
+            if best_global_report is None:
+                best_global_report = gen_best_report
+
+            # NEW: Persist best reports for auditing
+            write_best_reports_jsonl(
+                output_path=reports_output_path,
+                generation_index=gen_idx,
+                number_of_sensors=number_of_sensors,
+                best_of_generation=gen_best_report,
+                best_global=best_global_report,
+                include_impact_points=False,  # set True if you want to store points (bigger file)
+            )
+
+            generation_metrics.append(
+                _compute_generation_metrics(
+                    generation_index=gen_idx,
+                    reports=reports,
+                    best_global_cost=best_cost,
+                )
+            )
+
+            # elitism
+            sorted_idx = list(np.argsort(np.array(costs, dtype=float)))
+            elites = [
+                np.array(population[i], dtype=float, copy=True)
+                for i in sorted_idx[: genetic_algorithm_settings.elitism]
+            ]
+
+            new_population: List[np.ndarray] = []
+            new_population.extend(elites)
+
+            while len(new_population) < genetic_algorithm_settings.population_size:
+                father_idx = select_index_for_tournament(costs, genetic_algorithm_settings.tournament_size, rng)
+                mother_idx = select_index_for_tournament(costs, genetic_algorithm_settings.tournament_size, rng)
+
+                father = population[father_idx]
+                mother = population[mother_idx]
+
+                if rng.random() < genetic_algorithm_settings.crossover_probability:
+                    child = perform_crossover_per_sensor(
+                        father_chromosome=father,
+                        mother_chromosome=mother,
+                        number_of_sensors=number_of_sensors,
+                        random_generator=rng,
+                    )
+                else:
+                    child = np.array(father, dtype=float, copy=True)
+
+                apply_mutation(
+                    chromosome=child,
+                    number_of_sensors=number_of_sensors,
+                    environment_settings=environment_settings,
+                    grid_geometry=grid_geometry,
+                    genetic_algorithm_settings=genetic_algorithm_settings,
+                    random_generator=rng,
+                )
+
+                new_population.append(child)
+
+            population = new_population
+
+            logger.info(
+                "Generation %d/%d | best_global_cost=%.3f | generation_best=%.3f",
+                gen_idx + 1,
+                genetic_algorithm_settings.number_of_generations,
+                best_cost,
+                gen_best_cost,
+            )
+
+    finally:
+        if executor is not None:
+            executor.shutdown(wait=True)
 
     if best_chromosome is None:
         raise RuntimeError("Unexpected error: best chromosome not found")

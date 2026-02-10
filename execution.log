@@ -6,3 +6,796 @@
 2026-02-09 05:13:41 | INFO | underwater_sensor_ga.ga | Generation 30/200 | best_global_cost=3.220 | generation_best=3.375
 2026-02-09 06:52:13 | INFO | underwater_sensor_ga.ga | Generation 40/200 | best_global_cost=3.220 | generation_best=3.375
 2026-02-09 08:30:41 | INFO | underwater_sensor_ga.ga | Generation 50/200 | best_global_cost=3.120 | generation_best=3.375
+2026-02-09 09:21:44 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 09:21:44 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 09:21:58 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=3000183.999 | generation_best=3000183.999
+2026-02-09 09:22:32 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=3000182.714 | generation_best=3000182.714
+2026-02-09 09:24:07 | INFO | underwater_sensor_ga.ga | Generation 3/200 | best_global_cost=3000008.623 | generation_best=3000008.623
+2026-02-09 09:27:30 | INFO | underwater_sensor_ga.ga | Generation 4/200 | best_global_cost=3000004.412 | generation_best=3000004.412
+2026-02-09 09:32:56 | INFO | underwater_sensor_ga.ga | Generation 5/200 | best_global_cost=4.811 | generation_best=4.811
+2026-02-09 09:40:00 | INFO | underwater_sensor_ga.ga | Generation 6/200 | best_global_cost=4.811 | generation_best=5.612
+2026-02-09 09:47:26 | INFO | underwater_sensor_ga.ga | Generation 7/200 | best_global_cost=4.811 | generation_best=6.104
+2026-02-09 09:55:40 | INFO | underwater_sensor_ga.ga | Generation 8/200 | best_global_cost=4.167 | generation_best=4.167
+2026-02-09 10:05:01 | INFO | underwater_sensor_ga.ga | Generation 9/200 | best_global_cost=4.167 | generation_best=4.688
+2026-02-09 10:14:58 | INFO | underwater_sensor_ga.ga | Generation 10/200 | best_global_cost=4.167 | generation_best=4.272
+2026-02-09 10:24:50 | INFO | underwater_sensor_ga.ga | Generation 11/200 | best_global_cost=4.015 | generation_best=4.015
+2026-02-09 10:34:41 | INFO | underwater_sensor_ga.ga | Generation 12/200 | best_global_cost=3.613 | generation_best=3.613
+2026-02-09 10:44:33 | INFO | underwater_sensor_ga.ga | Generation 13/200 | best_global_cost=3.481 | generation_best=3.481
+2026-02-09 10:54:26 | INFO | underwater_sensor_ga.ga | Generation 14/200 | best_global_cost=3.481 | generation_best=3.768
+2026-02-09 11:04:17 | INFO | underwater_sensor_ga.ga | Generation 15/200 | best_global_cost=3.481 | generation_best=3.613
+2026-02-09 11:14:08 | INFO | underwater_sensor_ga.ga | Generation 16/200 | best_global_cost=3.220 | generation_best=3.220
+2026-02-09 11:24:47 | INFO | underwater_sensor_ga.ga | Generation 17/200 | best_global_cost=3.220 | generation_best=3.590
+2026-02-09 11:34:53 | INFO | underwater_sensor_ga.ga | Generation 18/200 | best_global_cost=3.220 | generation_best=3.375
+2026-02-09 11:44:56 | INFO | underwater_sensor_ga.ga | Generation 19/200 | best_global_cost=3.220 | generation_best=3.613
+2026-02-09 11:55:16 | INFO | underwater_sensor_ga.ga | Generation 20/200 | best_global_cost=3.220 | generation_best=3.613
+2026-02-09 12:33:45 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 12:33:45 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 12:34:04 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=1000136.661 | generation_best=1000136.661
+2026-02-09 12:36:09 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 12:36:09 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 12:36:28 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=1000136.661 | generation_best=1000136.661
+2026-02-09 12:37:06 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=1000010.832 | generation_best=1000010.832
+2026-02-09 13:30:21 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 13:30:21 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 13:30:40 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=1000136.661 | generation_best=1000136.661
+2026-02-09 13:31:17 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=1000010.832 | generation_best=1000010.832
+2026-02-09 13:33:06 | INFO | underwater_sensor_ga.ga | Generation 3/200 | best_global_cost=1000000.000 | generation_best=1000000.000
+2026-02-09 13:34:58 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 13:34:58 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 13:35:17 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=1000136.661 | generation_best=1000136.661
+2026-02-09 13:35:55 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=1000010.832 | generation_best=1000010.832
+2026-02-09 13:37:44 | INFO | underwater_sensor_ga.ga | Generation 3/200 | best_global_cost=1000000.000 | generation_best=1000000.000
+2026-02-09 13:39:08 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 13:39:08 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 13:39:26 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=1000136.661 | generation_best=1000136.661
+2026-02-09 13:40:02 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=1000013.828 | generation_best=1000013.828
+2026-02-09 13:41:21 | INFO | underwater_sensor_ga.ga | Generation 3/200 | best_global_cost=0.412 | generation_best=0.412
+2026-02-09 13:45:04 | INFO | underwater_sensor_ga.ga | Generation 4/200 | best_global_cost=0.000 | generation_best=0.000
+2026-02-09 13:50:38 | INFO | underwater_sensor_ga.ga | Generation 5/200 | best_global_cost=0.000 | generation_best=0.000
+2026-02-09 13:57:25 | INFO | underwater_sensor_ga.ga | Generation 6/200 | best_global_cost=0.000 | generation_best=143.942
+2026-02-09 14:03:35 | INFO | underwater_sensor_ga.ga | Generation 7/200 | best_global_cost=0.000 | generation_best=1000000.000
+2026-02-09 14:10:30 | INFO | underwater_sensor_ga.ga | Generation 8/200 | best_global_cost=0.000 | generation_best=0.000
+2026-02-09 14:17:43 | INFO | underwater_sensor_ga.ga | Generation 9/200 | best_global_cost=0.000 | generation_best=0.000
+2026-02-09 14:47:36 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 14:47:36 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 14:47:54 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=1000136.661 | generation_best=1000136.661
+2026-02-09 14:48:29 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=1000013.828 | generation_best=1000013.828
+2026-02-09 14:49:28 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 14:49:28 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 14:49:47 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=1000136.661 | generation_best=1000136.661
+2026-02-09 14:50:23 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=1000013.828 | generation_best=1000013.828
+2026-02-09 14:51:42 | INFO | underwater_sensor_ga.ga | Generation 3/200 | best_global_cost=0.412 | generation_best=0.412
+2026-02-09 14:55:25 | INFO | underwater_sensor_ga.ga | Generation 4/200 | best_global_cost=0.000 | generation_best=0.000
+2026-02-09 15:01:02 | INFO | underwater_sensor_ga.ga | Generation 5/200 | best_global_cost=0.000 | generation_best=0.000
+2026-02-09 15:02:58 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 15:02:58 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 15:03:18 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=1000200.808 | generation_best=1000200.808
+2026-02-09 15:03:54 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=1000020.474 | generation_best=1000020.474
+2026-02-09 15:04:23 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 15:04:23 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 15:04:42 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=1000200.808 | generation_best=1000200.808
+2026-02-09 15:05:17 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=1000020.474 | generation_best=1000020.474
+2026-02-09 15:06:34 | INFO | underwater_sensor_ga.ga | Generation 3/200 | best_global_cost=0.796 | generation_best=0.796
+2026-02-09 15:10:11 | INFO | underwater_sensor_ga.ga | Generation 4/200 | best_global_cost=0.000 | generation_best=0.000
+2026-02-09 15:15:50 | INFO | underwater_sensor_ga.ga | Generation 5/200 | best_global_cost=0.000 | generation_best=0.000
+2026-02-09 15:16:53 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 15:16:53 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 15:19:06 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=16000124.862 | generation_best=16000124.862
+2026-02-09 15:24:13 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=8000044.861 | generation_best=8000044.861
+2026-02-09 15:34:10 | INFO | underwater_sensor_ga.ga | Generation 3/200 | best_global_cost=2000018.137 | generation_best=2000018.137
+2026-02-09 16:02:10 | INFO | underwater_sensor_ga.ga | Generation 4/200 | best_global_cost=2000018.137 | generation_best=3000027.714
+2026-02-09 16:21:35 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 16:21:35 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 16:22:48 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=6000189.286 | generation_best=6000189.286
+2026-02-09 16:25:40 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=2000024.241 | generation_best=2000024.241
+2026-02-09 16:31:31 | INFO | underwater_sensor_ga.ga | Generation 3/200 | best_global_cost=17.255 | generation_best=17.255
+2026-02-09 16:47:15 | INFO | underwater_sensor_ga.ga | Generation 4/200 | best_global_cost=17.255 | generation_best=2000044.669
+2026-02-09 16:52:53 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 16:52:53 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=3
+2026-02-09 16:52:53 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=6000188.987 | generation_best=6000188.987
+2026-02-09 16:52:53 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=2000028.978 | generation_best=2000028.978
+2026-02-09 16:52:54 | INFO | underwater_sensor_ga.ga | Generation 3/200 | best_global_cost=16.870 | generation_best=16.870
+2026-02-09 16:52:54 | INFO | underwater_sensor_ga.ga | Generation 4/200 | best_global_cost=16.870 | generation_best=2000043.192
+2026-02-09 16:52:55 | INFO | underwater_sensor_ga.ga | Generation 5/200 | best_global_cost=16.870 | generation_best=1000018.611
+2026-02-09 16:52:56 | INFO | underwater_sensor_ga.ga | Generation 6/200 | best_global_cost=16.870 | generation_best=3000132.621
+2026-02-09 16:52:57 | INFO | underwater_sensor_ga.ga | Generation 7/200 | best_global_cost=16.870 | generation_best=34.071
+2026-02-09 16:52:58 | INFO | underwater_sensor_ga.ga | Generation 8/200 | best_global_cost=8.884 | generation_best=8.884
+2026-02-09 16:52:59 | INFO | underwater_sensor_ga.ga | Generation 9/200 | best_global_cost=8.884 | generation_best=10.212
+2026-02-09 16:52:59 | INFO | underwater_sensor_ga.ga | Generation 10/200 | best_global_cost=8.204 | generation_best=8.204
+2026-02-09 16:53:00 | INFO | underwater_sensor_ga.ga | Generation 11/200 | best_global_cost=8.204 | generation_best=12.766
+2026-02-09 16:53:01 | INFO | underwater_sensor_ga.ga | Generation 12/200 | best_global_cost=8.204 | generation_best=46.901
+2026-02-09 16:53:02 | INFO | underwater_sensor_ga.ga | Generation 13/200 | best_global_cost=8.204 | generation_best=12.223
+2026-02-09 16:53:03 | INFO | underwater_sensor_ga.ga | Generation 14/200 | best_global_cost=8.204 | generation_best=25.535
+2026-02-09 16:53:04 | INFO | underwater_sensor_ga.ga | Generation 15/200 | best_global_cost=8.204 | generation_best=17.208
+2026-02-09 16:53:05 | INFO | underwater_sensor_ga.ga | Generation 16/200 | best_global_cost=8.204 | generation_best=9.212
+2026-02-09 16:53:06 | INFO | underwater_sensor_ga.ga | Generation 17/200 | best_global_cost=8.204 | generation_best=26.823
+2026-02-09 16:53:07 | INFO | underwater_sensor_ga.ga | Generation 18/200 | best_global_cost=8.204 | generation_best=10.009
+2026-02-09 16:53:08 | INFO | underwater_sensor_ga.ga | Generation 19/200 | best_global_cost=8.204 | generation_best=11.265
+2026-02-09 16:53:09 | INFO | underwater_sensor_ga.ga | Generation 20/200 | best_global_cost=7.487 | generation_best=7.487
+2026-02-09 16:53:10 | INFO | underwater_sensor_ga.ga | Generation 21/200 | best_global_cost=7.487 | generation_best=9.549
+2026-02-09 16:53:11 | INFO | underwater_sensor_ga.ga | Generation 22/200 | best_global_cost=4.558 | generation_best=4.558
+2026-02-09 16:53:12 | INFO | underwater_sensor_ga.ga | Generation 23/200 | best_global_cost=4.558 | generation_best=15.023
+2026-02-09 16:53:13 | INFO | underwater_sensor_ga.ga | Generation 24/200 | best_global_cost=4.558 | generation_best=11.533
+2026-02-09 16:53:13 | INFO | underwater_sensor_ga.ga | Generation 25/200 | best_global_cost=4.558 | generation_best=6.706
+2026-02-09 16:53:14 | INFO | underwater_sensor_ga.ga | Generation 26/200 | best_global_cost=4.558 | generation_best=13.513
+2026-02-09 16:53:15 | INFO | underwater_sensor_ga.ga | Generation 27/200 | best_global_cost=4.558 | generation_best=6.143
+2026-02-09 16:53:16 | INFO | underwater_sensor_ga.ga | Generation 28/200 | best_global_cost=4.558 | generation_best=8.054
+2026-02-09 16:53:17 | INFO | underwater_sensor_ga.ga | Generation 29/200 | best_global_cost=4.558 | generation_best=5.639
+2026-02-09 16:53:18 | INFO | underwater_sensor_ga.ga | Generation 30/200 | best_global_cost=4.558 | generation_best=6.304
+2026-02-09 16:53:19 | INFO | underwater_sensor_ga.ga | Generation 31/200 | best_global_cost=4.558 | generation_best=6.972
+2026-02-09 16:53:20 | INFO | underwater_sensor_ga.ga | Generation 32/200 | best_global_cost=4.558 | generation_best=7.362
+2026-02-09 16:53:21 | INFO | underwater_sensor_ga.ga | Generation 33/200 | best_global_cost=4.558 | generation_best=5.264
+2026-02-09 16:53:22 | INFO | underwater_sensor_ga.ga | Generation 34/200 | best_global_cost=4.558 | generation_best=7.460
+2026-02-09 16:53:23 | INFO | underwater_sensor_ga.ga | Generation 35/200 | best_global_cost=4.558 | generation_best=6.207
+2026-02-09 16:53:24 | INFO | underwater_sensor_ga.ga | Generation 36/200 | best_global_cost=4.558 | generation_best=7.376
+2026-02-09 16:53:25 | INFO | underwater_sensor_ga.ga | Generation 37/200 | best_global_cost=4.558 | generation_best=5.531
+2026-02-09 16:53:26 | INFO | underwater_sensor_ga.ga | Generation 38/200 | best_global_cost=4.558 | generation_best=6.818
+2026-02-09 16:53:27 | INFO | underwater_sensor_ga.ga | Generation 39/200 | best_global_cost=4.558 | generation_best=8.426
+2026-02-09 16:53:28 | INFO | underwater_sensor_ga.ga | Generation 40/200 | best_global_cost=4.558 | generation_best=7.875
+2026-02-09 16:53:29 | INFO | underwater_sensor_ga.ga | Generation 41/200 | best_global_cost=4.558 | generation_best=8.914
+2026-02-09 16:53:30 | INFO | underwater_sensor_ga.ga | Generation 42/200 | best_global_cost=4.558 | generation_best=8.718
+2026-02-09 16:53:31 | INFO | underwater_sensor_ga.ga | Generation 43/200 | best_global_cost=4.558 | generation_best=5.866
+2026-02-09 16:53:32 | INFO | underwater_sensor_ga.ga | Generation 44/200 | best_global_cost=4.558 | generation_best=6.315
+2026-02-09 16:53:32 | INFO | underwater_sensor_ga.ga | Generation 45/200 | best_global_cost=4.558 | generation_best=15.706
+2026-02-09 16:53:33 | INFO | underwater_sensor_ga.ga | Generation 46/200 | best_global_cost=4.558 | generation_best=8.467
+2026-02-09 16:53:34 | INFO | underwater_sensor_ga.ga | Generation 47/200 | best_global_cost=4.558 | generation_best=4.864
+2026-02-09 16:53:35 | INFO | underwater_sensor_ga.ga | Generation 48/200 | best_global_cost=4.558 | generation_best=8.337
+2026-02-09 16:53:36 | INFO | underwater_sensor_ga.ga | Generation 49/200 | best_global_cost=4.558 | generation_best=6.133
+2026-02-09 16:53:37 | INFO | underwater_sensor_ga.ga | Generation 50/200 | best_global_cost=4.558 | generation_best=5.218
+2026-02-09 16:53:38 | INFO | underwater_sensor_ga.ga | Generation 51/200 | best_global_cost=4.558 | generation_best=13.515
+2026-02-09 16:53:39 | INFO | underwater_sensor_ga.ga | Generation 52/200 | best_global_cost=4.558 | generation_best=4.697
+2026-02-09 16:53:40 | INFO | underwater_sensor_ga.ga | Generation 53/200 | best_global_cost=4.558 | generation_best=6.024
+2026-02-09 16:53:41 | INFO | underwater_sensor_ga.ga | Generation 54/200 | best_global_cost=4.558 | generation_best=4.810
+2026-02-09 16:53:42 | INFO | underwater_sensor_ga.ga | Generation 55/200 | best_global_cost=4.558 | generation_best=5.493
+2026-02-09 16:53:43 | INFO | underwater_sensor_ga.ga | Generation 56/200 | best_global_cost=4.558 | generation_best=14.117
+2026-02-09 16:53:44 | INFO | underwater_sensor_ga.ga | Generation 57/200 | best_global_cost=4.558 | generation_best=6.227
+2026-02-09 16:53:45 | INFO | underwater_sensor_ga.ga | Generation 58/200 | best_global_cost=4.558 | generation_best=8.396
+2026-02-09 16:53:46 | INFO | underwater_sensor_ga.ga | Generation 59/200 | best_global_cost=4.558 | generation_best=5.681
+2026-02-09 16:53:47 | INFO | underwater_sensor_ga.ga | Generation 60/200 | best_global_cost=4.558 | generation_best=5.487
+2026-02-09 16:53:48 | INFO | underwater_sensor_ga.ga | Generation 61/200 | best_global_cost=4.558 | generation_best=8.695
+2026-02-09 16:53:49 | INFO | underwater_sensor_ga.ga | Generation 62/200 | best_global_cost=4.558 | generation_best=5.589
+2026-02-09 16:53:50 | INFO | underwater_sensor_ga.ga | Generation 63/200 | best_global_cost=4.558 | generation_best=5.588
+2026-02-09 16:53:51 | INFO | underwater_sensor_ga.ga | Generation 64/200 | best_global_cost=4.558 | generation_best=4.975
+2026-02-09 16:53:51 | INFO | underwater_sensor_ga.ga | Generation 65/200 | best_global_cost=4.558 | generation_best=11.068
+2026-02-09 16:53:52 | INFO | underwater_sensor_ga.ga | Generation 66/200 | best_global_cost=4.558 | generation_best=4.823
+2026-02-09 16:53:53 | INFO | underwater_sensor_ga.ga | Generation 67/200 | best_global_cost=4.558 | generation_best=11.560
+2026-02-09 16:53:54 | INFO | underwater_sensor_ga.ga | Generation 68/200 | best_global_cost=4.558 | generation_best=14.766
+2026-02-09 16:53:55 | INFO | underwater_sensor_ga.ga | Generation 69/200 | best_global_cost=4.558 | generation_best=8.789
+2026-02-09 16:53:56 | INFO | underwater_sensor_ga.ga | Generation 70/200 | best_global_cost=4.558 | generation_best=10.284
+2026-02-09 16:53:57 | INFO | underwater_sensor_ga.ga | Generation 71/200 | best_global_cost=4.558 | generation_best=5.209
+2026-02-09 16:53:58 | INFO | underwater_sensor_ga.ga | Generation 72/200 | best_global_cost=4.558 | generation_best=11.602
+2026-02-09 16:53:59 | INFO | underwater_sensor_ga.ga | Generation 73/200 | best_global_cost=4.558 | generation_best=17.622
+2026-02-09 16:54:00 | INFO | underwater_sensor_ga.ga | Generation 74/200 | best_global_cost=4.558 | generation_best=10.173
+2026-02-09 16:54:01 | INFO | underwater_sensor_ga.ga | Generation 75/200 | best_global_cost=4.558 | generation_best=7.665
+2026-02-09 16:54:02 | INFO | underwater_sensor_ga.ga | Generation 76/200 | best_global_cost=4.558 | generation_best=9.442
+2026-02-09 16:54:03 | INFO | underwater_sensor_ga.ga | Generation 77/200 | best_global_cost=4.558 | generation_best=5.918
+2026-02-09 16:54:04 | INFO | underwater_sensor_ga.ga | Generation 78/200 | best_global_cost=4.558 | generation_best=5.415
+2026-02-09 16:54:05 | INFO | underwater_sensor_ga.ga | Generation 79/200 | best_global_cost=4.558 | generation_best=6.559
+2026-02-09 16:54:06 | INFO | underwater_sensor_ga.ga | Generation 80/200 | best_global_cost=4.558 | generation_best=5.439
+2026-02-09 16:54:07 | INFO | underwater_sensor_ga.ga | Generation 81/200 | best_global_cost=4.558 | generation_best=5.464
+2026-02-09 16:54:08 | INFO | underwater_sensor_ga.ga | Generation 82/200 | best_global_cost=4.558 | generation_best=10.054
+2026-02-09 16:54:08 | INFO | underwater_sensor_ga.ga | Generation 83/200 | best_global_cost=4.558 | generation_best=8.773
+2026-02-09 16:54:09 | INFO | underwater_sensor_ga.ga | Generation 84/200 | best_global_cost=4.558 | generation_best=5.598
+2026-02-09 16:54:10 | INFO | underwater_sensor_ga.ga | Generation 85/200 | best_global_cost=4.558 | generation_best=5.458
+2026-02-09 16:54:11 | INFO | underwater_sensor_ga.ga | Generation 86/200 | best_global_cost=4.558 | generation_best=19.761
+2026-02-09 16:54:12 | INFO | underwater_sensor_ga.ga | Generation 87/200 | best_global_cost=4.558 | generation_best=8.036
+2026-02-09 16:54:13 | INFO | underwater_sensor_ga.ga | Generation 88/200 | best_global_cost=4.558 | generation_best=5.443
+2026-02-09 16:54:14 | INFO | underwater_sensor_ga.ga | Generation 89/200 | best_global_cost=4.558 | generation_best=7.332
+2026-02-09 16:54:15 | INFO | underwater_sensor_ga.ga | Generation 90/200 | best_global_cost=4.558 | generation_best=6.547
+2026-02-09 16:54:16 | INFO | underwater_sensor_ga.ga | Generation 91/200 | best_global_cost=4.558 | generation_best=6.641
+2026-02-09 16:54:17 | INFO | underwater_sensor_ga.ga | Generation 92/200 | best_global_cost=4.558 | generation_best=6.150
+2026-02-09 16:54:18 | INFO | underwater_sensor_ga.ga | Generation 93/200 | best_global_cost=4.558 | generation_best=6.162
+2026-02-09 16:54:19 | INFO | underwater_sensor_ga.ga | Generation 94/200 | best_global_cost=4.558 | generation_best=6.807
+2026-02-09 16:54:20 | INFO | underwater_sensor_ga.ga | Generation 95/200 | best_global_cost=4.558 | generation_best=6.196
+2026-02-09 16:54:21 | INFO | underwater_sensor_ga.ga | Generation 96/200 | best_global_cost=4.558 | generation_best=5.126
+2026-02-09 16:54:22 | INFO | underwater_sensor_ga.ga | Generation 97/200 | best_global_cost=4.558 | generation_best=8.118
+2026-02-09 16:54:23 | INFO | underwater_sensor_ga.ga | Generation 98/200 | best_global_cost=4.558 | generation_best=4.924
+2026-02-09 16:54:23 | INFO | underwater_sensor_ga.ga | Generation 99/200 | best_global_cost=4.558 | generation_best=6.023
+2026-02-09 16:54:24 | INFO | underwater_sensor_ga.ga | Generation 100/200 | best_global_cost=4.558 | generation_best=5.224
+2026-02-09 16:54:25 | INFO | underwater_sensor_ga.ga | Generation 101/200 | best_global_cost=4.558 | generation_best=9.706
+2026-02-09 16:54:26 | INFO | underwater_sensor_ga.ga | Generation 102/200 | best_global_cost=4.558 | generation_best=4.935
+2026-02-09 16:54:27 | INFO | underwater_sensor_ga.ga | Generation 103/200 | best_global_cost=4.558 | generation_best=7.859
+2026-02-09 16:54:28 | INFO | underwater_sensor_ga.ga | Generation 104/200 | best_global_cost=4.558 | generation_best=5.957
+2026-02-09 16:54:29 | INFO | underwater_sensor_ga.ga | Generation 105/200 | best_global_cost=4.558 | generation_best=5.489
+2026-02-09 16:54:30 | INFO | underwater_sensor_ga.ga | Generation 106/200 | best_global_cost=4.558 | generation_best=8.715
+2026-02-09 16:54:31 | INFO | underwater_sensor_ga.ga | Generation 107/200 | best_global_cost=4.558 | generation_best=5.123
+2026-02-09 16:54:32 | INFO | underwater_sensor_ga.ga | Generation 108/200 | best_global_cost=4.558 | generation_best=8.424
+2026-02-09 16:54:33 | INFO | underwater_sensor_ga.ga | Generation 109/200 | best_global_cost=4.402 | generation_best=4.402
+2026-02-09 16:54:34 | INFO | underwater_sensor_ga.ga | Generation 110/200 | best_global_cost=4.402 | generation_best=6.030
+2026-02-09 16:54:35 | INFO | underwater_sensor_ga.ga | Generation 111/200 | best_global_cost=4.402 | generation_best=9.400
+2026-02-09 16:54:36 | INFO | underwater_sensor_ga.ga | Generation 112/200 | best_global_cost=4.402 | generation_best=5.295
+2026-02-09 16:54:37 | INFO | underwater_sensor_ga.ga | Generation 113/200 | best_global_cost=4.402 | generation_best=11.266
+2026-02-09 16:54:38 | INFO | underwater_sensor_ga.ga | Generation 114/200 | best_global_cost=4.402 | generation_best=18.449
+2026-02-09 16:54:38 | INFO | underwater_sensor_ga.ga | Generation 115/200 | best_global_cost=4.402 | generation_best=8.805
+2026-02-09 16:54:39 | INFO | underwater_sensor_ga.ga | Generation 116/200 | best_global_cost=4.402 | generation_best=4.965
+2026-02-09 16:54:40 | INFO | underwater_sensor_ga.ga | Generation 117/200 | best_global_cost=4.402 | generation_best=6.458
+2026-02-09 16:54:41 | INFO | underwater_sensor_ga.ga | Generation 118/200 | best_global_cost=4.402 | generation_best=4.470
+2026-02-09 16:54:42 | INFO | underwater_sensor_ga.ga | Generation 119/200 | best_global_cost=4.402 | generation_best=6.221
+2026-02-09 16:54:43 | INFO | underwater_sensor_ga.ga | Generation 120/200 | best_global_cost=4.402 | generation_best=5.528
+2026-02-09 16:54:44 | INFO | underwater_sensor_ga.ga | Generation 121/200 | best_global_cost=4.402 | generation_best=9.713
+2026-02-09 16:54:45 | INFO | underwater_sensor_ga.ga | Generation 122/200 | best_global_cost=4.402 | generation_best=6.623
+2026-02-09 16:54:46 | INFO | underwater_sensor_ga.ga | Generation 123/200 | best_global_cost=4.402 | generation_best=7.488
+2026-02-09 16:54:47 | INFO | underwater_sensor_ga.ga | Generation 124/200 | best_global_cost=4.402 | generation_best=5.427
+2026-02-09 16:54:48 | INFO | underwater_sensor_ga.ga | Generation 125/200 | best_global_cost=4.402 | generation_best=7.145
+2026-02-09 16:54:49 | INFO | underwater_sensor_ga.ga | Generation 126/200 | best_global_cost=4.402 | generation_best=8.650
+2026-02-09 16:54:50 | INFO | underwater_sensor_ga.ga | Generation 127/200 | best_global_cost=4.402 | generation_best=8.047
+2026-02-09 16:54:51 | INFO | underwater_sensor_ga.ga | Generation 128/200 | best_global_cost=4.402 | generation_best=37.655
+2026-02-09 16:54:52 | INFO | underwater_sensor_ga.ga | Generation 129/200 | best_global_cost=4.402 | generation_best=5.011
+2026-02-09 16:54:53 | INFO | underwater_sensor_ga.ga | Generation 130/200 | best_global_cost=4.402 | generation_best=6.345
+2026-02-09 16:54:53 | INFO | underwater_sensor_ga.ga | Generation 131/200 | best_global_cost=4.402 | generation_best=8.686
+2026-02-09 16:54:54 | INFO | underwater_sensor_ga.ga | Generation 132/200 | best_global_cost=4.402 | generation_best=5.819
+2026-02-09 16:54:55 | INFO | underwater_sensor_ga.ga | Generation 133/200 | best_global_cost=4.402 | generation_best=16.859
+2026-02-09 16:54:56 | INFO | underwater_sensor_ga.ga | Generation 134/200 | best_global_cost=4.402 | generation_best=6.955
+2026-02-09 16:54:57 | INFO | underwater_sensor_ga.ga | Generation 135/200 | best_global_cost=4.402 | generation_best=6.118
+2026-02-09 16:54:58 | INFO | underwater_sensor_ga.ga | Generation 136/200 | best_global_cost=4.402 | generation_best=5.908
+2026-02-09 16:54:59 | INFO | underwater_sensor_ga.ga | Generation 137/200 | best_global_cost=4.402 | generation_best=5.945
+2026-02-09 16:55:00 | INFO | underwater_sensor_ga.ga | Generation 138/200 | best_global_cost=4.402 | generation_best=5.945
+2026-02-09 16:55:01 | INFO | underwater_sensor_ga.ga | Generation 139/200 | best_global_cost=4.402 | generation_best=8.617
+2026-02-09 16:55:02 | INFO | underwater_sensor_ga.ga | Generation 140/200 | best_global_cost=4.402 | generation_best=5.329
+2026-02-09 16:55:03 | INFO | underwater_sensor_ga.ga | Generation 141/200 | best_global_cost=4.402 | generation_best=7.633
+2026-02-09 16:55:04 | INFO | underwater_sensor_ga.ga | Generation 142/200 | best_global_cost=4.402 | generation_best=6.339
+2026-02-09 16:55:05 | INFO | underwater_sensor_ga.ga | Generation 143/200 | best_global_cost=4.402 | generation_best=13.075
+2026-02-09 16:55:06 | INFO | underwater_sensor_ga.ga | Generation 144/200 | best_global_cost=4.402 | generation_best=9.196
+2026-02-09 16:55:07 | INFO | underwater_sensor_ga.ga | Generation 145/200 | best_global_cost=4.402 | generation_best=6.911
+2026-02-09 16:55:08 | INFO | underwater_sensor_ga.ga | Generation 146/200 | best_global_cost=4.402 | generation_best=4.840
+2026-02-09 16:55:09 | INFO | underwater_sensor_ga.ga | Generation 147/200 | best_global_cost=4.402 | generation_best=6.497
+2026-02-09 16:55:10 | INFO | underwater_sensor_ga.ga | Generation 148/200 | best_global_cost=4.402 | generation_best=1000013.770
+2026-02-09 16:55:11 | INFO | underwater_sensor_ga.ga | Generation 149/200 | best_global_cost=4.402 | generation_best=5.181
+2026-02-09 16:55:12 | INFO | underwater_sensor_ga.ga | Generation 150/200 | best_global_cost=4.402 | generation_best=5.747
+2026-02-09 16:55:14 | INFO | underwater_sensor_ga.ga | Generation 151/200 | best_global_cost=4.402 | generation_best=5.258
+2026-02-09 16:55:15 | INFO | underwater_sensor_ga.ga | Generation 152/200 | best_global_cost=4.402 | generation_best=5.797
+2026-02-09 16:55:16 | INFO | underwater_sensor_ga.ga | Generation 153/200 | best_global_cost=4.402 | generation_best=4.531
+2026-02-09 16:55:17 | INFO | underwater_sensor_ga.ga | Generation 154/200 | best_global_cost=4.402 | generation_best=7.060
+2026-02-09 16:55:17 | INFO | underwater_sensor_ga.ga | Generation 155/200 | best_global_cost=4.402 | generation_best=22.026
+2026-02-09 16:55:19 | INFO | underwater_sensor_ga.ga | Generation 156/200 | best_global_cost=4.402 | generation_best=9.641
+2026-02-09 16:55:20 | INFO | underwater_sensor_ga.ga | Generation 157/200 | best_global_cost=4.402 | generation_best=5.980
+2026-02-09 16:55:21 | INFO | underwater_sensor_ga.ga | Generation 158/200 | best_global_cost=4.402 | generation_best=5.759
+2026-02-09 16:55:22 | INFO | underwater_sensor_ga.ga | Generation 159/200 | best_global_cost=4.402 | generation_best=6.897
+2026-02-09 16:55:22 | INFO | underwater_sensor_ga.ga | Generation 160/200 | best_global_cost=4.402 | generation_best=25.498
+2026-02-09 16:55:23 | INFO | underwater_sensor_ga.ga | Generation 161/200 | best_global_cost=4.402 | generation_best=5.616
+2026-02-09 16:55:24 | INFO | underwater_sensor_ga.ga | Generation 162/200 | best_global_cost=4.402 | generation_best=11.294
+2026-02-09 16:55:26 | INFO | underwater_sensor_ga.ga | Generation 163/200 | best_global_cost=4.402 | generation_best=7.221
+2026-02-09 16:55:26 | INFO | underwater_sensor_ga.ga | Generation 164/200 | best_global_cost=4.402 | generation_best=5.182
+2026-02-09 16:55:27 | INFO | underwater_sensor_ga.ga | Generation 165/200 | best_global_cost=4.402 | generation_best=8.223
+2026-02-09 16:55:28 | INFO | underwater_sensor_ga.ga | Generation 166/200 | best_global_cost=4.402 | generation_best=5.734
+2026-02-09 16:55:29 | INFO | underwater_sensor_ga.ga | Generation 167/200 | best_global_cost=4.186 | generation_best=4.186
+2026-02-09 16:55:30 | INFO | underwater_sensor_ga.ga | Generation 168/200 | best_global_cost=4.186 | generation_best=6.038
+2026-02-09 16:55:31 | INFO | underwater_sensor_ga.ga | Generation 169/200 | best_global_cost=4.186 | generation_best=14.584
+2026-02-09 16:55:32 | INFO | underwater_sensor_ga.ga | Generation 170/200 | best_global_cost=4.186 | generation_best=12.398
+2026-02-09 16:55:33 | INFO | underwater_sensor_ga.ga | Generation 171/200 | best_global_cost=4.186 | generation_best=7.673
+2026-02-09 16:55:34 | INFO | underwater_sensor_ga.ga | Generation 172/200 | best_global_cost=4.186 | generation_best=6.304
+2026-02-09 16:55:35 | INFO | underwater_sensor_ga.ga | Generation 173/200 | best_global_cost=4.186 | generation_best=25.899
+2026-02-09 16:55:36 | INFO | underwater_sensor_ga.ga | Generation 174/200 | best_global_cost=4.186 | generation_best=5.319
+2026-02-09 16:55:37 | INFO | underwater_sensor_ga.ga | Generation 175/200 | best_global_cost=4.186 | generation_best=5.490
+2026-02-09 16:55:38 | INFO | underwater_sensor_ga.ga | Generation 176/200 | best_global_cost=4.186 | generation_best=10.198
+2026-02-09 16:55:40 | INFO | underwater_sensor_ga.ga | Generation 177/200 | best_global_cost=4.186 | generation_best=7.318
+2026-02-09 16:55:41 | INFO | underwater_sensor_ga.ga | Generation 178/200 | best_global_cost=4.186 | generation_best=5.948
+2026-02-09 16:55:42 | INFO | underwater_sensor_ga.ga | Generation 179/200 | best_global_cost=4.186 | generation_best=8.271
+2026-02-09 16:55:42 | INFO | underwater_sensor_ga.ga | Generation 180/200 | best_global_cost=4.186 | generation_best=6.903
+2026-02-09 16:55:44 | INFO | underwater_sensor_ga.ga | Generation 181/200 | best_global_cost=4.186 | generation_best=9.653
+2026-02-09 16:55:45 | INFO | underwater_sensor_ga.ga | Generation 182/200 | best_global_cost=4.186 | generation_best=4.959
+2026-02-09 16:55:46 | INFO | underwater_sensor_ga.ga | Generation 183/200 | best_global_cost=4.186 | generation_best=6.050
+2026-02-09 16:55:47 | INFO | underwater_sensor_ga.ga | Generation 184/200 | best_global_cost=4.186 | generation_best=7.017
+2026-02-09 16:55:47 | INFO | underwater_sensor_ga.ga | Generation 185/200 | best_global_cost=4.186 | generation_best=5.689
+2026-02-09 16:55:48 | INFO | underwater_sensor_ga.ga | Generation 186/200 | best_global_cost=4.186 | generation_best=6.651
+2026-02-09 16:55:49 | INFO | underwater_sensor_ga.ga | Generation 187/200 | best_global_cost=4.186 | generation_best=6.678
+2026-02-09 16:55:50 | INFO | underwater_sensor_ga.ga | Generation 188/200 | best_global_cost=4.186 | generation_best=5.952
+2026-02-09 16:55:51 | INFO | underwater_sensor_ga.ga | Generation 189/200 | best_global_cost=4.186 | generation_best=5.180
+2026-02-09 16:55:52 | INFO | underwater_sensor_ga.ga | Generation 190/200 | best_global_cost=4.186 | generation_best=5.405
+2026-02-09 16:55:53 | INFO | underwater_sensor_ga.ga | Generation 191/200 | best_global_cost=4.186 | generation_best=7.587
+2026-02-09 16:55:54 | INFO | underwater_sensor_ga.ga | Generation 192/200 | best_global_cost=4.186 | generation_best=6.963
+2026-02-09 16:55:55 | INFO | underwater_sensor_ga.ga | Generation 193/200 | best_global_cost=4.186 | generation_best=4.388
+2026-02-09 16:55:56 | INFO | underwater_sensor_ga.ga | Generation 194/200 | best_global_cost=4.186 | generation_best=6.432
+2026-02-09 16:55:57 | INFO | underwater_sensor_ga.ga | Generation 195/200 | best_global_cost=4.186 | generation_best=5.485
+2026-02-09 16:55:58 | INFO | underwater_sensor_ga.ga | Generation 196/200 | best_global_cost=4.186 | generation_best=6.177
+2026-02-09 16:55:59 | INFO | underwater_sensor_ga.ga | Generation 197/200 | best_global_cost=4.186 | generation_best=5.589
+2026-02-09 16:56:00 | INFO | underwater_sensor_ga.ga | Generation 198/200 | best_global_cost=4.186 | generation_best=7.961
+2026-02-09 16:56:01 | INFO | underwater_sensor_ga.ga | Generation 199/200 | best_global_cost=4.186 | generation_best=5.704
+2026-02-09 16:56:02 | INFO | underwater_sensor_ga.ga | Generation 200/200 | best_global_cost=4.186 | generation_best=6.115
+2026-02-09 16:56:02 | INFO | underwater_sensor_ga.runner | Final best cost (N=3): 4.186
+2026-02-09 16:56:49 | ERROR | underwater_sensor_ga.postprocess | Baseline comparison failed for N=3
+Traceback (most recent call last):
+  File "D:\AmbienteDeDesenvolvimento\Underwater-Sensor-Network-Positioning-and-Deployment\executable\postprocess.py", line 209, in postprocess_results
+    save_baseline_comparison(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        output_dir=output_dir,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        sound_speed_profile=sound_speed_profile,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\AmbienteDeDesenvolvimento\Underwater-Sensor-Network-Positioning-and-Deployment\executable\baseline.py", line 73, in save_baseline_comparison
+    ga_sensors, ga_report = evaluate_topology(
+                            ~~~~~~~~~~~~~~~~~^
+        chromosome=result.best_chromosome,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        seed=eval_seed,
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\AmbienteDeDesenvolvimento\Underwater-Sensor-Network-Positioning-and-Deployment\executable\baseline.py", line 34, in evaluate_topology
+    report = evaluate_chromosome_with_report(
+        chromosome=chromosome,
+    ...<5 lines>...
+        random_generator=rng,
+    )
+  File "D:\AmbienteDeDesenvolvimento\Underwater-Sensor-Network-Positioning-and-Deployment\evaluation\cost_function.py", line 44, in evaluate_chromosome_with_report
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: impact_points must be provided for consistent evaluation (expected from evaluate_population).
+2026-02-09 16:56:49 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 16:56:49 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=4
+2026-02-09 16:56:49 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=6000155.434 | generation_best=6000155.434
+2026-02-09 16:56:49 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=2000004.947 | generation_best=2000004.947
+2026-02-09 16:56:50 | INFO | underwater_sensor_ga.ga | Generation 3/200 | best_global_cost=25.823 | generation_best=25.823
+2026-02-09 16:56:50 | INFO | underwater_sensor_ga.ga | Generation 4/200 | best_global_cost=25.823 | generation_best=2000010.168
+2026-02-09 16:56:51 | INFO | underwater_sensor_ga.ga | Generation 5/200 | best_global_cost=25.823 | generation_best=1000019.299
+2026-02-09 16:56:52 | INFO | underwater_sensor_ga.ga | Generation 6/200 | best_global_cost=25.823 | generation_best=1000090.924
+2026-02-09 16:56:53 | INFO | underwater_sensor_ga.ga | Generation 7/200 | best_global_cost=25.823 | generation_best=28.930
+2026-02-09 16:56:54 | INFO | underwater_sensor_ga.ga | Generation 8/200 | best_global_cost=5.425 | generation_best=5.425
+2026-02-09 16:56:55 | INFO | underwater_sensor_ga.ga | Generation 9/200 | best_global_cost=5.196 | generation_best=5.196
+2026-02-09 16:56:56 | INFO | underwater_sensor_ga.ga | Generation 10/200 | best_global_cost=5.196 | generation_best=6.015
+2026-02-09 16:56:57 | INFO | underwater_sensor_ga.ga | Generation 11/200 | best_global_cost=5.196 | generation_best=70.085
+2026-02-09 16:56:58 | INFO | underwater_sensor_ga.ga | Generation 12/200 | best_global_cost=4.630 | generation_best=4.630
+2026-02-09 16:56:59 | INFO | underwater_sensor_ga.ga | Generation 13/200 | best_global_cost=4.630 | generation_best=5.343
+2026-02-09 16:57:00 | INFO | underwater_sensor_ga.ga | Generation 14/200 | best_global_cost=4.630 | generation_best=4.894
+2026-02-09 16:57:01 | INFO | underwater_sensor_ga.ga | Generation 15/200 | best_global_cost=4.441 | generation_best=4.441
+2026-02-09 16:57:02 | INFO | underwater_sensor_ga.ga | Generation 16/200 | best_global_cost=4.441 | generation_best=4.491
+2026-02-09 16:57:04 | INFO | underwater_sensor_ga.ga | Generation 17/200 | best_global_cost=4.441 | generation_best=4.711
+2026-02-09 16:57:05 | INFO | underwater_sensor_ga.ga | Generation 18/200 | best_global_cost=4.099 | generation_best=4.099
+2026-02-09 16:57:06 | INFO | underwater_sensor_ga.ga | Generation 19/200 | best_global_cost=4.099 | generation_best=5.038
+2026-02-09 16:57:07 | INFO | underwater_sensor_ga.ga | Generation 20/200 | best_global_cost=4.099 | generation_best=4.679
+2026-02-09 16:57:08 | INFO | underwater_sensor_ga.ga | Generation 21/200 | best_global_cost=3.985 | generation_best=3.985
+2026-02-09 16:57:10 | INFO | underwater_sensor_ga.ga | Generation 22/200 | best_global_cost=3.985 | generation_best=3.999
+2026-02-09 16:57:11 | INFO | underwater_sensor_ga.ga | Generation 23/200 | best_global_cost=3.985 | generation_best=5.378
+2026-02-09 16:57:12 | INFO | underwater_sensor_ga.ga | Generation 24/200 | best_global_cost=3.985 | generation_best=4.513
+2026-02-09 16:57:13 | INFO | underwater_sensor_ga.ga | Generation 25/200 | best_global_cost=3.985 | generation_best=4.670
+2026-02-09 16:57:14 | INFO | underwater_sensor_ga.ga | Generation 26/200 | best_global_cost=3.985 | generation_best=4.562
+2026-02-09 16:57:15 | INFO | underwater_sensor_ga.ga | Generation 27/200 | best_global_cost=3.932 | generation_best=3.932
+2026-02-09 16:57:16 | INFO | underwater_sensor_ga.ga | Generation 28/200 | best_global_cost=3.932 | generation_best=4.398
+2026-02-09 16:57:17 | INFO | underwater_sensor_ga.ga | Generation 29/200 | best_global_cost=3.932 | generation_best=5.122
+2026-02-09 16:57:19 | INFO | underwater_sensor_ga.ga | Generation 30/200 | best_global_cost=3.932 | generation_best=4.561
+2026-02-09 16:57:20 | INFO | underwater_sensor_ga.ga | Generation 31/200 | best_global_cost=3.932 | generation_best=4.223
+2026-02-09 16:57:21 | INFO | underwater_sensor_ga.ga | Generation 32/200 | best_global_cost=3.932 | generation_best=4.940
+2026-02-09 16:57:22 | INFO | underwater_sensor_ga.ga | Generation 33/200 | best_global_cost=3.820 | generation_best=3.820
+2026-02-09 16:57:23 | INFO | underwater_sensor_ga.ga | Generation 34/200 | best_global_cost=3.820 | generation_best=4.059
+2026-02-09 16:57:25 | INFO | underwater_sensor_ga.ga | Generation 35/200 | best_global_cost=3.820 | generation_best=3.923
+2026-02-09 16:57:26 | INFO | underwater_sensor_ga.ga | Generation 36/200 | best_global_cost=3.820 | generation_best=4.427
+2026-02-09 16:57:27 | INFO | underwater_sensor_ga.ga | Generation 37/200 | best_global_cost=3.820 | generation_best=4.445
+2026-02-09 16:57:28 | INFO | underwater_sensor_ga.ga | Generation 38/200 | best_global_cost=3.670 | generation_best=3.670
+2026-02-09 16:57:29 | INFO | underwater_sensor_ga.ga | Generation 39/200 | best_global_cost=3.670 | generation_best=4.168
+2026-02-09 16:57:30 | INFO | underwater_sensor_ga.ga | Generation 40/200 | best_global_cost=3.670 | generation_best=4.093
+2026-02-09 16:57:31 | INFO | underwater_sensor_ga.ga | Generation 41/200 | best_global_cost=3.670 | generation_best=4.461
+2026-02-09 16:57:32 | INFO | underwater_sensor_ga.ga | Generation 42/200 | best_global_cost=3.670 | generation_best=4.129
+2026-02-09 16:57:33 | INFO | underwater_sensor_ga.ga | Generation 43/200 | best_global_cost=3.670 | generation_best=4.639
+2026-02-09 16:57:34 | INFO | underwater_sensor_ga.ga | Generation 44/200 | best_global_cost=3.670 | generation_best=3.801
+2026-02-09 16:57:36 | INFO | underwater_sensor_ga.ga | Generation 45/200 | best_global_cost=3.670 | generation_best=3.921
+2026-02-09 16:57:37 | INFO | underwater_sensor_ga.ga | Generation 46/200 | best_global_cost=3.670 | generation_best=4.388
+2026-02-09 16:57:38 | INFO | underwater_sensor_ga.ga | Generation 47/200 | best_global_cost=3.670 | generation_best=4.071
+2026-02-09 16:57:39 | INFO | underwater_sensor_ga.ga | Generation 48/200 | best_global_cost=3.670 | generation_best=4.563
+2026-02-09 16:57:40 | INFO | underwater_sensor_ga.ga | Generation 49/200 | best_global_cost=3.670 | generation_best=4.123
+2026-02-09 16:57:41 | INFO | underwater_sensor_ga.ga | Generation 50/200 | best_global_cost=3.670 | generation_best=4.005
+2026-02-09 16:57:42 | INFO | underwater_sensor_ga.ga | Generation 51/200 | best_global_cost=3.670 | generation_best=4.132
+2026-02-09 16:57:43 | INFO | underwater_sensor_ga.ga | Generation 52/200 | best_global_cost=3.670 | generation_best=3.781
+2026-02-09 16:57:44 | INFO | underwater_sensor_ga.ga | Generation 53/200 | best_global_cost=3.670 | generation_best=3.969
+2026-02-09 16:57:45 | INFO | underwater_sensor_ga.ga | Generation 54/200 | best_global_cost=3.670 | generation_best=3.994
+2026-02-09 16:57:46 | INFO | underwater_sensor_ga.ga | Generation 55/200 | best_global_cost=3.670 | generation_best=4.273
+2026-02-09 16:57:48 | INFO | underwater_sensor_ga.ga | Generation 56/200 | best_global_cost=3.670 | generation_best=4.617
+2026-02-09 16:57:49 | INFO | underwater_sensor_ga.ga | Generation 57/200 | best_global_cost=3.670 | generation_best=4.714
+2026-02-09 16:57:50 | INFO | underwater_sensor_ga.ga | Generation 58/200 | best_global_cost=3.670 | generation_best=4.514
+2026-02-09 16:57:51 | INFO | underwater_sensor_ga.ga | Generation 59/200 | best_global_cost=3.670 | generation_best=4.209
+2026-02-09 16:57:52 | INFO | underwater_sensor_ga.ga | Generation 60/200 | best_global_cost=3.670 | generation_best=4.064
+2026-02-09 16:57:53 | INFO | underwater_sensor_ga.ga | Generation 61/200 | best_global_cost=3.670 | generation_best=4.111
+2026-02-09 16:57:54 | INFO | underwater_sensor_ga.ga | Generation 62/200 | best_global_cost=3.670 | generation_best=4.181
+2026-02-09 16:57:55 | INFO | underwater_sensor_ga.ga | Generation 63/200 | best_global_cost=3.670 | generation_best=4.208
+2026-02-09 16:57:56 | INFO | underwater_sensor_ga.ga | Generation 64/200 | best_global_cost=3.670 | generation_best=4.436
+2026-02-09 16:57:57 | INFO | underwater_sensor_ga.ga | Generation 65/200 | best_global_cost=3.670 | generation_best=4.696
+2026-02-09 16:57:58 | INFO | underwater_sensor_ga.ga | Generation 66/200 | best_global_cost=3.670 | generation_best=3.787
+2026-02-09 16:57:59 | INFO | underwater_sensor_ga.ga | Generation 67/200 | best_global_cost=3.670 | generation_best=4.189
+2026-02-09 16:58:01 | INFO | underwater_sensor_ga.ga | Generation 68/200 | best_global_cost=3.670 | generation_best=4.691
+2026-02-09 16:58:02 | INFO | underwater_sensor_ga.ga | Generation 69/200 | best_global_cost=3.670 | generation_best=4.629
+2026-02-09 16:58:03 | INFO | underwater_sensor_ga.ga | Generation 70/200 | best_global_cost=3.670 | generation_best=4.344
+2026-02-09 16:58:04 | INFO | underwater_sensor_ga.ga | Generation 71/200 | best_global_cost=3.670 | generation_best=4.051
+2026-02-09 16:58:05 | INFO | underwater_sensor_ga.ga | Generation 72/200 | best_global_cost=3.670 | generation_best=4.483
+2026-02-09 16:58:06 | INFO | underwater_sensor_ga.ga | Generation 73/200 | best_global_cost=3.670 | generation_best=4.042
+2026-02-09 16:58:07 | INFO | underwater_sensor_ga.ga | Generation 74/200 | best_global_cost=3.670 | generation_best=3.910
+2026-02-09 16:58:08 | INFO | underwater_sensor_ga.ga | Generation 75/200 | best_global_cost=3.670 | generation_best=4.467
+2026-02-09 16:58:09 | INFO | underwater_sensor_ga.ga | Generation 76/200 | best_global_cost=3.670 | generation_best=4.418
+2026-02-09 16:58:10 | INFO | underwater_sensor_ga.ga | Generation 77/200 | best_global_cost=3.670 | generation_best=4.447
+2026-02-09 16:58:11 | INFO | underwater_sensor_ga.ga | Generation 78/200 | best_global_cost=3.670 | generation_best=4.392
+2026-02-09 16:58:12 | INFO | underwater_sensor_ga.ga | Generation 79/200 | best_global_cost=3.670 | generation_best=4.643
+2026-02-09 16:58:14 | INFO | underwater_sensor_ga.ga | Generation 80/200 | best_global_cost=3.670 | generation_best=4.475
+2026-02-09 16:58:15 | INFO | underwater_sensor_ga.ga | Generation 81/200 | best_global_cost=3.670 | generation_best=4.204
+2026-02-09 16:58:16 | INFO | underwater_sensor_ga.ga | Generation 82/200 | best_global_cost=3.670 | generation_best=4.393
+2026-02-09 16:58:17 | INFO | underwater_sensor_ga.ga | Generation 83/200 | best_global_cost=3.670 | generation_best=4.515
+2026-02-09 16:58:18 | INFO | underwater_sensor_ga.ga | Generation 84/200 | best_global_cost=3.670 | generation_best=4.826
+2026-02-09 16:58:19 | INFO | underwater_sensor_ga.ga | Generation 85/200 | best_global_cost=3.670 | generation_best=4.357
+2026-02-09 16:58:20 | INFO | underwater_sensor_ga.ga | Generation 86/200 | best_global_cost=3.670 | generation_best=4.512
+2026-02-09 16:58:21 | INFO | underwater_sensor_ga.ga | Generation 87/200 | best_global_cost=3.670 | generation_best=4.861
+2026-02-09 16:58:22 | INFO | underwater_sensor_ga.ga | Generation 88/200 | best_global_cost=3.670 | generation_best=4.028
+2026-02-09 16:58:23 | INFO | underwater_sensor_ga.ga | Generation 89/200 | best_global_cost=3.670 | generation_best=4.744
+2026-02-09 16:58:24 | INFO | underwater_sensor_ga.ga | Generation 90/200 | best_global_cost=3.670 | generation_best=4.605
+2026-02-09 16:58:25 | INFO | underwater_sensor_ga.ga | Generation 91/200 | best_global_cost=3.670 | generation_best=4.245
+2026-02-09 16:58:26 | INFO | underwater_sensor_ga.ga | Generation 92/200 | best_global_cost=3.670 | generation_best=4.347
+2026-02-09 16:58:27 | INFO | underwater_sensor_ga.ga | Generation 93/200 | best_global_cost=3.670 | generation_best=4.646
+2026-02-09 16:58:28 | INFO | underwater_sensor_ga.ga | Generation 94/200 | best_global_cost=3.670 | generation_best=4.449
+2026-02-09 16:58:29 | INFO | underwater_sensor_ga.ga | Generation 95/200 | best_global_cost=3.670 | generation_best=4.447
+2026-02-09 16:58:30 | INFO | underwater_sensor_ga.ga | Generation 96/200 | best_global_cost=3.670 | generation_best=4.702
+2026-02-09 16:58:31 | INFO | underwater_sensor_ga.ga | Generation 97/200 | best_global_cost=3.670 | generation_best=4.381
+2026-02-09 16:58:33 | INFO | underwater_sensor_ga.ga | Generation 98/200 | best_global_cost=3.670 | generation_best=3.849
+2026-02-09 16:58:34 | INFO | underwater_sensor_ga.ga | Generation 99/200 | best_global_cost=3.670 | generation_best=3.858
+2026-02-09 16:58:35 | INFO | underwater_sensor_ga.ga | Generation 100/200 | best_global_cost=3.670 | generation_best=4.173
+2026-02-09 16:58:36 | INFO | underwater_sensor_ga.ga | Generation 101/200 | best_global_cost=3.670 | generation_best=4.606
+2026-02-09 16:58:37 | INFO | underwater_sensor_ga.ga | Generation 102/200 | best_global_cost=3.670 | generation_best=4.430
+2026-02-09 16:58:38 | INFO | underwater_sensor_ga.ga | Generation 103/200 | best_global_cost=3.670 | generation_best=4.412
+2026-02-09 16:58:39 | INFO | underwater_sensor_ga.ga | Generation 104/200 | best_global_cost=3.670 | generation_best=4.785
+2026-02-09 16:58:40 | INFO | underwater_sensor_ga.ga | Generation 105/200 | best_global_cost=3.670 | generation_best=4.351
+2026-02-09 16:58:41 | INFO | underwater_sensor_ga.ga | Generation 106/200 | best_global_cost=3.670 | generation_best=4.360
+2026-02-09 16:58:42 | INFO | underwater_sensor_ga.ga | Generation 107/200 | best_global_cost=3.670 | generation_best=5.017
+2026-02-09 16:58:43 | INFO | underwater_sensor_ga.ga | Generation 108/200 | best_global_cost=3.670 | generation_best=4.238
+2026-02-09 16:58:44 | INFO | underwater_sensor_ga.ga | Generation 109/200 | best_global_cost=3.670 | generation_best=3.952
+2026-02-09 16:58:45 | INFO | underwater_sensor_ga.ga | Generation 110/200 | best_global_cost=3.670 | generation_best=4.202
+2026-02-09 16:58:47 | INFO | underwater_sensor_ga.ga | Generation 111/200 | best_global_cost=3.670 | generation_best=4.457
+2026-02-09 16:58:48 | INFO | underwater_sensor_ga.ga | Generation 112/200 | best_global_cost=3.670 | generation_best=4.198
+2026-02-09 16:58:49 | INFO | underwater_sensor_ga.ga | Generation 113/200 | best_global_cost=3.670 | generation_best=5.366
+2026-02-09 16:58:50 | INFO | underwater_sensor_ga.ga | Generation 114/200 | best_global_cost=3.670 | generation_best=4.605
+2026-02-09 16:58:51 | INFO | underwater_sensor_ga.ga | Generation 115/200 | best_global_cost=3.670 | generation_best=4.433
+2026-02-09 16:58:52 | INFO | underwater_sensor_ga.ga | Generation 116/200 | best_global_cost=3.657 | generation_best=3.657
+2026-02-09 16:58:53 | INFO | underwater_sensor_ga.ga | Generation 117/200 | best_global_cost=3.657 | generation_best=4.067
+2026-02-09 16:58:54 | INFO | underwater_sensor_ga.ga | Generation 118/200 | best_global_cost=3.657 | generation_best=3.757
+2026-02-09 16:58:55 | INFO | underwater_sensor_ga.ga | Generation 119/200 | best_global_cost=3.657 | generation_best=4.453
+2026-02-09 16:58:56 | INFO | underwater_sensor_ga.ga | Generation 120/200 | best_global_cost=3.657 | generation_best=4.058
+2026-02-09 16:58:57 | INFO | underwater_sensor_ga.ga | Generation 121/200 | best_global_cost=3.657 | generation_best=4.582
+2026-02-09 16:58:58 | INFO | underwater_sensor_ga.ga | Generation 122/200 | best_global_cost=3.657 | generation_best=4.685
+2026-02-09 16:58:59 | INFO | underwater_sensor_ga.ga | Generation 123/200 | best_global_cost=3.657 | generation_best=4.380
+2026-02-09 16:59:00 | INFO | underwater_sensor_ga.ga | Generation 124/200 | best_global_cost=3.657 | generation_best=4.464
+2026-02-09 16:59:01 | INFO | underwater_sensor_ga.ga | Generation 125/200 | best_global_cost=3.657 | generation_best=4.556
+2026-02-09 16:59:02 | INFO | underwater_sensor_ga.ga | Generation 126/200 | best_global_cost=3.657 | generation_best=4.209
+2026-02-09 16:59:03 | INFO | underwater_sensor_ga.ga | Generation 127/200 | best_global_cost=3.657 | generation_best=4.389
+2026-02-09 16:59:04 | INFO | underwater_sensor_ga.ga | Generation 128/200 | best_global_cost=3.657 | generation_best=4.414
+2026-02-09 16:59:05 | INFO | underwater_sensor_ga.ga | Generation 129/200 | best_global_cost=3.657 | generation_best=3.879
+2026-02-09 16:59:06 | INFO | underwater_sensor_ga.ga | Generation 130/200 | best_global_cost=3.657 | generation_best=4.162
+2026-02-09 16:59:07 | INFO | underwater_sensor_ga.ga | Generation 131/200 | best_global_cost=3.657 | generation_best=4.665
+2026-02-09 16:59:08 | INFO | underwater_sensor_ga.ga | Generation 132/200 | best_global_cost=3.657 | generation_best=3.912
+2026-02-09 16:59:09 | INFO | underwater_sensor_ga.ga | Generation 133/200 | best_global_cost=3.657 | generation_best=4.338
+2026-02-09 16:59:10 | INFO | underwater_sensor_ga.ga | Generation 134/200 | best_global_cost=3.657 | generation_best=4.005
+2026-02-09 16:59:11 | INFO | underwater_sensor_ga.ga | Generation 135/200 | best_global_cost=3.657 | generation_best=4.344
+2026-02-09 16:59:12 | INFO | underwater_sensor_ga.ga | Generation 136/200 | best_global_cost=3.657 | generation_best=4.241
+2026-02-09 16:59:13 | INFO | underwater_sensor_ga.ga | Generation 137/200 | best_global_cost=3.657 | generation_best=4.473
+2026-02-09 16:59:14 | INFO | underwater_sensor_ga.ga | Generation 138/200 | best_global_cost=3.657 | generation_best=4.292
+2026-02-09 16:59:15 | INFO | underwater_sensor_ga.ga | Generation 139/200 | best_global_cost=3.657 | generation_best=4.242
+2026-02-09 16:59:17 | INFO | underwater_sensor_ga.ga | Generation 140/200 | best_global_cost=3.657 | generation_best=4.253
+2026-02-09 16:59:18 | INFO | underwater_sensor_ga.ga | Generation 141/200 | best_global_cost=3.621 | generation_best=3.621
+2026-02-09 16:59:19 | INFO | underwater_sensor_ga.ga | Generation 142/200 | best_global_cost=3.621 | generation_best=4.561
+2026-02-09 16:59:20 | INFO | underwater_sensor_ga.ga | Generation 143/200 | best_global_cost=3.621 | generation_best=4.824
+2026-02-09 16:59:21 | INFO | underwater_sensor_ga.ga | Generation 144/200 | best_global_cost=3.621 | generation_best=3.838
+2026-02-09 16:59:22 | INFO | underwater_sensor_ga.ga | Generation 145/200 | best_global_cost=3.621 | generation_best=4.292
+2026-02-09 16:59:23 | INFO | underwater_sensor_ga.ga | Generation 146/200 | best_global_cost=3.621 | generation_best=3.908
+2026-02-09 16:59:24 | INFO | underwater_sensor_ga.ga | Generation 147/200 | best_global_cost=3.621 | generation_best=4.461
+2026-02-09 16:59:25 | INFO | underwater_sensor_ga.ga | Generation 148/200 | best_global_cost=3.621 | generation_best=4.228
+2026-02-09 16:59:26 | INFO | underwater_sensor_ga.ga | Generation 149/200 | best_global_cost=3.621 | generation_best=4.452
+2026-02-09 16:59:27 | INFO | underwater_sensor_ga.ga | Generation 150/200 | best_global_cost=3.621 | generation_best=4.091
+2026-02-09 16:59:28 | INFO | underwater_sensor_ga.ga | Generation 151/200 | best_global_cost=3.621 | generation_best=4.050
+2026-02-09 16:59:29 | INFO | underwater_sensor_ga.ga | Generation 152/200 | best_global_cost=3.621 | generation_best=4.286
+2026-02-09 16:59:31 | INFO | underwater_sensor_ga.ga | Generation 153/200 | best_global_cost=3.621 | generation_best=4.387
+2026-02-09 16:59:32 | INFO | underwater_sensor_ga.ga | Generation 154/200 | best_global_cost=3.621 | generation_best=4.611
+2026-02-09 16:59:33 | INFO | underwater_sensor_ga.ga | Generation 155/200 | best_global_cost=3.621 | generation_best=4.668
+2026-02-09 16:59:34 | INFO | underwater_sensor_ga.ga | Generation 156/200 | best_global_cost=3.621 | generation_best=4.157
+2026-02-09 16:59:35 | INFO | underwater_sensor_ga.ga | Generation 157/200 | best_global_cost=3.621 | generation_best=4.235
+2026-02-09 16:59:36 | INFO | underwater_sensor_ga.ga | Generation 158/200 | best_global_cost=3.621 | generation_best=3.890
+2026-02-09 16:59:37 | INFO | underwater_sensor_ga.ga | Generation 159/200 | best_global_cost=3.621 | generation_best=3.997
+2026-02-09 16:59:38 | INFO | underwater_sensor_ga.ga | Generation 160/200 | best_global_cost=3.621 | generation_best=3.654
+2026-02-09 16:59:39 | INFO | underwater_sensor_ga.ga | Generation 161/200 | best_global_cost=3.621 | generation_best=5.118
+2026-02-09 16:59:40 | INFO | underwater_sensor_ga.ga | Generation 162/200 | best_global_cost=3.621 | generation_best=3.697
+2026-02-09 16:59:41 | INFO | underwater_sensor_ga.ga | Generation 163/200 | best_global_cost=3.621 | generation_best=4.873
+2026-02-09 16:59:42 | INFO | underwater_sensor_ga.ga | Generation 164/200 | best_global_cost=3.621 | generation_best=4.245
+2026-02-09 16:59:43 | INFO | underwater_sensor_ga.ga | Generation 165/200 | best_global_cost=3.621 | generation_best=4.022
+2026-02-09 16:59:44 | INFO | underwater_sensor_ga.ga | Generation 166/200 | best_global_cost=3.621 | generation_best=4.834
+2026-02-09 16:59:45 | INFO | underwater_sensor_ga.ga | Generation 167/200 | best_global_cost=3.621 | generation_best=3.783
+2026-02-09 16:59:46 | INFO | underwater_sensor_ga.ga | Generation 168/200 | best_global_cost=3.621 | generation_best=4.695
+2026-02-09 16:59:47 | INFO | underwater_sensor_ga.ga | Generation 169/200 | best_global_cost=3.621 | generation_best=4.867
+2026-02-09 16:59:49 | INFO | underwater_sensor_ga.ga | Generation 170/200 | best_global_cost=3.621 | generation_best=4.997
+2026-02-09 16:59:50 | INFO | underwater_sensor_ga.ga | Generation 171/200 | best_global_cost=3.621 | generation_best=4.542
+2026-02-09 16:59:51 | INFO | underwater_sensor_ga.ga | Generation 172/200 | best_global_cost=3.621 | generation_best=4.523
+2026-02-09 16:59:52 | INFO | underwater_sensor_ga.ga | Generation 173/200 | best_global_cost=3.621 | generation_best=4.012
+2026-02-09 16:59:53 | INFO | underwater_sensor_ga.ga | Generation 174/200 | best_global_cost=3.621 | generation_best=4.488
+2026-02-09 16:59:54 | INFO | underwater_sensor_ga.ga | Generation 175/200 | best_global_cost=3.621 | generation_best=4.092
+2026-02-09 16:59:55 | INFO | underwater_sensor_ga.ga | Generation 176/200 | best_global_cost=3.621 | generation_best=3.962
+2026-02-09 16:59:56 | INFO | underwater_sensor_ga.ga | Generation 177/200 | best_global_cost=3.621 | generation_best=4.035
+2026-02-09 16:59:57 | INFO | underwater_sensor_ga.ga | Generation 178/200 | best_global_cost=3.621 | generation_best=3.767
+2026-02-09 16:59:58 | INFO | underwater_sensor_ga.ga | Generation 179/200 | best_global_cost=3.621 | generation_best=4.307
+2026-02-09 16:59:59 | INFO | underwater_sensor_ga.ga | Generation 180/200 | best_global_cost=3.621 | generation_best=4.064
+2026-02-09 17:00:00 | INFO | underwater_sensor_ga.ga | Generation 181/200 | best_global_cost=3.621 | generation_best=4.169
+2026-02-09 17:00:01 | INFO | underwater_sensor_ga.ga | Generation 182/200 | best_global_cost=3.621 | generation_best=3.940
+2026-02-09 17:00:02 | INFO | underwater_sensor_ga.ga | Generation 183/200 | best_global_cost=3.621 | generation_best=4.188
+2026-02-09 17:00:03 | INFO | underwater_sensor_ga.ga | Generation 184/200 | best_global_cost=3.621 | generation_best=4.124
+2026-02-09 17:00:04 | INFO | underwater_sensor_ga.ga | Generation 185/200 | best_global_cost=3.621 | generation_best=4.249
+2026-02-09 17:00:05 | INFO | underwater_sensor_ga.ga | Generation 186/200 | best_global_cost=3.621 | generation_best=4.399
+2026-02-09 17:00:06 | INFO | underwater_sensor_ga.ga | Generation 187/200 | best_global_cost=3.621 | generation_best=3.937
+2026-02-09 17:00:07 | INFO | underwater_sensor_ga.ga | Generation 188/200 | best_global_cost=3.621 | generation_best=4.585
+2026-02-09 17:00:08 | INFO | underwater_sensor_ga.ga | Generation 189/200 | best_global_cost=3.621 | generation_best=4.424
+2026-02-09 17:00:09 | INFO | underwater_sensor_ga.ga | Generation 190/200 | best_global_cost=3.621 | generation_best=4.511
+2026-02-09 17:00:10 | INFO | underwater_sensor_ga.ga | Generation 191/200 | best_global_cost=3.621 | generation_best=4.821
+2026-02-09 17:00:11 | INFO | underwater_sensor_ga.ga | Generation 192/200 | best_global_cost=3.621 | generation_best=4.929
+2026-02-09 17:00:12 | INFO | underwater_sensor_ga.ga | Generation 193/200 | best_global_cost=3.621 | generation_best=4.015
+2026-02-09 17:00:13 | INFO | underwater_sensor_ga.ga | Generation 194/200 | best_global_cost=3.621 | generation_best=4.770
+2026-02-09 17:00:14 | INFO | underwater_sensor_ga.ga | Generation 195/200 | best_global_cost=3.621 | generation_best=4.475
+2026-02-09 17:00:16 | INFO | underwater_sensor_ga.ga | Generation 196/200 | best_global_cost=3.621 | generation_best=4.419
+2026-02-09 17:00:17 | INFO | underwater_sensor_ga.ga | Generation 197/200 | best_global_cost=3.621 | generation_best=4.081
+2026-02-09 17:00:18 | INFO | underwater_sensor_ga.ga | Generation 198/200 | best_global_cost=3.621 | generation_best=4.672
+2026-02-09 17:00:19 | INFO | underwater_sensor_ga.ga | Generation 199/200 | best_global_cost=3.621 | generation_best=4.187
+2026-02-09 17:00:20 | INFO | underwater_sensor_ga.ga | Generation 200/200 | best_global_cost=3.621 | generation_best=4.806
+2026-02-09 17:00:20 | INFO | underwater_sensor_ga.runner | Final best cost (N=4): 3.621
+2026-02-09 17:01:13 | ERROR | underwater_sensor_ga.postprocess | Baseline comparison failed for N=4
+Traceback (most recent call last):
+  File "D:\AmbienteDeDesenvolvimento\Underwater-Sensor-Network-Positioning-and-Deployment\executable\postprocess.py", line 209, in postprocess_results
+    save_baseline_comparison(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        output_dir=output_dir,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        sound_speed_profile=sound_speed_profile,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\AmbienteDeDesenvolvimento\Underwater-Sensor-Network-Positioning-and-Deployment\executable\baseline.py", line 73, in save_baseline_comparison
+    ga_sensors, ga_report = evaluate_topology(
+                            ~~~~~~~~~~~~~~~~~^
+        chromosome=result.best_chromosome,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        seed=eval_seed,
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\AmbienteDeDesenvolvimento\Underwater-Sensor-Network-Positioning-and-Deployment\executable\baseline.py", line 34, in evaluate_topology
+    report = evaluate_chromosome_with_report(
+        chromosome=chromosome,
+    ...<5 lines>...
+        random_generator=rng,
+    )
+  File "D:\AmbienteDeDesenvolvimento\Underwater-Sensor-Network-Positioning-and-Deployment\evaluation\cost_function.py", line 44, in evaluate_chromosome_with_report
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: impact_points must be provided for consistent evaluation (expected from evaluate_population).
+2026-02-09 17:01:13 | INFO | underwater_sensor_ga.runner | ================================================================================
+2026-02-09 17:01:13 | INFO | underwater_sensor_ga.runner | Running Genetic Algorithm for number_of_sensors=5
+2026-02-09 17:01:13 | INFO | underwater_sensor_ga.ga | Generation 1/200 | best_global_cost=7.603 | generation_best=7.603
+2026-02-09 17:01:14 | INFO | underwater_sensor_ga.ga | Generation 2/200 | best_global_cost=5.207 | generation_best=5.207
+2026-02-09 17:01:14 | INFO | underwater_sensor_ga.ga | Generation 3/200 | best_global_cost=4.792 | generation_best=4.792
+2026-02-09 17:01:15 | INFO | underwater_sensor_ga.ga | Generation 4/200 | best_global_cost=4.792 | generation_best=4.875
+2026-02-09 17:01:16 | INFO | underwater_sensor_ga.ga | Generation 5/200 | best_global_cost=4.213 | generation_best=4.213
+2026-02-09 17:01:17 | INFO | underwater_sensor_ga.ga | Generation 6/200 | best_global_cost=4.213 | generation_best=4.851
+2026-02-09 17:01:18 | INFO | underwater_sensor_ga.ga | Generation 7/200 | best_global_cost=4.213 | generation_best=4.474
+2026-02-09 17:01:20 | INFO | underwater_sensor_ga.ga | Generation 8/200 | best_global_cost=4.213 | generation_best=4.774
+2026-02-09 17:01:21 | INFO | underwater_sensor_ga.ga | Generation 9/200 | best_global_cost=4.213 | generation_best=4.937
+2026-02-09 17:01:22 | INFO | underwater_sensor_ga.ga | Generation 10/200 | best_global_cost=4.213 | generation_best=4.835
+2026-02-09 17:01:23 | INFO | underwater_sensor_ga.ga | Generation 11/200 | best_global_cost=4.213 | generation_best=4.322
+2026-02-09 17:01:24 | INFO | underwater_sensor_ga.ga | Generation 12/200 | best_global_cost=4.213 | generation_best=4.426
+2026-02-09 17:01:25 | INFO | underwater_sensor_ga.ga | Generation 13/200 | best_global_cost=4.213 | generation_best=5.031
+2026-02-09 17:01:26 | INFO | underwater_sensor_ga.ga | Generation 14/200 | best_global_cost=4.213 | generation_best=4.547
+2026-02-09 17:01:27 | INFO | underwater_sensor_ga.ga | Generation 15/200 | best_global_cost=4.213 | generation_best=2000004.602
+2026-02-09 17:01:28 | INFO | underwater_sensor_ga.ga | Generation 16/200 | best_global_cost=4.213 | generation_best=4.847
+2026-02-09 17:01:29 | INFO | underwater_sensor_ga.ga | Generation 17/200 | best_global_cost=4.213 | generation_best=4.758
+2026-02-09 17:01:31 | INFO | underwater_sensor_ga.ga | Generation 18/200 | best_global_cost=4.010 | generation_best=4.010
+2026-02-09 17:01:32 | INFO | underwater_sensor_ga.ga | Generation 19/200 | best_global_cost=4.010 | generation_best=4.683
+2026-02-09 17:01:33 | INFO | underwater_sensor_ga.ga | Generation 20/200 | best_global_cost=4.010 | generation_best=4.654
+2026-02-09 17:01:34 | INFO | underwater_sensor_ga.ga | Generation 21/200 | best_global_cost=4.010 | generation_best=4.268
+2026-02-09 17:01:35 | INFO | underwater_sensor_ga.ga | Generation 22/200 | best_global_cost=4.010 | generation_best=4.016
+2026-02-09 17:01:36 | INFO | underwater_sensor_ga.ga | Generation 23/200 | best_global_cost=4.010 | generation_best=4.877
+2026-02-09 17:01:37 | INFO | underwater_sensor_ga.ga | Generation 24/200 | best_global_cost=4.010 | generation_best=4.644
+2026-02-09 17:01:38 | INFO | underwater_sensor_ga.ga | Generation 25/200 | best_global_cost=4.010 | generation_best=4.542
+2026-02-09 17:01:39 | INFO | underwater_sensor_ga.ga | Generation 26/200 | best_global_cost=4.010 | generation_best=5.115
+2026-02-09 17:01:40 | INFO | underwater_sensor_ga.ga | Generation 27/200 | best_global_cost=4.010 | generation_best=4.062
+2026-02-09 17:01:41 | INFO | underwater_sensor_ga.ga | Generation 28/200 | best_global_cost=4.010 | generation_best=4.053
+2026-02-09 17:01:43 | INFO | underwater_sensor_ga.ga | Generation 29/200 | best_global_cost=4.010 | generation_best=4.781
+2026-02-09 17:01:44 | INFO | underwater_sensor_ga.ga | Generation 30/200 | best_global_cost=4.010 | generation_best=4.734
+2026-02-09 17:01:45 | INFO | underwater_sensor_ga.ga | Generation 31/200 | best_global_cost=4.010 | generation_best=4.363
+2026-02-09 17:01:46 | INFO | underwater_sensor_ga.ga | Generation 32/200 | best_global_cost=4.010 | generation_best=4.425
+2026-02-09 17:01:47 | INFO | underwater_sensor_ga.ga | Generation 33/200 | best_global_cost=4.010 | generation_best=4.059
+2026-02-09 17:01:48 | INFO | underwater_sensor_ga.ga | Generation 34/200 | best_global_cost=4.010 | generation_best=4.178
+2026-02-09 17:01:49 | INFO | underwater_sensor_ga.ga | Generation 35/200 | best_global_cost=4.010 | generation_best=4.067
+2026-02-09 17:01:50 | INFO | underwater_sensor_ga.ga | Generation 36/200 | best_global_cost=4.010 | generation_best=4.431
+2026-02-09 17:01:52 | INFO | underwater_sensor_ga.ga | Generation 37/200 | best_global_cost=4.010 | generation_best=4.151
+2026-02-09 17:01:53 | INFO | underwater_sensor_ga.ga | Generation 38/200 | best_global_cost=3.616 | generation_best=3.616
+2026-02-09 17:01:54 | INFO | underwater_sensor_ga.ga | Generation 39/200 | best_global_cost=3.616 | generation_best=4.074
+2026-02-09 17:01:55 | INFO | underwater_sensor_ga.ga | Generation 40/200 | best_global_cost=3.616 | generation_best=4.222
+2026-02-09 17:01:56 | INFO | underwater_sensor_ga.ga | Generation 41/200 | best_global_cost=3.616 | generation_best=4.467
+2026-02-09 17:01:57 | INFO | underwater_sensor_ga.ga | Generation 42/200 | best_global_cost=3.616 | generation_best=4.131
+2026-02-09 17:01:59 | INFO | underwater_sensor_ga.ga | Generation 43/200 | best_global_cost=3.616 | generation_best=4.476
+2026-02-09 17:02:00 | INFO | underwater_sensor_ga.ga | Generation 44/200 | best_global_cost=3.616 | generation_best=3.973
+2026-02-09 17:02:01 | INFO | underwater_sensor_ga.ga | Generation 45/200 | best_global_cost=3.616 | generation_best=4.018
+2026-02-09 17:02:02 | INFO | underwater_sensor_ga.ga | Generation 46/200 | best_global_cost=3.616 | generation_best=4.387
+2026-02-09 17:02:03 | INFO | underwater_sensor_ga.ga | Generation 47/200 | best_global_cost=3.616 | generation_best=4.231
+2026-02-09 17:02:04 | INFO | underwater_sensor_ga.ga | Generation 48/200 | best_global_cost=3.616 | generation_best=4.662
+2026-02-09 17:02:05 | INFO | underwater_sensor_ga.ga | Generation 49/200 | best_global_cost=3.616 | generation_best=4.075
+2026-02-09 17:02:07 | INFO | underwater_sensor_ga.ga | Generation 50/200 | best_global_cost=3.616 | generation_best=3.766
+2026-02-09 17:02:08 | INFO | underwater_sensor_ga.ga | Generation 51/200 | best_global_cost=3.616 | generation_best=4.142
+2026-02-09 17:02:09 | INFO | underwater_sensor_ga.ga | Generation 52/200 | best_global_cost=3.616 | generation_best=4.030
+2026-02-09 17:02:10 | INFO | underwater_sensor_ga.ga | Generation 53/200 | best_global_cost=3.616 | generation_best=3.987
+2026-02-09 17:02:11 | INFO | underwater_sensor_ga.ga | Generation 54/200 | best_global_cost=3.616 | generation_best=4.037
+2026-02-09 17:02:12 | INFO | underwater_sensor_ga.ga | Generation 55/200 | best_global_cost=3.616 | generation_best=4.212
+2026-02-09 17:02:13 | INFO | underwater_sensor_ga.ga | Generation 56/200 | best_global_cost=3.616 | generation_best=4.684
+2026-02-09 17:02:14 | INFO | underwater_sensor_ga.ga | Generation 57/200 | best_global_cost=3.616 | generation_best=4.937
+2026-02-09 17:02:15 | INFO | underwater_sensor_ga.ga | Generation 58/200 | best_global_cost=3.616 | generation_best=4.500
+2026-02-09 17:02:17 | INFO | underwater_sensor_ga.ga | Generation 59/200 | best_global_cost=3.616 | generation_best=4.118
+2026-02-09 17:02:18 | INFO | underwater_sensor_ga.ga | Generation 60/200 | best_global_cost=3.565 | generation_best=3.565
+2026-02-09 17:02:19 | INFO | underwater_sensor_ga.ga | Generation 61/200 | best_global_cost=3.565 | generation_best=4.491
+2026-02-09 17:02:20 | INFO | underwater_sensor_ga.ga | Generation 62/200 | best_global_cost=3.565 | generation_best=3.964
+2026-02-09 17:02:21 | INFO | underwater_sensor_ga.ga | Generation 63/200 | best_global_cost=3.565 | generation_best=3.842
+2026-02-09 17:02:22 | INFO | underwater_sensor_ga.ga | Generation 64/200 | best_global_cost=3.565 | generation_best=4.810
+2026-02-09 17:02:23 | INFO | underwater_sensor_ga.ga | Generation 65/200 | best_global_cost=3.565 | generation_best=4.710
+2026-02-09 17:02:25 | INFO | underwater_sensor_ga.ga | Generation 66/200 | best_global_cost=3.435 | generation_best=3.435
+2026-02-09 17:02:26 | INFO | underwater_sensor_ga.ga | Generation 67/200 | best_global_cost=3.435 | generation_best=4.274
+2026-02-09 17:02:27 | INFO | underwater_sensor_ga.ga | Generation 68/200 | best_global_cost=3.435 | generation_best=4.333
+2026-02-09 17:02:29 | INFO | underwater_sensor_ga.ga | Generation 69/200 | best_global_cost=3.435 | generation_best=4.277
+2026-02-09 17:02:30 | INFO | underwater_sensor_ga.ga | Generation 70/200 | best_global_cost=3.435 | generation_best=4.493
+2026-02-09 17:02:31 | INFO | underwater_sensor_ga.ga | Generation 71/200 | best_global_cost=3.435 | generation_best=3.914
+2026-02-09 17:02:33 | INFO | underwater_sensor_ga.ga | Generation 72/200 | best_global_cost=3.435 | generation_best=4.186
+2026-02-09 17:02:34 | INFO | underwater_sensor_ga.ga | Generation 73/200 | best_global_cost=3.435 | generation_best=4.059
+2026-02-09 17:02:35 | INFO | underwater_sensor_ga.ga | Generation 74/200 | best_global_cost=3.435 | generation_best=4.361
+2026-02-09 17:02:36 | INFO | underwater_sensor_ga.ga | Generation 75/200 | best_global_cost=3.435 | generation_best=4.466
+2026-02-09 17:02:38 | INFO | underwater_sensor_ga.ga | Generation 76/200 | best_global_cost=3.435 | generation_best=4.051
+2026-02-09 17:02:39 | INFO | underwater_sensor_ga.ga | Generation 77/200 | best_global_cost=3.435 | generation_best=4.576
+2026-02-09 17:02:40 | INFO | underwater_sensor_ga.ga | Generation 78/200 | best_global_cost=3.435 | generation_best=4.535
+2026-02-09 17:02:41 | INFO | underwater_sensor_ga.ga | Generation 79/200 | best_global_cost=3.435 | generation_best=4.643
+2026-02-09 17:02:42 | INFO | underwater_sensor_ga.ga | Generation 80/200 | best_global_cost=3.435 | generation_best=4.065
+2026-02-09 17:02:43 | INFO | underwater_sensor_ga.ga | Generation 81/200 | best_global_cost=3.435 | generation_best=4.112
+2026-02-09 17:02:44 | INFO | underwater_sensor_ga.ga | Generation 82/200 | best_global_cost=3.435 | generation_best=4.403
+2026-02-09 17:02:45 | INFO | underwater_sensor_ga.ga | Generation 83/200 | best_global_cost=3.435 | generation_best=4.355
+2026-02-09 17:02:46 | INFO | underwater_sensor_ga.ga | Generation 84/200 | best_global_cost=3.435 | generation_best=4.904
+2026-02-09 17:02:48 | INFO | underwater_sensor_ga.ga | Generation 85/200 | best_global_cost=3.435 | generation_best=4.438
+2026-02-09 17:02:49 | INFO | underwater_sensor_ga.ga | Generation 86/200 | best_global_cost=3.435 | generation_best=3.761
+2026-02-09 17:02:50 | INFO | underwater_sensor_ga.ga | Generation 87/200 | best_global_cost=3.435 | generation_best=4.494
+2026-02-09 17:02:51 | INFO | underwater_sensor_ga.ga | Generation 88/200 | best_global_cost=3.435 | generation_best=4.108
+2026-02-09 17:02:52 | INFO | underwater_sensor_ga.ga | Generation 89/200 | best_global_cost=3.435 | generation_best=4.408
+2026-02-09 17:02:53 | INFO | underwater_sensor_ga.ga | Generation 90/200 | best_global_cost=3.435 | generation_best=4.343
+2026-02-09 17:02:54 | INFO | underwater_sensor_ga.ga | Generation 91/200 | best_global_cost=3.435 | generation_best=4.132
+2026-02-09 17:02:56 | INFO | underwater_sensor_ga.ga | Generation 92/200 | best_global_cost=3.435 | generation_best=4.003
+2026-02-09 17:02:57 | INFO | underwater_sensor_ga.ga | Generation 93/200 | best_global_cost=3.435 | generation_best=4.345
+2026-02-09 17:02:58 | INFO | underwater_sensor_ga.ga | Generation 94/200 | best_global_cost=3.435 | generation_best=4.356
+2026-02-09 17:02:59 | INFO | underwater_sensor_ga.ga | Generation 95/200 | best_global_cost=3.435 | generation_best=4.218
+2026-02-09 17:03:00 | INFO | underwater_sensor_ga.ga | Generation 96/200 | best_global_cost=3.435 | generation_best=4.297
+2026-02-09 17:03:01 | INFO | underwater_sensor_ga.ga | Generation 97/200 | best_global_cost=3.435 | generation_best=4.454
+2026-02-09 17:03:02 | INFO | underwater_sensor_ga.ga | Generation 98/200 | best_global_cost=3.435 | generation_best=3.453
+2026-02-09 17:03:03 | INFO | underwater_sensor_ga.ga | Generation 99/200 | best_global_cost=3.435 | generation_best=3.676
+2026-02-09 17:03:05 | INFO | underwater_sensor_ga.ga | Generation 100/200 | best_global_cost=3.435 | generation_best=3.991
+2026-02-09 17:03:06 | INFO | underwater_sensor_ga.ga | Generation 101/200 | best_global_cost=3.435 | generation_best=4.706
+2026-02-09 17:03:07 | INFO | underwater_sensor_ga.ga | Generation 102/200 | best_global_cost=3.435 | generation_best=4.241
+2026-02-09 17:03:08 | INFO | underwater_sensor_ga.ga | Generation 103/200 | best_global_cost=3.435 | generation_best=4.431
+2026-02-09 17:03:09 | INFO | underwater_sensor_ga.ga | Generation 104/200 | best_global_cost=3.435 | generation_best=4.918
+2026-02-09 17:03:10 | INFO | underwater_sensor_ga.ga | Generation 105/200 | best_global_cost=3.435 | generation_best=4.333
+2026-02-09 17:03:12 | INFO | underwater_sensor_ga.ga | Generation 106/200 | best_global_cost=3.435 | generation_best=4.346
+2026-02-09 17:03:13 | INFO | underwater_sensor_ga.ga | Generation 107/200 | best_global_cost=3.435 | generation_best=4.788
+2026-02-09 17:03:14 | INFO | underwater_sensor_ga.ga | Generation 108/200 | best_global_cost=3.435 | generation_best=4.051
+2026-02-09 17:03:15 | INFO | underwater_sensor_ga.ga | Generation 109/200 | best_global_cost=3.435 | generation_best=3.631
+2026-02-09 17:03:17 | INFO | underwater_sensor_ga.ga | Generation 110/200 | best_global_cost=3.435 | generation_best=4.215
+2026-02-09 17:03:18 | INFO | underwater_sensor_ga.ga | Generation 111/200 | best_global_cost=3.435 | generation_best=4.222
+2026-02-09 17:03:19 | INFO | underwater_sensor_ga.ga | Generation 112/200 | best_global_cost=3.435 | generation_best=3.983
+2026-02-09 17:03:20 | INFO | underwater_sensor_ga.ga | Generation 113/200 | best_global_cost=3.435 | generation_best=4.747
+2026-02-09 17:03:22 | INFO | underwater_sensor_ga.ga | Generation 114/200 | best_global_cost=3.435 | generation_best=4.291
+2026-02-09 17:03:23 | INFO | underwater_sensor_ga.ga | Generation 115/200 | best_global_cost=3.435 | generation_best=4.394
+2026-02-09 17:03:24 | INFO | underwater_sensor_ga.ga | Generation 116/200 | best_global_cost=3.435 | generation_best=3.457
+2026-02-09 17:03:25 | INFO | underwater_sensor_ga.ga | Generation 117/200 | best_global_cost=3.435 | generation_best=3.999
+2026-02-09 17:03:26 | INFO | underwater_sensor_ga.ga | Generation 118/200 | best_global_cost=3.435 | generation_best=3.495
+2026-02-09 17:03:28 | INFO | underwater_sensor_ga.ga | Generation 119/200 | best_global_cost=3.435 | generation_best=4.139
+2026-02-09 17:03:29 | INFO | underwater_sensor_ga.ga | Generation 120/200 | best_global_cost=3.435 | generation_best=3.864
+2026-02-09 17:03:30 | INFO | underwater_sensor_ga.ga | Generation 121/200 | best_global_cost=3.435 | generation_best=4.272
+2026-02-09 17:03:31 | INFO | underwater_sensor_ga.ga | Generation 122/200 | best_global_cost=3.435 | generation_best=4.436
+2026-02-09 17:03:32 | INFO | underwater_sensor_ga.ga | Generation 123/200 | best_global_cost=3.435 | generation_best=4.374
+2026-02-09 17:03:33 | INFO | underwater_sensor_ga.ga | Generation 124/200 | best_global_cost=3.435 | generation_best=4.203
+2026-02-09 17:03:34 | INFO | underwater_sensor_ga.ga | Generation 125/200 | best_global_cost=3.435 | generation_best=4.145
+2026-02-09 17:03:35 | INFO | underwater_sensor_ga.ga | Generation 126/200 | best_global_cost=3.435 | generation_best=4.247
+2026-02-09 17:03:37 | INFO | underwater_sensor_ga.ga | Generation 127/200 | best_global_cost=3.435 | generation_best=4.552
+2026-02-09 17:03:38 | INFO | underwater_sensor_ga.ga | Generation 128/200 | best_global_cost=3.435 | generation_best=4.093
+2026-02-09 17:03:39 | INFO | underwater_sensor_ga.ga | Generation 129/200 | best_global_cost=3.435 | generation_best=3.769
+2026-02-09 17:03:40 | INFO | underwater_sensor_ga.ga | Generation 130/200 | best_global_cost=3.435 | generation_best=3.885
+2026-02-09 17:03:41 | INFO | underwater_sensor_ga.ga | Generation 131/200 | best_global_cost=3.435 | generation_best=4.278
+2026-02-09 17:03:42 | INFO | underwater_sensor_ga.ga | Generation 132/200 | best_global_cost=3.435 | generation_best=3.862
+2026-02-09 17:03:43 | INFO | underwater_sensor_ga.ga | Generation 133/200 | best_global_cost=3.435 | generation_best=4.385
+2026-02-09 17:03:45 | INFO | underwater_sensor_ga.ga | Generation 134/200 | best_global_cost=3.435 | generation_best=3.760
+2026-02-09 17:03:46 | INFO | underwater_sensor_ga.ga | Generation 135/200 | best_global_cost=3.435 | generation_best=3.957
+2026-02-09 17:03:47 | INFO | underwater_sensor_ga.ga | Generation 136/200 | best_global_cost=3.435 | generation_best=4.499
+2026-02-09 17:03:48 | INFO | underwater_sensor_ga.ga | Generation 137/200 | best_global_cost=3.435 | generation_best=4.225
+2026-02-09 17:03:49 | INFO | underwater_sensor_ga.ga | Generation 138/200 | best_global_cost=3.435 | generation_best=4.286
+2026-02-09 17:03:50 | INFO | underwater_sensor_ga.ga | Generation 139/200 | best_global_cost=3.435 | generation_best=4.330
+2026-02-09 17:03:52 | INFO | underwater_sensor_ga.ga | Generation 140/200 | best_global_cost=3.435 | generation_best=4.055
+2026-02-09 17:03:53 | INFO | underwater_sensor_ga.ga | Generation 141/200 | best_global_cost=3.435 | generation_best=3.956
+2026-02-09 17:03:54 | INFO | underwater_sensor_ga.ga | Generation 142/200 | best_global_cost=3.435 | generation_best=4.484
+2026-02-09 17:03:55 | INFO | underwater_sensor_ga.ga | Generation 143/200 | best_global_cost=3.435 | generation_best=4.674
+2026-02-09 17:03:56 | INFO | underwater_sensor_ga.ga | Generation 144/200 | best_global_cost=3.435 | generation_best=4.092
+2026-02-09 17:03:57 | INFO | underwater_sensor_ga.ga | Generation 145/200 | best_global_cost=3.435 | generation_best=4.261
+2026-02-09 17:03:59 | INFO | underwater_sensor_ga.ga | Generation 146/200 | best_global_cost=3.435 | generation_best=3.997
+2026-02-09 17:04:00 | INFO | underwater_sensor_ga.ga | Generation 147/200 | best_global_cost=3.435 | generation_best=4.295
+2026-02-09 17:04:01 | INFO | underwater_sensor_ga.ga | Generation 148/200 | best_global_cost=3.435 | generation_best=4.044
+2026-02-09 17:04:02 | INFO | underwater_sensor_ga.ga | Generation 149/200 | best_global_cost=3.435 | generation_best=4.280
+2026-02-09 17:04:03 | INFO | underwater_sensor_ga.ga | Generation 150/200 | best_global_cost=3.435 | generation_best=3.770
+2026-02-09 17:04:04 | INFO | underwater_sensor_ga.ga | Generation 151/200 | best_global_cost=3.435 | generation_best=3.803
+2026-02-09 17:04:05 | INFO | underwater_sensor_ga.ga | Generation 152/200 | best_global_cost=3.435 | generation_best=4.291
+2026-02-09 17:04:06 | INFO | underwater_sensor_ga.ga | Generation 153/200 | best_global_cost=3.435 | generation_best=4.172
+2026-02-09 17:04:08 | INFO | underwater_sensor_ga.ga | Generation 154/200 | best_global_cost=3.435 | generation_best=4.586
+2026-02-09 17:04:09 | INFO | underwater_sensor_ga.ga | Generation 155/200 | best_global_cost=3.435 | generation_best=4.223
+2026-02-09 17:04:10 | INFO | underwater_sensor_ga.ga | Generation 156/200 | best_global_cost=3.435 | generation_best=4.265
+2026-02-09 17:04:11 | INFO | underwater_sensor_ga.ga | Generation 157/200 | best_global_cost=3.435 | generation_best=4.357
+2026-02-09 17:04:12 | INFO | underwater_sensor_ga.ga | Generation 158/200 | best_global_cost=3.435 | generation_best=3.984
+2026-02-09 17:04:13 | INFO | underwater_sensor_ga.ga | Generation 159/200 | best_global_cost=3.435 | generation_best=4.020
+2026-02-09 17:04:14 | INFO | underwater_sensor_ga.ga | Generation 160/200 | best_global_cost=3.424 | generation_best=3.424
+2026-02-09 17:04:16 | INFO | underwater_sensor_ga.ga | Generation 161/200 | best_global_cost=3.424 | generation_best=4.915
+2026-02-09 17:04:17 | INFO | underwater_sensor_ga.ga | Generation 162/200 | best_global_cost=3.424 | generation_best=3.645
+2026-02-09 17:04:18 | INFO | underwater_sensor_ga.ga | Generation 163/200 | best_global_cost=3.424 | generation_best=4.892
+2026-02-09 17:04:19 | INFO | underwater_sensor_ga.ga | Generation 164/200 | best_global_cost=3.424 | generation_best=4.277
+2026-02-09 17:04:20 | INFO | underwater_sensor_ga.ga | Generation 165/200 | best_global_cost=3.424 | generation_best=3.919
+2026-02-09 17:04:21 | INFO | underwater_sensor_ga.ga | Generation 166/200 | best_global_cost=3.424 | generation_best=4.540
+2026-02-09 17:04:22 | INFO | underwater_sensor_ga.ga | Generation 167/200 | best_global_cost=3.424 | generation_best=3.804
+2026-02-09 17:04:23 | INFO | underwater_sensor_ga.ga | Generation 168/200 | best_global_cost=3.424 | generation_best=4.668
+2026-02-09 17:04:25 | INFO | underwater_sensor_ga.ga | Generation 169/200 | best_global_cost=3.424 | generation_best=4.870
+2026-02-09 17:04:26 | INFO | underwater_sensor_ga.ga | Generation 170/200 | best_global_cost=3.424 | generation_best=4.721
+2026-02-09 17:04:27 | INFO | underwater_sensor_ga.ga | Generation 171/200 | best_global_cost=3.424 | generation_best=4.536
+2026-02-09 17:04:28 | INFO | underwater_sensor_ga.ga | Generation 172/200 | best_global_cost=3.424 | generation_best=4.191
+2026-02-09 17:04:29 | INFO | underwater_sensor_ga.ga | Generation 173/200 | best_global_cost=3.424 | generation_best=4.008
+2026-02-09 17:04:30 | INFO | underwater_sensor_ga.ga | Generation 174/200 | best_global_cost=3.424 | generation_best=4.606
+2026-02-09 17:04:31 | INFO | underwater_sensor_ga.ga | Generation 175/200 | best_global_cost=3.424 | generation_best=4.081
+2026-02-09 17:04:32 | INFO | underwater_sensor_ga.ga | Generation 176/200 | best_global_cost=3.424 | generation_best=4.177
+2026-02-09 17:04:33 | INFO | underwater_sensor_ga.ga | Generation 177/200 | best_global_cost=3.424 | generation_best=3.912
+2026-02-09 17:04:34 | INFO | underwater_sensor_ga.ga | Generation 178/200 | best_global_cost=3.424 | generation_best=3.716
+2026-02-09 17:04:35 | INFO | underwater_sensor_ga.ga | Generation 179/200 | best_global_cost=3.424 | generation_best=4.248
+2026-02-09 17:04:37 | INFO | underwater_sensor_ga.ga | Generation 180/200 | best_global_cost=3.424 | generation_best=4.020
+2026-02-09 17:04:38 | INFO | underwater_sensor_ga.ga | Generation 181/200 | best_global_cost=3.424 | generation_best=3.964
+2026-02-09 17:04:39 | INFO | underwater_sensor_ga.ga | Generation 182/200 | best_global_cost=3.424 | generation_best=3.916
+2026-02-09 17:04:40 | INFO | underwater_sensor_ga.ga | Generation 183/200 | best_global_cost=3.424 | generation_best=4.095
+2026-02-09 17:04:41 | INFO | underwater_sensor_ga.ga | Generation 184/200 | best_global_cost=3.424 | generation_best=4.089
+2026-02-09 17:04:42 | INFO | underwater_sensor_ga.ga | Generation 185/200 | best_global_cost=3.424 | generation_best=4.274
+2026-02-09 17:04:43 | INFO | underwater_sensor_ga.ga | Generation 186/200 | best_global_cost=3.424 | generation_best=4.287
+2026-02-09 17:04:44 | INFO | underwater_sensor_ga.ga | Generation 187/200 | best_global_cost=3.424 | generation_best=3.534
+2026-02-09 17:04:45 | INFO | underwater_sensor_ga.ga | Generation 188/200 | best_global_cost=3.424 | generation_best=4.480
+2026-02-09 17:04:46 | INFO | underwater_sensor_ga.ga | Generation 189/200 | best_global_cost=3.424 | generation_best=4.383
+2026-02-09 17:04:47 | INFO | underwater_sensor_ga.ga | Generation 190/200 | best_global_cost=3.424 | generation_best=4.565
+2026-02-09 17:04:48 | INFO | underwater_sensor_ga.ga | Generation 191/200 | best_global_cost=3.424 | generation_best=4.591
+2026-02-09 17:04:50 | INFO | underwater_sensor_ga.ga | Generation 192/200 | best_global_cost=3.424 | generation_best=4.611
+2026-02-09 17:04:51 | INFO | underwater_sensor_ga.ga | Generation 193/200 | best_global_cost=3.424 | generation_best=3.984
+2026-02-09 17:04:52 | INFO | underwater_sensor_ga.ga | Generation 194/200 | best_global_cost=3.424 | generation_best=4.603
+2026-02-09 17:04:53 | INFO | underwater_sensor_ga.ga | Generation 195/200 | best_global_cost=3.424 | generation_best=4.260
+2026-02-09 17:04:54 | INFO | underwater_sensor_ga.ga | Generation 196/200 | best_global_cost=3.424 | generation_best=4.396
+2026-02-09 17:04:55 | INFO | underwater_sensor_ga.ga | Generation 197/200 | best_global_cost=3.424 | generation_best=3.592
+2026-02-09 17:04:56 | INFO | underwater_sensor_ga.ga | Generation 198/200 | best_global_cost=3.424 | generation_best=4.711
+2026-02-09 17:04:57 | INFO | underwater_sensor_ga.ga | Generation 199/200 | best_global_cost=3.424 | generation_best=3.950
+2026-02-09 17:04:58 | INFO | underwater_sensor_ga.ga | Generation 200/200 | best_global_cost=3.424 | generation_best=4.474
+2026-02-09 17:04:58 | INFO | underwater_sensor_ga.runner | Final best cost (N=5): 3.424
+2026-02-09 17:05:54 | ERROR | underwater_sensor_ga.postprocess | Baseline comparison failed for N=5
+Traceback (most recent call last):
+  File "D:\AmbienteDeDesenvolvimento\Underwater-Sensor-Network-Positioning-and-Deployment\executable\postprocess.py", line 209, in postprocess_results
+    save_baseline_comparison(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        output_dir=output_dir,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        sound_speed_profile=sound_speed_profile,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\AmbienteDeDesenvolvimento\Underwater-Sensor-Network-Positioning-and-Deployment\executable\baseline.py", line 73, in save_baseline_comparison
+    ga_sensors, ga_report = evaluate_topology(
+                            ~~~~~~~~~~~~~~~~~^
+        chromosome=result.best_chromosome,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        seed=eval_seed,
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\AmbienteDeDesenvolvimento\Underwater-Sensor-Network-Positioning-and-Deployment\executable\baseline.py", line 34, in evaluate_topology
+    report = evaluate_chromosome_with_report(
+        chromosome=chromosome,
+    ...<5 lines>...
+        random_generator=rng,
+    )
+  File "D:\AmbienteDeDesenvolvimento\Underwater-Sensor-Network-Positioning-and-Deployment\evaluation\cost_function.py", line 44, in evaluate_chromosome_with_report
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: impact_points must be provided for consistent evaluation (expected from evaluate_population).
+2026-02-09 17:05:54 | INFO | underwater_sensor_ga.runner | All experiments finished. Outputs saved under 'outputs'
