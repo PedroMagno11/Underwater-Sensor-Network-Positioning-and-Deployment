@@ -8,6 +8,7 @@ from typing import List, Tuple, Optional
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
+from results.result_models import ImpactCallback
 from settings.environment_settings import EnvironmentSettings
 from settings.simulation_settings import SimulationSettings
 from settings.performance_settings import PerformanceSettings
@@ -16,6 +17,7 @@ from geometry.grid_geometry import GridGeometry
 from geometry.impact_position import ImpactPosition
 from evaluation.cost_function import evaluate_chromosome_with_report
 from evaluation.evaluation_report import EvaluationReport
+from utils.seeding import compute_job_seed, compute_generation_impact_seed
 
 
 @dataclass(frozen=True)
@@ -25,14 +27,6 @@ class EvaluationJob:
     generation_index: int
     global_seed: int
     impact_points: List[Tuple[float, float]]
-
-
-def _compute_job_seed(global_seed: int, generation_index: int, chromosome_index: int) -> int:
-    return (global_seed * 1_000_003) ^ (generation_index * 100_003) ^ (chromosome_index * 10_003)
-
-
-def _compute_generation_impact_seed(global_seed: int, generation_index: int) -> int:
-    return ((global_seed * 1_000_003) ^ (generation_index * 100_003)) & 0xFFFFFFFF
 
 
 def _generate_impacts_for_generation(
@@ -78,7 +72,7 @@ def _evaluate_job(
     simulation_settings: SimulationSettings,
     sound_speed_profile: SoundSpeedProfile,
 ) -> Tuple[int, EvaluationReport]:
-    seed = _compute_job_seed(job.global_seed, job.generation_index, job.chromosome_index)
+    seed = compute_job_seed(job.global_seed, job.generation_index, job.chromosome_index)
     rng = random.Random(seed)
 
     grid_geometry = GridGeometry(environment_settings)
@@ -129,8 +123,11 @@ def evaluate_population(
     sound_speed_profile: SoundSpeedProfile,
     generation_index: int,
     global_seed: int,
+    scenario_seed:int,
     performance_settings: PerformanceSettings,
+    impact_seed: Optional[int] = None,
     executor: Optional[ProcessPoolExecutor] = None,
+    impact_callback: Optional[ImpactCallback] = None,
 ) -> List[EvaluationReport]:
     """
     Evaluate population (ordered by population index). Supports reuse of an external executor.
@@ -141,12 +138,18 @@ def evaluate_population(
 
     # Generate impacts once per generation (in main process)
     grid_geometry = GridGeometry(environment_settings)
-    impact_seed = _compute_generation_impact_seed(global_seed, generation_index)
+    if impact_seed is None:
+        impact_seed = compute_generation_impact_seed(global_seed, generation_index)
+
+    print(f'genetic_algorithm/parallel_evaluation.py -> impact seed: {impact_seed} + global seed: {global_seed}')
     impact_points = _generate_impacts_for_generation(
         grid_geometry=grid_geometry,
         number_of_impacts=simulation_settings.number_of_impact_points_per_evaluation,
         impact_seed=impact_seed,
     )
+
+    if impact_callback is not None:
+        impact_callback(generation_index, impact_seed, impact_points)
 
     jobs = [
         EvaluationJob(

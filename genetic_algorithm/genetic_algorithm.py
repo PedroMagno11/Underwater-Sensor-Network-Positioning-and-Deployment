@@ -8,6 +8,7 @@ from pathlib import Path
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor
 
+from executable.postprocess import make_impact_saver
 from settings.environment_settings import EnvironmentSettings
 from settings.genetic_algorithm_settings import GeneticAlgorithmSettings
 from settings.simulation_settings import SimulationSettings
@@ -26,6 +27,7 @@ from results.result_models import GeneticAlgorithmResult, GenerationMetrics
 
 # NEW
 from results.report_exporter import write_best_reports_jsonl
+from utils.seeding import compute_generation_impact_seed
 
 logger = logging.getLogger("underwater_sensor_ga.ga")
 
@@ -98,14 +100,18 @@ def run_genetic_algorithm(
     simulation_settings: SimulationSettings,
     sound_speed_profile: SoundSpeedProfile,
     performance_settings: Optional[PerformanceSettings] = None,
-
-    # NEW: where to save the jsonl log
     reports_output_path: Optional[str] = None,
+    impact_points_dir: Optional[str] = None,
 ) -> GeneticAlgorithmResult:
     if performance_settings is None:
         performance_settings = PerformanceSettings()
 
-    rng = random.Random(genetic_algorithm_settings.random_seed)
+    ga_seed = int(genetic_algorithm_settings.random_seed)
+    scenario_seed = int(simulation_settings.global_seed)
+
+    rng = random.Random(ga_seed)
+    logger.info("GA seeds | ga_seed=%d | scenario_seed=%d", ga_seed, scenario_seed)
+
     grid_geometry = GridGeometry(environment_settings)
 
     population: List[np.ndarray] = [
@@ -115,23 +121,29 @@ def run_genetic_algorithm(
 
     best_chromosome: Optional[np.ndarray] = None
     best_cost: float = float("inf")
-
-    # NEW: track the best global report itself
     best_global_report: Optional[EvaluationReport] = None
 
     generation_metrics: List[GenerationMetrics] = []
     best_chromosomes_per_generation: List[np.ndarray] = []
 
-    # NEW: default output location (per N sensors)
     if reports_output_path is None:
         reports_output_path = str(
             Path("outputs") / f"sensors_{number_of_sensors}" / "best_reports.jsonl"
         )
 
+    if impact_points_dir is None:
+        impact_points_dir = str(
+            Path("outputs")/f"sensors_{number_of_sensors}"/"impacts"
+        )
+
+    impact_saver = make_impact_saver(Path(impact_points_dir), scenario_seed=scenario_seed)
     executor = _create_executor_if_needed(performance_settings)
 
     try:
         for gen_idx in range(genetic_algorithm_settings.number_of_generations):
+
+            impact_seed = compute_generation_impact_seed(scenario_seed, gen_idx)
+
             reports = evaluate_population(
                 population=population,
                 number_of_sensors=number_of_sensors,
@@ -139,13 +151,16 @@ def run_genetic_algorithm(
                 simulation_settings=simulation_settings,
                 sound_speed_profile=sound_speed_profile,
                 generation_index=gen_idx,
-                global_seed=genetic_algorithm_settings.random_seed,
+                global_seed=simulation_settings.global_seed,
                 performance_settings=performance_settings,
                 executor=executor,  # IMPORTANT reuse pool
+                impact_callback=impact_saver,
+                impact_seed=impact_seed,
+                scenario_seed=scenario_seed
             )
 
-            costs = [r.total_cost for r in reports]
-            idx_best = int(np.argmin(np.array(costs, dtype=float)))
+            costs = np.array([r.total_cost for r in reports], dtype=float)
+            idx_best = int(np.argmin(costs))
 
             gen_best_cost = float(costs[idx_best])
             gen_best_report = reports[idx_best]
@@ -153,21 +168,21 @@ def run_genetic_algorithm(
 
             best_chromosomes_per_generation.append(gen_best_chromosome)
 
-            # Update global best using generation best
             if gen_best_cost < best_cost:
                 best_cost = gen_best_cost
                 best_chromosome = np.array(gen_best_chromosome, dtype=float, copy=True)
                 best_global_report = gen_best_report  # NEW
 
-            # If global report wasn't set yet (first generation)
             if best_global_report is None:
                 best_global_report = gen_best_report
 
-            # NEW: Persist best reports for auditing
             write_best_reports_jsonl(
                 output_path=reports_output_path,
                 generation_index=gen_idx,
                 number_of_sensors=number_of_sensors,
+                ga_seed=ga_seed,
+                scenario_seed=scenario_seed,
+                impact_seed=impact_seed,
                 best_of_generation=gen_best_report,
                 best_global=best_global_report,
                 include_impact_points=False,  # set True if you want to store points (bigger file)
@@ -182,7 +197,7 @@ def run_genetic_algorithm(
             )
 
             # elitism
-            sorted_idx = list(np.argsort(np.array(costs, dtype=float)))
+            sorted_idx = list(np.argsort(costs))
             elites = [
                 np.array(population[i], dtype=float, copy=True)
                 for i in sorted_idx[: genetic_algorithm_settings.elitism]
@@ -192,8 +207,8 @@ def run_genetic_algorithm(
             new_population.extend(elites)
 
             while len(new_population) < genetic_algorithm_settings.population_size:
-                father_idx = select_index_for_tournament(costs, genetic_algorithm_settings.tournament_size, rng)
-                mother_idx = select_index_for_tournament(costs, genetic_algorithm_settings.tournament_size, rng)
+                father_idx = select_index_for_tournament(costs.tolist(), genetic_algorithm_settings.tournament_size, rng)
+                mother_idx = select_index_for_tournament(costs.tolist(), genetic_algorithm_settings.tournament_size, rng)
 
                 father = population[father_idx]
                 mother = population[mother_idx]
@@ -245,4 +260,5 @@ def run_genetic_algorithm(
         best_sensors=best_sensors,
         generation_metrics=generation_metrics,
         best_chromosomes_per_generation=best_chromosomes_per_generation,
+        global_seed=simulation_settings.global_seed
     )

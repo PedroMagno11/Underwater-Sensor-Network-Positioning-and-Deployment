@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
+
+import numpy as np
 
 from settings.environment_settings import EnvironmentSettings
 from settings.simulation_settings import SimulationSettings
@@ -14,7 +17,7 @@ from results.csv_exporter import export_generation_metrics_to_csv
 from evaluation.chromosome_decoder import chromosome_converter
 
 from executable.baseline import save_baseline_comparison  # local module
-
+from typing import List, Tuple
 
 LOGGER_NAME = "underwater_sensor_ga.postprocess"
 
@@ -23,6 +26,26 @@ def ensure_output_dir(output_root: str, number_of_sensors: int) -> Path:
     output_dir = Path(output_root) / f"sensors_{number_of_sensors}"
     output_dir.mkdir(parents=True, exist_ok=True)
     return output_dir
+
+def make_impact_saver(output_dir: Path, scenario_seed: int):
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    def _save(generation_index: int, impact_seed: int, impact_points: List[Tuple[float, float]]) -> None:
+        arr = np.asarray(impact_points, dtype=float)
+        np.save(output_dir / f"impact_points_gen_{generation_index:04d}.npy", arr)
+
+        meta = {
+            "generation_index": generation_index,
+            "scenario_seed": scenario_seed,
+            "impact_seed": impact_seed,
+            "num_impacts": int(arr.shape[0]),
+        }
+        (output_dir / f"impact_points_gen_{generation_index:04d}.json").write_text(
+            json.dumps(meta, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
+    return _save
 
 
 def save_best_per_generation_figures(

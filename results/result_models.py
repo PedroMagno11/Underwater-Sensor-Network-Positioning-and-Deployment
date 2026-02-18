@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import List, Optional, Tuple, Callable
 
 import numpy as np
 
@@ -39,3 +39,7 @@ class GeneticAlgorithmResult:
     best_sensors: List[AcousticSensor]
     generation_metrics: List[GenerationMetrics]
     best_chromosomes_per_generation: List[np.ndarray]
+    global_seed: int
+
+
+ImpactCallback = Callable[[int, int, List[Tuple[float, float]]], None]

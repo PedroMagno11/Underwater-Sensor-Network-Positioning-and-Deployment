@@ -5,8 +5,6 @@ import logging
 from pathlib import Path
 from typing import Tuple
 
-from executable.postprocess import postprocess_results
-
 os.environ["MPLBACKEND"] = "Agg"
 
 from logging_utils.logging_configuration import setup_logging
@@ -52,7 +50,6 @@ def build_sound_speed_profile() -> SoundSpeedProfile:
         salinity_psu=[35.0, 35.1, 35.2, 35.2],
     )
 
-
 def run_experiment_for_n(
     *,
     number_of_sensors: int,
@@ -78,16 +75,6 @@ def run_experiment_for_n(
     )
 
     logger.info("Final best cost (N=%d): %.3f", number_of_sensors, result.best_cost)
-
-    postprocess_results(
-        number_of_sensors=number_of_sensors,
-        result=result,
-        environment_settings=environment_settings,
-        simulation_settings=simulation_settings,
-        sound_speed_profile=sound_speed_profile,
-        visualization_settings=visualization_settings,
-    )
-
 
 def main() -> None:
     setup_logging(log_level=logging.INFO, log_file_path="execution.log", log_to_console=True)
