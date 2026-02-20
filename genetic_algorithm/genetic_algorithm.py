@@ -253,6 +253,12 @@ def run_genetic_algorithm(
 
     best_sensors = chromosome_converter(best_chromosome, number_of_sensors, grid_geometry, environment_settings)
 
+    outdir = Path("outputs")/f'sensors_{number_of_sensors}'
+    outdir.mkdir(parents=True, exist_ok=True)
+
+    np.save(outdir / "best_chromosomes_per_generation.npy", np.asarray(best_chromosomes_per_generation, dtype=float))
+    np.save(outdir / "best_global_chromosome.npy", np.asarray(best_chromosome, dtype=float))
+
     return GeneticAlgorithmResult(
         number_of_sensors=number_of_sensors,
         best_chromosome=best_chromosome,
