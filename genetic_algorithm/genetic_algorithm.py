@@ -125,6 +125,7 @@ def run_genetic_algorithm(
 
     generation_metrics: List[GenerationMetrics] = []
     best_chromosomes_per_generation: List[np.ndarray] = []
+    best_global_chromosomes_per_generation: List[np.ndarray] = []
 
     if reports_output_path is None:
         reports_output_path = str(
@@ -172,6 +173,10 @@ def run_genetic_algorithm(
                 best_cost = gen_best_cost
                 best_chromosome = np.array(gen_best_chromosome, dtype=float, copy=True)
                 best_global_report = gen_best_report  # NEW
+
+            best_global_chromosomes_per_generation.append(
+                np.array(best_chromosome, dtype=float, copy=True)
+            )
 
             if best_global_report is None:
                 best_global_report = gen_best_report
@@ -258,6 +263,7 @@ def run_genetic_algorithm(
 
     np.save(outdir / "best_chromosomes_per_generation.npy", np.asarray(best_chromosomes_per_generation, dtype=float))
     np.save(outdir / "best_global_chromosome.npy", np.asarray(best_chromosome, dtype=float))
+    np.save(outdir / "best_global_chromosomes_per_generation.npy", np.asarray(best_global_chromosomes_per_generation, dtype=float))
 
     return GeneticAlgorithmResult(
         number_of_sensors=number_of_sensors,

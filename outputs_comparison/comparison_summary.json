@@ -1,0 +1,154 @@
+{
+  "by_n": {
+    "3": {
+      "ga_jsonl": "outputs/sensors_3/best_reports.jsonl",
+      "polygon_csv": "outputs_polygon_baseline/sensors_3/polygon_baseline_metrics.csv",
+      "polygon_best": {
+        "angle_offset_deg": "100.0",
+        "depth_m": "4.25",
+        "eval_noise_seed": "999",
+        "localizable_impacts": "18",
+        "mean_error_m": "5.302153509094413",
+        "min_inter_sensor_distance_m": "100.0",
+        "n_sensors": "3",
+        "no_coverage_rate": "0.4",
+        "num_impacts": "30",
+        "total_cost": "125.77207272478647"
+      },
+      "ga_best_gen_agg": {
+        "final_mean_error_m": 4.593457917085227,
+        "final_total_cost": 4.961677855813193,
+        "final_no_coverage_rate": 0.0,
+        "avg_mean_error_m": 4.965696484309968,
+        "avg_total_cost": 6.138909532348126,
+        "avg_no_coverage_rate": 0.0022,
+        "best_total_cost": 4.3240423185002355,
+        "best_mean_error_m": 4.136887146143946,
+        "worst_mean_error_m": 53.03615363163648,
+        "num_generations": 500.0,
+        "first_generation": 0.0,
+        "last_generation": 499.0
+      },
+      "ga_best_global_agg": {
+        "final_mean_error_m": 4.136887146143946,
+        "final_total_cost": 4.3240423185002355,
+        "final_no_coverage_rate": 0.0,
+        "avg_mean_error_m": 4.6113123693441755,
+        "avg_total_cost": 5.658385841226431,
+        "avg_no_coverage_rate": 0.0022,
+        "best_total_cost": 4.3240423185002355,
+        "best_mean_error_m": 4.136887146143946,
+        "worst_mean_error_m": 53.03615363163648,
+        "num_generations": 500.0,
+        "first_generation": 0.0,
+        "last_generation": 499.0
+      },
+      "latex_table": "outputs_comparison/sensors_3/table_ga_vs_polygon.tex",
+      "per_n_summary_csv": "outputs_comparison/sensors_3/summary.csv",
+      "plots": {
+        "convergence_cost": "outputs_comparison/sensors_3/convergence_cost.png",
+        "boxplot_mean_error": "outputs_comparison/sensors_3/boxplot_mean_error.png"
+      }
+    },
+    "4": {
+      "ga_jsonl": "outputs/sensors_4/best_reports.jsonl",
+      "polygon_csv": "outputs_polygon_baseline/sensors_4/polygon_baseline_metrics.csv",
+      "polygon_best": {
+        "angle_offset_deg": "37.5",
+        "depth_m": "4.25",
+        "eval_noise_seed": "999",
+        "localizable_impacts": "28",
+        "mean_error_m": "4.615633951306714",
+        "min_inter_sensor_distance_m": "100.0",
+        "n_sensors": "4",
+        "no_coverage_rate": "0.06666666666666667",
+        "num_impacts": "30",
+        "total_cost": "24.872781025360386"
+      },
+      "ga_best_gen_agg": {
+        "final_mean_error_m": 3.8636449900602186,
+        "final_total_cost": 3.9712920842734714,
+        "final_no_coverage_rate": 0.0,
+        "avg_mean_error_m": 4.009413585454874,
+        "avg_total_cost": 4.330651692797478,
+        "avg_no_coverage_rate": 0.0005333333333333334,
+        "best_total_cost": 3.855760311723763,
+        "best_mean_error_m": 3.7827097648139874,
+        "worst_mean_error_m": 24.669511616160214,
+        "num_generations": 500.0,
+        "first_generation": 0.0,
+        "last_generation": 499.0
+      },
+      "ga_best_global_agg": {
+        "final_mean_error_m": 3.7827097648139874,
+        "final_total_cost": 3.855760311723763,
+        "final_no_coverage_rate": 0.0,
+        "avg_mean_error_m": 3.912938174082553,
+        "avg_total_cost": 4.2003940581501835,
+        "avg_no_coverage_rate": 0.0005333333333333334,
+        "best_total_cost": 3.855760311723763,
+        "best_mean_error_m": 3.7827097648139874,
+        "worst_mean_error_m": 20.421378704529616,
+        "num_generations": 500.0,
+        "first_generation": 0.0,
+        "last_generation": 499.0
+      },
+      "latex_table": "outputs_comparison/sensors_4/table_ga_vs_polygon.tex",
+      "per_n_summary_csv": "outputs_comparison/sensors_4/summary.csv",
+      "plots": {
+        "convergence_cost": "outputs_comparison/sensors_4/convergence_cost.png",
+        "boxplot_mean_error": "outputs_comparison/sensors_4/boxplot_mean_error.png"
+      }
+    },
+    "5": {
+      "ga_jsonl": "outputs/sensors_5/best_reports.jsonl",
+      "polygon_csv": "outputs_polygon_baseline/sensors_5/polygon_baseline_metrics.csv",
+      "polygon_best": {
+        "angle_offset_deg": "24.0",
+        "depth_m": "4.25",
+        "eval_noise_seed": "999",
+        "localizable_impacts": "30",
+        "mean_error_m": "4.186121743267148",
+        "min_inter_sensor_distance_m": "100.0",
+        "n_sensors": "5",
+        "no_coverage_rate": "0.0",
+        "num_impacts": "30",
+        "total_cost": "4.344024834718811"
+      },
+      "ga_best_gen_agg": {
+        "final_mean_error_m": 3.798781095895736,
+        "final_total_cost": 3.8798673083463866,
+        "final_no_coverage_rate": 0.0,
+        "avg_mean_error_m": 3.882496306216953,
+        "avg_total_cost": 3.9866203694407254,
+        "avg_no_coverage_rate": 0.0,
+        "best_total_cost": 3.841630977766928,
+        "best_mean_error_m": 3.7732902088427642,
+        "worst_mean_error_m": 5.276556772816421,
+        "num_generations": 500.0,
+        "first_generation": 0.0,
+        "last_generation": 499.0
+      },
+      "ga_best_global_agg": {
+        "final_mean_error_m": 3.7732902088427642,
+        "final_total_cost": 3.841630977766928,
+        "final_no_coverage_rate": 0.0,
+        "avg_mean_error_m": 3.8332111503117807,
+        "avg_total_cost": 3.922324487385819,
+        "avg_no_coverage_rate": 0.0,
+        "best_total_cost": 3.841630977766928,
+        "best_mean_error_m": 3.7732902088427642,
+        "worst_mean_error_m": 5.249822645413888,
+        "num_generations": 500.0,
+        "first_generation": 0.0,
+        "last_generation": 499.0
+      },
+      "latex_table": "outputs_comparison/sensors_5/table_ga_vs_polygon.tex",
+      "per_n_summary_csv": "outputs_comparison/sensors_5/summary.csv",
+      "plots": {
+        "convergence_cost": "outputs_comparison/sensors_5/convergence_cost.png",
+        "boxplot_mean_error": "outputs_comparison/sensors_5/boxplot_mean_error.png"
+      }
+    }
+  }
+}

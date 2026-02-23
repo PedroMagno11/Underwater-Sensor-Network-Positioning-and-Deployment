@@ -1,0 +1,2 @@
+N,ga_jsonl,poly_csv,ga_final_total_cost,ga_final_mean_error_m,ga_final_no_coverage_rate,ga_best_mean_error_m,ga_avg_mean_error_m,poly_best_total_cost,poly_best_mean_error_m,poly_best_no_coverage_rate,ga_generations,ga_first_generation,ga_last_generation
+4,outputs/sensors_4/best_reports.jsonl,outputs_polygon_baseline/sensors_4/polygon_baseline_metrics.csv,3.855760311723763,3.7827097648139874,0.0,3.7827097648139874,3.912938174082553,24.872781025360386,4.615633951306714,0.06666666666666667,500.0,0.0,499.0

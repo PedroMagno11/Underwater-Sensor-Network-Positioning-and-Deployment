@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 from executable.runner import build_sound_speed_profile
 from geometry.grid_geometry import GridGeometry
 from evaluation.chromosome_decoder import chromosome_converter
-from topologies.regular_polygon import create_regular_polygon_chromosome
 
 from evaluation.cost_function import evaluate_chromosome_with_report
 from acoustic.sound_speed_profile import SoundSpeedProfile
@@ -54,118 +53,36 @@ def _classify_impacts_by_coverage_2d(
 
     dx = impacts_xy[:, 0:1] - sx.reshape(1, -1)
     dy = impacts_xy[:, 1:2] - sy.reshape(1, -1)
-    d = np.sqrt(dx * dx + dy * dy)          # (M,N)
+    d = np.sqrt(dx * dx + dy * dy)
 
-    within = d <= float(max_det)            # (M,N)
-    count = within.sum(axis=1)              # (M,)
+    within = d <= float(max_det)
+    count = within.sum(axis=1)
     return count >= int(min_sensors_for_coverage)
-
-
-def _polygon_cycle_indices_by_angle(
-    sx: np.ndarray,
-    sy: np.ndarray,
-    cx: float,
-    cy: float,
-) -> List[int]:
-    """
-    Ordena sensores por ângulo em torno do centro (cx,cy).
-    Retorna a sequência de índices para formar um ciclo (polígono) ligando vizinhos.
-    """
-    angles = np.arctan2(sy - cy, sx - cx)  # [-pi, pi]
-    order = np.argsort(angles)
-    return [int(i) for i in order]
-
-
-def _draw_polygon_edges_and_distances(
-    ax,
-    sx: np.ndarray,
-    sy: np.ndarray,
-    order: List[int],
-    *,
-    distance_decimals: int = 1,
-    distance_unit: str = "m",
-    line_alpha: float = 0.45,
-    line_width: float = 0.9,
-    line_color: str = "gray",        # ✅ NOVO (editável)
-    line_style: str = "-",           # ✅ NOVO (editável: "-", "--", ":", "-.")
-):
-    """
-    Desenha somente as arestas do polígono (ciclo) conectando vizinhos imediatos:
-      order[0]-order[1]-...-order[n-1]-order[0]
-    E escreve a distância em cada aresta.
-    """
-    n = len(order)
-    if n < 2:
-        return
-
-    fmt = f"{{:.{int(distance_decimals)}f}} {distance_unit}"
-
-    # com 3..5 sensores dá pra manter fontsize ok
-    fontsize = 8 if n <= 4 else 7
-
-    for k in range(n):
-        i = order[k]
-        j = order[(k + 1) % n]  # fecha o ciclo
-
-        x1, y1 = sx[i], sy[i]
-        x2, y2 = sx[j], sy[j]
-        dist = float(np.hypot(x2 - x1, y2 - y1))
-
-        # ✅ AQUI é onde a cor/estilo das LINHAS é aplicada
-        ax.plot(
-            [x1, x2],
-            [y1, y2],
-            linewidth=line_width,
-            alpha=line_alpha,
-            color=line_color,
-            linestyle=line_style,
-        )
-
-        mx, my = (x1 + x2) / 2.0, (y1 + y2) / 2.0
-        ax.text(
-            mx, my,
-            fmt.format(dist),
-            fontsize=fontsize,
-            alpha=0.9,
-            ha="center",
-            va="center",
-            bbox=dict(boxstyle="round,pad=0.15", alpha=0.12),
-        )
 
 
 def plot_scene(
     *,
     out_png: Path,
     title: str,
-    impacts_xy: np.ndarray,     # (M,2)
-    sensors,                    # list[AcousticSensor]
+    impacts_xy: np.ndarray,
+    sensors,
     env,
     show_detection: bool = True,
 
     # cobertura
     highlight_out_of_coverage: bool = True,
-    out_of_coverage_mask: Optional[np.ndarray] = None,  # (M,) True => fora
+    out_of_coverage_mask: Optional[np.ndarray] = None,
     min_sensors_for_coverage: int = 3,
 
-    # polígono (liga só vizinho imediato)
-    show_sensor_polygon_links: bool = True,
+    # ⚠️ se você não quer NENHUMA linha de polígono, deixe False
+    show_sensor_polygon_links: bool = False,
 
     # profundidade
     show_depth_labels: bool = True,
 
-    # cores dos impactos
+    # cores
     covered_color: str = "green",
     uncovered_color: str = "tab:red",
-
-    # ✅ NOVO: cor/estilo das linhas do polígono
-    polygon_line_color: str = "gray",
-    polygon_line_style: str = "-",
-    polygon_line_width: float = 1.1,
-    polygon_line_alpha: float = 0.45,
-
-    # texto da distância
-    distance_decimals: int = 1,
-    distance_unit: str = "m",
 ):
     cx = float(env.x_center_in_meters)
     cy = float(env.y_center_in_meters)
@@ -228,26 +145,14 @@ def plot_scene(
                 s=22,
                 c=uncovered_color,
                 marker="x",
-                label="Impact points no covered",
+                label="Impact points not covered",
                 alpha=0.95,
                 linewidths=1.4,
             )
     else:
         ax.scatter(impacts_xy[:, 0], impacts_xy[:, 1], s=14, label="Impact points")
 
-    # liga sensores apenas ao vizinho imediato e fecha ciclo (polígono)
-    if show_sensor_polygon_links and len(sensors) >= 3:
-        order = _polygon_cycle_indices_by_angle(sx, sy, cx=cx, cy=cy)
-        _draw_polygon_edges_and_distances(
-            ax,
-            sx, sy, order,
-            distance_decimals=distance_decimals,
-            distance_unit=distance_unit,
-            line_alpha=polygon_line_alpha,
-            line_width=polygon_line_width,
-            line_color=polygon_line_color,   # ✅ aqui
-            line_style=polygon_line_style,   # ✅ aqui
-        )
+    # (removido) ligações tipo polígono — mantemos o parâmetro mas por padrão fica False
 
     # profundidade dos sensores
     if show_depth_labels:
@@ -316,10 +221,10 @@ def evaluate_chromosome_on_impacts(
 
 
 # =========================
-#  Main generation
+#  Main generation (GA only)
 # =========================
 
-def generate_all_figures(
+def generate_ga_figures_only(
     *,
     number_of_sensors: int,
     output_root: str,
@@ -329,41 +234,25 @@ def generate_all_figures(
     noise_seed_for_comparison: int = 999,
     write_csv: bool = True,
 
-    # regra:
     min_sensors_for_coverage: int = 3,
-
-    # visuais:
-    covered_color: str = "green",
+    covered_color: str = "gold",
     uncovered_color: str = "tab:red",
 
-    # ✅ NOVO: linha do polígono
-    polygon_line_color: str = "gray",
-    polygon_line_style: str = "-",
-    polygon_line_width: float = 1.1,
-    polygon_line_alpha: float = 0.45,
+    # se quiser linhas ligando sensores no GA, coloque True
+    show_sensor_polygon_links: bool = False,
 ):
     outdir = Path(output_root) / f"sensors_{number_of_sensors}"
     impacts_dir = outdir / "impacts"
-    figs_dir = outdir / "figures"
+    figs_dir = outdir / "figures_ga_only"
 
     grid = GridGeometry(environment_settings)
 
     best_chrs = np.load(outdir / "best_chromosomes_per_generation.npy")  # (G, L)
     best_global_chr = np.load(outdir / "best_global_chromosome.npy")     # (L,)
-
     num_generations = int(best_chrs.shape[0])
 
-    polygon_chr = create_regular_polygon_chromosome(
-        number_of_sensors=number_of_sensors,
-        environment_settings=environment_settings,
-        grid_geometry=grid,
-        polygon_radius_meters=environment_settings.target_region_radius,
-        depth_meters=(environment_settings.minimum_depth_in_meters + environment_settings.maximum_depth_in_meters) / 2.0,
-        angle_offset_degrees=0.0,
-    )
-
     rows = []
-    csv_path = figs_dir / "comparison_metrics.csv"
+    csv_path = figs_dir / "ga_only_comparison_metrics.csv"
 
     for gen in range(num_generations):
         impacts = load_impacts(impacts_dir, gen)
@@ -391,20 +280,8 @@ def generate_all_figures(
             noise_seed=noise_seed_for_comparison,
         )
 
-        rep_poly = evaluate_chromosome_on_impacts(
-            chromosome=polygon_chr,
-            number_of_sensors=number_of_sensors,
-            env=environment_settings,
-            sim=simulation_settings,
-            ssp=sound_speed_profile,
-            grid=grid,
-            impacts_xy=impacts,
-            noise_seed=noise_seed_for_comparison,
-        )
-
         ga_sensors_gen = chromosome_converter(best_gen_chr, number_of_sensors, grid, environment_settings)
         ga_sensors_global = chromosome_converter(best_global_chr, number_of_sensors, grid, environment_settings)
-        poly_sensors = chromosome_converter(polygon_chr, number_of_sensors, grid, environment_settings)
 
         def fmt(rep):
             no_cov = rep.number_of_impacts_without_coverage / max(1, rep.number_of_impacts)
@@ -420,14 +297,10 @@ def generate_all_figures(
             highlight_out_of_coverage=True,
             out_of_coverage_mask=None,
             min_sensors_for_coverage=min_sensors_for_coverage,
-            show_sensor_polygon_links=True,
+            show_sensor_polygon_links=show_sensor_polygon_links,
             show_depth_labels=True,
             covered_color=covered_color,
             uncovered_color=uncovered_color,
-            polygon_line_color=polygon_line_color,
-            polygon_line_style=polygon_line_style,
-            polygon_line_width=polygon_line_width,
-            polygon_line_alpha=polygon_line_alpha,
         )
 
         plot_scene(
@@ -440,39 +313,16 @@ def generate_all_figures(
             highlight_out_of_coverage=True,
             out_of_coverage_mask=None,
             min_sensors_for_coverage=min_sensors_for_coverage,
-            show_sensor_polygon_links=True,
+            show_sensor_polygon_links=show_sensor_polygon_links,
             show_depth_labels=True,
             covered_color=covered_color,
             uncovered_color=uncovered_color,
-            polygon_line_color=polygon_line_color,
-            polygon_line_style=polygon_line_style,
-            polygon_line_width=polygon_line_width,
-            polygon_line_alpha=polygon_line_alpha,
-        )
-
-        plot_scene(
-            out_png=figs_dir / f"scene_polygon_gen_{gen:04d}.png",
-            title=f"Regular Polygon (Gen {gen}) — {fmt(rep_poly)}",
-            impacts_xy=impacts,
-            sensors=poly_sensors,
-            env=environment_settings,
-            show_detection=True,
-            highlight_out_of_coverage=True,
-            out_of_coverage_mask=None,
-            min_sensors_for_coverage=min_sensors_for_coverage,
-            show_sensor_polygon_links=True,
-            show_depth_labels=True,
-            covered_color=covered_color,
-            uncovered_color=uncovered_color,
-            polygon_line_color=polygon_line_color,
-            polygon_line_style=polygon_line_style,
-            polygon_line_width=polygon_line_width,
-            polygon_line_alpha=polygon_line_alpha,
         )
 
         if write_csv:
             def add_row(label, rep):
                 no_cov = rep.number_of_impacts_without_coverage / max(1, rep.number_of_impacts)
+                print(f'TOTAL COST: {rep.total_cost}')
                 rows.append({
                     "generation": gen,
                     "label": label,
@@ -486,18 +336,17 @@ def generate_all_figures(
 
             add_row("GA_best_gen", rep_ga_gen)
             add_row("GA_best_global", rep_ga_global)
-            add_row("polygon", rep_poly)
 
-    if write_csv:
+    if write_csv and rows:
         csv_path.parent.mkdir(parents=True, exist_ok=True)
         with csv_path.open("w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(f, fieldnames=list(rows[0].keys()) if rows else [])
+            w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
             w.writeheader()
             w.writerows(rows)
 
-    print(f"Saved {num_generations * 3} figures to: {figs_dir}")
-    if write_csv:
-        print(f"Saved comparison CSV to: {csv_path}")
+    print(f"Saved {num_generations * 2} GA figures to: {figs_dir}")
+    if write_csv and rows:
+        print(f"Saved GA comparison CSV to: {csv_path}")
 
 
 if __name__ == "__main__":
@@ -507,22 +356,16 @@ if __name__ == "__main__":
     sim = SimulationSettings()
     ssp = build_sound_speed_profile()
 
-    generate_all_figures(
-        number_of_sensors=3,
+    generate_ga_figures_only(
+        number_of_sensors=5,
         output_root="outputs",
         environment_settings=env,
         simulation_settings=sim,
         sound_speed_profile=ssp,
         noise_seed_for_comparison=999,
         write_csv=True,
-
         min_sensors_for_coverage=3,
         covered_color="gold",
         uncovered_color="tab:red",
-
-        # ✅ AQUI você controla as linhas do polígono
-        polygon_line_color="black",
-        polygon_line_style="--",   # "-", "--", ":", "-."
-        polygon_line_width=1.2,
-        polygon_line_alpha=0.65,
+        show_sensor_polygon_links=False,  # <-- sem “polígono” desenhado
     )

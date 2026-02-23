@@ -3,14 +3,14 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class SimulationSettings:
-    number_of_impact_points_per_evaluation: int = 40
+    number_of_impact_points_per_evaluation: int = 30
     time_noise_standard_deviation: float = 0.0005  # 0.5 ms
 
-    coarse_search_step_in_meters: float = 45.0  # 5 * 9m
-    fine_search_step_in_meters: float = 9.0
-    refinement_radius_in_meters: float = 180.0  # 20 * 9m
+    coarse_search_step_in_meters: float = 20.0
+    fine_search_step_in_meters: float = 6.0
+    refinement_radius_in_meters: float = 80.0
 
-    invalid_coverage_penalty: float = 1e6
+    invalid_coverage_penalty: float = 10
     penalty_for_buoys_too_close: float = 1.0
     minimum_distance_between_buoys_in_meters: float = 100.0
 
