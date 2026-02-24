@@ -3,13 +3,16 @@ from __future__ import annotations
 import json
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, Tuple
 
 from settings.environment_settings import EnvironmentSettings
 from settings.genetic_algorithm_settings import GeneticAlgorithmSettings
 from settings.simulation_settings import SimulationSettings
 from settings.performance_settings import PerformanceSettings
 from settings.visualization_settings import VisualizationSettings
+
+# NEW
+from settings.particle_swarm_settings import ParticleSwarmSettings
 
 
 def load_json_config(path: str) -> Dict[str, Any]:
@@ -28,13 +31,18 @@ def load_settings_from_config(config: Dict[str, Any]) -> Tuple[
     SimulationSettings,
     PerformanceSettings,
     VisualizationSettings,
+    ParticleSwarmSettings,   # NEW
 ]:
     env = _dataclass_from_dict(EnvironmentSettings, config.get("environment", {}))
     ga = _dataclass_from_dict(GeneticAlgorithmSettings, config.get("genetic_algorithm", {}))
     sim = _dataclass_from_dict(SimulationSettings, config.get("simulation", {}))
     perf = _dataclass_from_dict(PerformanceSettings, config.get("performance", {}))
     viz = _dataclass_from_dict(VisualizationSettings, config.get("visualization", {}))
-    return env, ga, sim, perf, viz
+
+    # NEW
+    pso = _dataclass_from_dict(ParticleSwarmSettings, config.get("particle_swarm", {}))
+
+    return env, ga, sim, perf, viz, pso
 
 
 def write_default_config(path: str) -> None:
@@ -44,5 +52,7 @@ def write_default_config(path: str) -> None:
         "simulation": asdict(SimulationSettings()),
         "performance": asdict(PerformanceSettings()),
         "visualization": asdict(VisualizationSettings()),
+        # NEW
+        "particle_swarm": asdict(ParticleSwarmSettings()),
     }
     Path(path).write_text(json.dumps(default, indent=2), encoding="utf-8")

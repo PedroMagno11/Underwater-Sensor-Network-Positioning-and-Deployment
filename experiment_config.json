@@ -44,5 +44,14 @@
     "export_metrics_csv": true,
     "save_error_heatmap": true,
     "heatmap_step_in_meters": 90.0
+  },
+  "particle_swarm": {
+    "number_of_iterations": 1250,
+    "swarm_size": 100,
+    "inertia_w": 0.72,
+    "cognitive_c1": 1.49,
+    "social_c2": 1.49,
+    "vmax_fraction_of_range": 0.05,
+    "random_seed": 321
   }
 }

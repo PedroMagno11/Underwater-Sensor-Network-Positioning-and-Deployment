@@ -2,6 +2,7 @@
   "by_n": {
     "3": {
       "ga_jsonl": "outputs/sensors_3/best_reports.jsonl",
+      "pso_jsonl": "outputs/sensors_3/best_reports_pso.jsonl",
       "polygon_csv": "outputs_polygon_baseline/sensors_3/polygon_baseline_metrics.csv",
       "polygon_best": {
         "angle_offset_deg": "100.0",
@@ -14,20 +15,6 @@
         "no_coverage_rate": "0.4",
         "num_impacts": "30",
         "total_cost": "125.77207272478647"
-      },
-      "ga_best_gen_agg": {
-        "final_mean_error_m": 4.593457917085227,
-        "final_total_cost": 4.961677855813193,
-        "final_no_coverage_rate": 0.0,
-        "avg_mean_error_m": 4.965696484309968,
-        "avg_total_cost": 6.138909532348126,
-        "avg_no_coverage_rate": 0.0022,
-        "best_total_cost": 4.3240423185002355,
-        "best_mean_error_m": 4.136887146143946,
-        "worst_mean_error_m": 53.03615363163648,
-        "num_generations": 500.0,
-        "first_generation": 0.0,
-        "last_generation": 499.0
       },
       "ga_best_global_agg": {
         "final_mean_error_m": 4.136887146143946,
@@ -43,7 +30,21 @@
         "first_generation": 0.0,
         "last_generation": 499.0
       },
-      "latex_table": "outputs_comparison/sensors_3/table_ga_vs_polygon.tex",
+      "pso_best_global_agg": {
+        "final_mean_error_m": 2.680335349055966,
+        "final_total_cost": 272.68033534905595,
+        "final_no_coverage_rate": 0.9,
+        "avg_mean_error_m": 3.6604005424667414,
+        "avg_total_cost": 142.25650405914664,
+        "avg_no_coverage_rate": 0.4614465408805032,
+        "best_total_cost": 4.7896058509476,
+        "best_mean_error_m": 2.680335349055966,
+        "worst_mean_error_m": 13.523656729730648,
+        "num_generations": 3180.0,
+        "first_generation": 0.0,
+        "last_generation": 1249.0
+      },
+      "latex_table": "outputs_comparison/sensors_3/table_ga_vs_pso_vs_polygon.tex",
       "per_n_summary_csv": "outputs_comparison/sensors_3/summary.csv",
       "plots": {
         "convergence_cost": "outputs_comparison/sensors_3/convergence_cost.png",
@@ -52,6 +53,7 @@
     },
     "4": {
       "ga_jsonl": "outputs/sensors_4/best_reports.jsonl",
+      "pso_jsonl": "outputs/sensors_4/best_reports_pso.jsonl",
       "polygon_csv": "outputs_polygon_baseline/sensors_4/polygon_baseline_metrics.csv",
       "polygon_best": {
         "angle_offset_deg": "37.5",
@@ -64,20 +66,6 @@
         "no_coverage_rate": "0.06666666666666667",
         "num_impacts": "30",
         "total_cost": "24.872781025360386"
-      },
-      "ga_best_gen_agg": {
-        "final_mean_error_m": 3.8636449900602186,
-        "final_total_cost": 3.9712920842734714,
-        "final_no_coverage_rate": 0.0,
-        "avg_mean_error_m": 4.009413585454874,
-        "avg_total_cost": 4.330651692797478,
-        "avg_no_coverage_rate": 0.0005333333333333334,
-        "best_total_cost": 3.855760311723763,
-        "best_mean_error_m": 3.7827097648139874,
-        "worst_mean_error_m": 24.669511616160214,
-        "num_generations": 500.0,
-        "first_generation": 0.0,
-        "last_generation": 499.0
       },
       "ga_best_global_agg": {
         "final_mean_error_m": 3.7827097648139874,
@@ -93,7 +81,21 @@
         "first_generation": 0.0,
         "last_generation": 499.0
       },
-      "latex_table": "outputs_comparison/sensors_4/table_ga_vs_polygon.tex",
+      "pso_best_global_agg": {
+        "final_mean_error_m": 3.9604794069274756,
+        "final_total_cost": 4.08538258485002,
+        "final_no_coverage_rate": 0.0,
+        "avg_mean_error_m": 6.043994357934742,
+        "avg_total_cost": 7.0298578314718245,
+        "avg_no_coverage_rate": 0.0,
+        "best_total_cost": 4.08538258485002,
+        "best_mean_error_m": 3.9604794069274756,
+        "worst_mean_error_m": 20.19904706814558,
+        "num_generations": 2564.0,
+        "first_generation": 0.0,
+        "last_generation": 1249.0
+      },
+      "latex_table": "outputs_comparison/sensors_4/table_ga_vs_pso_vs_polygon.tex",
       "per_n_summary_csv": "outputs_comparison/sensors_4/summary.csv",
       "plots": {
         "convergence_cost": "outputs_comparison/sensors_4/convergence_cost.png",
@@ -102,6 +104,7 @@
     },
     "5": {
       "ga_jsonl": "outputs/sensors_5/best_reports.jsonl",
+      "pso_jsonl": "outputs/sensors_5/best_reports_pso.jsonl",
       "polygon_csv": "outputs_polygon_baseline/sensors_5/polygon_baseline_metrics.csv",
       "polygon_best": {
         "angle_offset_deg": "24.0",
@@ -114,20 +117,6 @@
         "no_coverage_rate": "0.0",
         "num_impacts": "30",
         "total_cost": "4.344024834718811"
-      },
-      "ga_best_gen_agg": {
-        "final_mean_error_m": 3.798781095895736,
-        "final_total_cost": 3.8798673083463866,
-        "final_no_coverage_rate": 0.0,
-        "avg_mean_error_m": 3.882496306216953,
-        "avg_total_cost": 3.9866203694407254,
-        "avg_no_coverage_rate": 0.0,
-        "best_total_cost": 3.841630977766928,
-        "best_mean_error_m": 3.7732902088427642,
-        "worst_mean_error_m": 5.276556772816421,
-        "num_generations": 500.0,
-        "first_generation": 0.0,
-        "last_generation": 499.0
       },
       "ga_best_global_agg": {
         "final_mean_error_m": 3.7732902088427642,
@@ -143,7 +132,21 @@
         "first_generation": 0.0,
         "last_generation": 499.0
       },
-      "latex_table": "outputs_comparison/sensors_5/table_ga_vs_polygon.tex",
+      "pso_best_global_agg": {
+        "final_mean_error_m": 4.055055453931098,
+        "final_total_cost": 4.184157938741889,
+        "final_no_coverage_rate": 0.0,
+        "avg_mean_error_m": 8.983879873434056,
+        "avg_total_cost": 13.49402732417145,
+        "avg_no_coverage_rate": 0.006563039723661485,
+        "best_total_cost": 4.08594611929663,
+        "best_mean_error_m": 3.960911427848311,
+        "worst_mean_error_m": 64.39660490033762,
+        "num_generations": 1930.0,
+        "first_generation": 0.0,
+        "last_generation": 1249.0
+      },
+      "latex_table": "outputs_comparison/sensors_5/table_ga_vs_pso_vs_polygon.tex",
       "per_n_summary_csv": "outputs_comparison/sensors_5/summary.csv",
       "plots": {
         "convergence_cost": "outputs_comparison/sensors_5/convergence_cost.png",

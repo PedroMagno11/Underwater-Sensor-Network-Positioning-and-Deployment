@@ -15,10 +15,12 @@ from settings.simulation_settings import SimulationSettings
 from settings.performance_settings import PerformanceSettings
 from settings.visualization_settings import VisualizationSettings
 
+# NEW (para tipagem do retorno; você pode ignorar se não quiser)
+from settings.particle_swarm_settings import ParticleSwarmSettings
+
 from acoustic.sound_speed_profile import SoundSpeedProfile
 from genetic_algorithm.genetic_algorithm import run_genetic_algorithm
 from results.result_models import GeneticAlgorithmResult
-
 
 
 LOGGER_NAME = "underwater_sensor_ga.runner"
@@ -30,6 +32,7 @@ def load_all_settings(config_path: str) -> Tuple[
     SimulationSettings,
     PerformanceSettings,
     VisualizationSettings,
+    ParticleSwarmSettings,   # NEW
 ]:
     config_file = Path(config_path)
     if not config_file.exists():
@@ -43,12 +46,12 @@ def load_all_settings(config_path: str) -> Tuple[
 
 
 def build_sound_speed_profile() -> SoundSpeedProfile:
-    # Baseline SSP from T/S profiles (you can swap to CSV loader later)
     return SoundSpeedProfile.from_temperature_salinity_profiles(
         depths_in_meters=[0.5, 2.0, 5.0, 8.0],
         temperatures_celsius=[26.5, 26.0, 25.2, 24.8],
         salinity_psu=[35.0, 35.1, 35.2, 35.2],
     )
+
 
 def run_experiment_for_n(
     *,
@@ -76,6 +79,7 @@ def run_experiment_for_n(
 
     logger.info("Final best cost (N=%d): %.3f", number_of_sensors, result.best_cost)
 
+
 def main() -> None:
     setup_logging(log_level=logging.INFO, log_file_path="execution.log", log_to_console=True)
     logger = logging.getLogger(LOGGER_NAME)
@@ -86,6 +90,7 @@ def main() -> None:
         simulation_settings,
         performance_settings,
         visualization_settings,
+        _pso_settings,  # NEW: ignorado no runner do GA
     ) = load_all_settings("experiment_config.json")
 
     sound_speed_profile = build_sound_speed_profile()
